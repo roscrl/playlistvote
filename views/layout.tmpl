@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{.new_relic_head}}
+    <meta charset="UTF-8">
+    <meta name = "viewport" content = "width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>{{block "title" .}}Playlist Vote{{end}}</title>
+
+    <link rel="stylesheet" href="/assets/main.css">
+
+    <script type="importmap">
+    {
+      "imports": {
+        "@hotwired/turbo": "/assets/js/turbo-7.3.0/dist/turbo.es2017-esm.js",
+        "alpinejs": "/assets/js/alpine-3.12.0/alpine.js",
+        "@alpinejs/intersect": "/assets/js/alpine-3.12.0/intersect.js"
+      }
+    }
+    </script>
+
+    <script type="module">
+        import * as Turbo from "@hotwired/turbo"
+        import Alpine from "alpinejs"
+        import intersect from "@alpinejs/intersect"
+
+        document.addEventListener("DOMContentLoaded", function () {
+            Turbo.start()
+
+            window.Alpine = Alpine
+            Alpine.plugin(intersect)
+            Alpine.start()
+        })
+    </script>
+
+</head>
+
+<body>
+
+<main class="mb-1">
+    {{block "content" .}}{{end}}
+</main>
+
+</body>
+
+</html>

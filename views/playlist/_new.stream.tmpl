@@ -1,0 +1,13 @@
+<turbo-stream action="replace" target="playlist_form_frame">
+    <template>
+        {{ template "playlist_form" .}}
+    </template>
+</turbo-stream>
+
+{{ if not .error }}
+    <turbo-stream action="prepend" target="playlist_list">
+        <template>
+            {{ template "playlist_card" .playlist}}
+        </template>
+    </turbo-stream>
+{{ end }}

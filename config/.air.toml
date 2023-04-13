@@ -1,0 +1,31 @@
+# Air is a hotreloader app which rebuilds the app whenever source files change
+[build]
+  cmd = "go build -o ./bin/app ."
+  bin = "./bin/app"
+  args_bin = []
+  delay = 0
+  exclude_dir = ["assets", "tmp", "vendor", "views/assets"]
+  exclude_file = []
+  exclude_regex = ["_test.go"]
+  exclude_unchanged = false
+  follow_symlink = false
+  full_bin = ""
+  include_dir = []
+  include_ext = ["go"]
+  kill_delay = "0s"
+  log = "build-errors.log"
+  send_interrupt = false
+  stop_on_error = true
+
+[log]
+time = false
+main_only = false
+
+[color]
+main = "magenta"
+watcher = "cyan"
+build = "yellow"
+runner = "green"
+
+[misc]
+clean_on_exit = true

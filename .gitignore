@@ -1,0 +1,12 @@
+.DS_Store
+.idea/
+
+bin/
+tmp/
+
+.env
+app
+
+playlist-vote.db
+playlist-vote.db-shm
+playlist-vote.db-wal
