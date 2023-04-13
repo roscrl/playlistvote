@@ -1,15 +1,17 @@
 package main
 
 import (
-	"app/config"
-	"github.com/matryer/is"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"app/config"
+
+	"github.com/matryer/is"
 )
 
 func TestHandleHome(t *testing.T) {
-	config.LoadEnv(".env")
+	_ = config.LoadEnv(".env")
 	is, server := is.New(t), NewServer(config.DEV, "", true)
 
 	w := httptest.NewRecorder()

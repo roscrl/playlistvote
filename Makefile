@@ -8,7 +8,10 @@ format:
 	gofumpt -l -w .
 
 build: clean lint format
-	make build-tailwind && go build -o bin/app .
+	make build-tailwind && CGO_ENABLED=1 go build -o bin/app .
+
+build-amd64: clean lint format
+	make build-tailwind && CC="zig cc -target x86_64-linux-musl" CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build -o bin/app .
 
 run: 
 	go run .

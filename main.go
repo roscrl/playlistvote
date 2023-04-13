@@ -118,7 +118,13 @@ func main() {
 		log.Fatal("error loading .env file")
 	}
 
-	srv := NewServer(config.DEV, sqliteDBPath, mock)
+	var srv *Server
+	if os.Getenv("ENV") == "prod" {
+		srv = NewServer(config.PROD, sqliteDBPath, mock)
+	} else {
+		srv = NewServer(config.DEV, sqliteDBPath, mock)
+	}
+
 	defer func() {
 		err := srv.Close()
 		if err != nil {
