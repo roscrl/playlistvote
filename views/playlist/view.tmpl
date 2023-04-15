@@ -1,0 +1,74 @@
+{{define "playlist_view" }}
+    <div class="flex items-center justify-center mt-[30px] image-container">
+        <div class="shrink-0 w-[300px] h-[300px] rounded-[6px] bg-gray-300 animate-pulse opacity-20 relative"
+             x-data="{ isLoadingPlaylistImage: true }"
+             x-init="() => {
+                            $el.classList.remove('bg-gray-300', 'animate-pulse', 'opacity-20');
+                            $nextTick(() => { if ($refs.img.complete) $refs.img.dispatchEvent(new Event('load')) })
+                        }"
+        >
+            <div x-cloak>
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[calc(100%+5px)] h-[calc(100%+5px)] -z-10"
+                     style="background-image: linear-gradient(45deg,
+                     {{ $fourHexColors := .playlist.ProminentFourCoverColors }}
+                     {{ index $fourHexColors 0  }},
+                     {{ index $fourHexColors 1  }},
+                     {{ index $fourHexColors 2  }},
+                     {{ index $fourHexColors 3  }}
+                             );
+                             filter: blur(10px);
+                             opacity: 0.7;
+                             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5)">
+                </div>
+
+                <div x-show="isLoadingPlaylistImage"
+                     class="w-[300px] h-[300px] rounded-[6px] bg-gray-300 animate-pulse opacity-20">
+                </div>
+
+                <img src="{{ .playlist.LargestImageURL }}"
+                     x-ref="img"
+                     @load="isLoadingPlaylistImage = false"
+                     class="w-[300px] h-[300px] rounded-[6px] transition-opacity duration-100 ease-in-out opacity-0 object-cover"
+                     :class="{'opacity-100': !isLoadingPlaylistImage}"
+                     alt="{{ .playlist.Name }} playlist image"
+                     loading="lazy">
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <span class="text-2xl ml-2">{{ .playlist.Name }}</span>
+
+        <div class="flex flex-col mx-2 mt-2 leading-none gap-1.5">
+            {{ range .playlist.Tracks.Items }}
+                <div class="flex justify-between relative">
+                    <div>
+                        <span class="text-md block">
+                            {{ .Track.Name }}
+                        </span>
+
+                        <span class="text-xs">
+                        {{ range $index, $element := .Track.Artists}}{{if $index}},{{end}} {{$element.Name}}{{end}}
+                        </span>
+                        <hr class="w-screen -left-2 absolute h-px mt-[2px] bg-gray-200 border-0 opacity-50">
+                    </div>
+                    <div>
+                        <button class="rounded-[6px] p-1 w-[26px] h-[26px] shrink-0 flex self-start overflow-visible items-center justify-center w-full active:outline outline-1 outline-[#ffe484] p-1 hover:cursor-pointer hover:bg-gray-100/[.20] hover:fill-white group outline-offset-[-1px]">
+                            <audio controls preload="none" src="{{ .Track.PreviewURL }}">
+                            <svg class="overflow-visible fill-none group-active:fill-[#ffe484] group-active:stroke-[#ffe484] stroke-white stroke-[4px] opacity-100" width="14" height="14" viewBox="0 0 75 84" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.16374 49.9219H20.8304V79.0885C20.8304 80.1936 21.2694 81.2534 22.0508 82.0348C22.8322 82.8162 23.892 83.2552 24.9971 83.2552H49.9971C51.1021 83.2552 52.162 82.8162 52.9434 82.0348C53.7248 81.2534 54.1637 80.1936 54.1637 79.0885C54.1637 77.9835 54.1637 49.9219 54.1637 49.9219H70.8304C71.6148 49.9205 72.383 49.698 73.0467 49.2798C73.7104 48.8617 74.2427 48.2648 74.5825 47.5578C74.9223 46.8507 75.0559 46.0622 74.9678 45.2827C74.8797 44.5033 74.5736 43.7644 74.0846 43.151L40.7512 1.48437C39.1637 -0.494792 35.8304 -0.494792 34.2429 1.48437L0.909576 43.151C0.42057 43.7644 0.114454 44.5033 0.0263763 45.2827C-0.0617016 46.0622 0.0718296 46.8507 0.411637 47.5578C0.751444 48.2648 1.28375 48.8617 1.94744 49.2798C2.61113 49.698 3.3793 49.9205 4.16374 49.9219Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            {{ end }}
+        </div>
+    </div>
+
+{{ end }}
+
+{{template "layout.tmpl" .}}
+
+{{define "content"}}
+    {{ template "playlist_view" .}}
+{{end}}

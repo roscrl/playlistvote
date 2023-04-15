@@ -12,6 +12,48 @@ import (
 	"app/views"
 )
 
+func (s *Server) handleGetPlaylist() http.HandlerFunc {
+	return func(w http.ResponseWriter, req *http.Request) {
+
+		playlistURI := getField(req, 0)
+		playlistID := strings.TrimPrefix(playlistURI, spotify.URIPlaylistPrefix)
+
+		{
+			playlistExists, err := s.qry.PlaylistExists(req.Context(), playlistID)
+			if err != nil {
+				log.Printf("failed to check if playlist %s exists: %v", playlistID, err)
+				s.views.Render(w, "error.tmpl", map[string]any{})
+				return
+			}
+
+			if playlistExists == 0 {
+				log.Printf("playlist %s does not exist", playlistID)
+				s.views.Render(w, "error.tmpl", map[string]any{})
+				return
+			}
+		}
+
+		playlist, err := s.spotify.Playlist(req.Context(), playlistID)
+		if err != nil {
+			log.Printf("failed to get playlist %s: %v", playlistID, err)
+			s.views.Render(w, "error.tmpl", map[string]any{})
+			return
+		}
+
+		upvotes, err := s.qry.GetPlaylistUpvotes(req.Context(), playlistID)
+		if err != nil {
+			log.Printf("failed to query for playlist %s upvotes: %v", playlistID, err)
+			s.views.Render(w, "error.tmpl", map[string]any{})
+			return
+		}
+
+		s.views.Render(w, "playlist/view.tmpl", map[string]any{
+			"playlist": playlist,
+			"upvotes":  upvotes,
+		})
+	}
+}
+
 func (s *Server) handlePostPlaylist() http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		if !views.TurboStreamRequest(req) {
@@ -29,40 +71,44 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 
 		log.Printf("given playlist link or id: %s", req.Form.Get("playlist_link_or_id"))
 		playlistLinkOrID := req.Form.Get("playlist_link_or_id")
-		playlistID := strings.TrimPrefix(playlistLinkOrID, spotify.UserCopiedPlaylistPrefix)
-		playlistID = strings.Split(playlistID, "?")[0]
-		log.Printf("parsed playlist id: %s", playlistID)
 
-		res, err := s.qry.PlaylistExists(req.Context(), playlistID)
-		if err != nil {
-			log.Printf("failed to check if playlist %s exists: %v", playlistID, err)
+		if strings.HasPrefix(playlistLinkOrID, spotify.AlbumCopiedPrefix) {
 			s.views.RenderStream(w, "playlist/_new.stream.tmpl", map[string]any{
-				"playlist_id":    playlistID,
 				"playlist_input": playlistLinkOrID,
-				"error":          "Oops, something went wrong on checking if playlist already exists",
+				"error":          "Looks like you copied a album link, try again with a playlist link",
 			})
 			return
 		}
 
-		if exists, ok := res.(int64); ok {
-			if exists == 1 {
-				log.Printf("playlist %s already exists", playlistID)
-				// TODO redirect to playlist page
+		playlistID := strings.TrimPrefix(playlistLinkOrID, spotify.UserCopiedPlaylistPrefix)
+		playlistID = strings.Split(playlistID, "?")[0]
+		log.Printf("parsed playlist id: %s", playlistID)
+
+		{
+			playlistExists, err := s.qry.PlaylistExists(req.Context(), playlistID)
+			if err != nil {
+				log.Printf("failed to check if playlist %s exists: %v", playlistID, err)
 				s.views.RenderStream(w, "playlist/_new.stream.tmpl", map[string]any{
 					"playlist_id":    playlistID,
 					"playlist_input": playlistLinkOrID,
-					"error":          "Playlist " + playlistID + " already exists",
+					"error":          "Oops, something went wrong on checking if playlist already exists",
 				})
 				return
 			}
-		} else {
-			log.Printf("something went wrong running query to check if playlist %s exists: %v", playlistID, err)
-			s.views.RenderStream(w, "playlist/_new.stream.tmpl", map[string]any{
-				"playlist_id":    playlistID,
-				"playlist_input": playlistLinkOrID,
-				"error":          "Oops, something went wrong on checking if playlist already exists",
-			})
-			return
+
+			if playlistExists == 1 {
+				log.Printf("playlist %s already exists", playlistID)
+				// redirect to playlist page
+				http.Redirect(w, req, PlaylistBaseRoute+"/"+playlistID, http.StatusSeeOther)
+
+				//// TODO redirect to playlist page
+				//s.views.RenderStream(w, "playlist/_new.stream.tmpl", map[string]any{
+				//	"playlist_id":    playlistID,
+				//	"playlist_input": playlistLinkOrID,
+				//	"error":          "Playlist " + playlistID + " already exists",
+				//})
+				return
+			}
 		}
 
 		log.Printf("fetching new playlist %s", playlistID)

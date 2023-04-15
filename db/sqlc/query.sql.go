@@ -38,6 +38,19 @@ func (q *Queries) GetPlaylist(ctx context.Context, id string) (Playlist, error) 
 	return i, err
 }
 
+const getPlaylistUpvotes = `-- name: GetPlaylistUpvotes :one
+SELECT upvotes
+FROM playlists
+WHERE id = ?
+`
+
+func (q *Queries) GetPlaylistUpvotes(ctx context.Context, id string) (int64, error) {
+	row := q.db.QueryRowContext(ctx, getPlaylistUpvotes, id)
+	var upvotes int64
+	err := row.Scan(&upvotes)
+	return upvotes, err
+}
+
 const getTop100PlaylistsByUpvotesInMonth = `-- name: GetTop100PlaylistsByUpvotesInMonth :many
 SELECT id, upvotes, added_at
 FROM playlists
@@ -204,12 +217,12 @@ func (q *Queries) IncrementPlaylistUpvotes(ctx context.Context, id string) (sql.
 }
 
 const playlistExists = `-- name: PlaylistExists :one
-SELECT EXISTS(SELECT 1 FROM playlists WHERE id = ?)
+SELECT COUNT(*) FROM playlists WHERE id = ?
 `
 
-func (q *Queries) PlaylistExists(ctx context.Context, id string) (interface{}, error) {
+func (q *Queries) PlaylistExists(ctx context.Context, id string) (int64, error) {
 	row := q.db.QueryRowContext(ctx, playlistExists, id)
-	var column_1 interface{}
-	err := row.Scan(&column_1)
-	return column_1, err
+	var count int64
+	err := row.Scan(&count)
+	return count, err
 }

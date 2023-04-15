@@ -1,1530 +1,3622 @@
 {
-  "id": "37i9dQZF1DXcBWIGoYBM5M",
-  "description": "SZA is on top of the Hottest 50!",
-  "external_urls": {
-    "spotify": "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M"
-  },
-  "followers": {
-    "total": 32211563
-  },
-  "images": [
-    {
-      "height": null,
-      "url": "https://mosaic.scdn.co/640/ab67616d0000b2733fbdbf37626f8bee2abe8a39ab67616d0000b273aaeb5c9fb6131977995b7f0eab67616d0000b273c1da94867db13a6b3f85ccdaab67616d0000b273c7d910e948d40b7acb9e6682",
-      "width": null
-    }
-  ],
-  "name": "Today's Top Hits",
-  "owner": {
-    "display_name": "Spotify",
-    "external_urls": {
-      "spotify": "https://open.spotify.com/user/spotify"
-    },
-    "id": "spotify"
-  },
-  "tracks": {
-    "items": [
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/5MS3MvWHJ3lOZPLiMxzOU6"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b27302854a7060fccc1a66a4b5ad",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e0202854a7060fccc1a66a4b5ad",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d0000485102854a7060fccc1a66a4b5ad",
-                "width": 64
-              }
-            ],
-            "name": "Her Loss"
-          },
-          "duration_ms": 242026,
-          "name": "Pussy & Millions (feat. Travis Scott)",
-          "preview_url": null
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/6Kqm5aSp69hTaOHTx38hsD"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2735a5eecf7316209bcdd847584",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e025a5eecf7316209bcdd847584",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048515a5eecf7316209bcdd847584",
-                "width": 64
-              }
-            ],
-            "name": "Shirt"
-          },
-          "duration_ms": 181830,
-          "name": "Shirt",
-          "preview_url": "https://p.scdn.co/mp3-preview/6d00669f3b7ff1522bade238a4875a8f4519a852?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/0gX9tkL5njRax8ymWcXARi"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273a935e4689f15953311772cc4",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02a935e4689f15953311772cc4",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851a935e4689f15953311772cc4",
-                "width": 64
-              }
-            ],
-            "name": "Unholy (feat. Kim Petras)"
-          },
-          "duration_ms": 156943,
-          "name": "Unholy (feat. Kim Petras)",
-          "preview_url": null
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/151w1FgRZfnKZA9FEcg9Z3"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273bb54dde68cd23e2a268ae0f5",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02bb54dde68cd23e2a268ae0f5",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851bb54dde68cd23e2a268ae0f5",
-                "width": 64
-              }
-            ],
-            "name": "Midnights"
-          },
-          "duration_ms": 200690,
-          "name": "Anti-Hero",
-          "preview_url": null
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/5quJSeTB33tFzfp2EZx9z5"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273781904f69fd550c19e6e3b55",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02781904f69fd550c19e6e3b55",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851781904f69fd550c19e6e3b55",
-                "width": 64
-              }
-            ],
-            "name": "My Mind & Me"
-          },
-          "duration_ms": 147597,
-          "name": "My Mind & Me",
-          "preview_url": null
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/3Zzv75PyROH6AMeXN1Yr1h"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273a790c56cff6e3463bf9935cb",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02a790c56cff6e3463bf9935cb",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851a790c56cff6e3463bf9935cb",
-                "width": 64
-              }
-            ],
-            "name": "Lift Me Up (From Black Panther: Wakanda Forever - Music From and Inspired By)"
-          },
-          "duration_ms": 196519,
-          "name": "Lift Me Up - From Black Panther: Wakanda Forever - Music From and Inspired By",
-          "preview_url": null
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/2pqdSWeJVsXAhHFuVLzuA8"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273b46f74097655d7f353caab14",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02b46f74097655d7f353caab14",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851b46f74097655d7f353caab14",
-                "width": 64
-              }
-            ],
-            "name": "As It Was"
-          },
-          "duration_ms": 167303,
-          "name": "As It Was",
-          "preview_url": "https://p.scdn.co/mp3-preview/c871f7a3b36ad708640a833fbf7a0b9e84c5b688?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/7M842DMhYVALrXsw3ty7B3"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273933c036cd61cd40d3f17a9c4",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02933c036cd61cd40d3f17a9c4",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851933c036cd61cd40d3f17a9c4",
-                "width": 64
-              }
-            ],
-            "name": "I'm Good (Blue)"
-          },
-          "duration_ms": 175238,
-          "name": "I'm Good (Blue)",
-          "preview_url": "https://p.scdn.co/mp3-preview/f387f0bdbce0f044f7bf9e2e6a87f59cd78f20a4?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/6FJxoadUE4JNVwWHghBwnb"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2730e58a0f8308c1ad403d105e7",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e020e58a0f8308c1ad403d105e7",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048510e58a0f8308c1ad403d105e7",
-                "width": 64
-              }
-            ],
-            "name": "RENAISSANCE"
-          },
-          "duration_ms": 225388,
-          "name": "CUFF IT",
-          "preview_url": "https://p.scdn.co/mp3-preview/a94e147cf3614420c220cf40d46de1bf1a76f9dc?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/2b2GHWESCWEuHiCZ2Skedp"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273a3a7f38ea2033aa501afd4cf",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02a3a7f38ea2033aa501afd4cf",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851a3a7f38ea2033aa501afd4cf",
-                "width": 64
-              }
-            ],
-            "name": "Calm Down (with Selena Gomez)"
-          },
-          "duration_ms": 239317,
-          "name": "Calm Down (with Selena Gomez)",
-          "preview_url": null
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/32G4vFNwLJQjpzkOoGEUUo"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2735b1bff1152ef6d402c9b75a8",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e025b1bff1152ef6d402c9b75a8",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048515b1bff1152ef6d402c9b75a8",
-                "width": 64
-              }
-            ],
-            "name": "Miss You"
-          },
-          "duration_ms": 206000,
-          "name": "Miss You",
-          "preview_url": "https://p.scdn.co/mp3-preview/524ace4f6ea6cbbd8a192a402597a781210be07d?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/151w1FgRZfnKZA9FEcg9Z3"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273bb54dde68cd23e2a268ae0f5",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02bb54dde68cd23e2a268ae0f5",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851bb54dde68cd23e2a268ae0f5",
-                "width": 64
-              }
-            ],
-            "name": "Midnights"
-          },
-          "duration_ms": 202395,
-          "name": "Lavender Haze",
-          "preview_url": null
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/04PEOM6kIEeq9lRp1asNP2"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273ec96e006b8bdfc582610ec13",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02ec96e006b8bdfc582610ec13",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851ec96e006b8bdfc582610ec13",
-                "width": 64
-              }
-            ],
-            "name": "I Ain’t Worried (Music From The Motion Picture \"Top Gun: Maverick\")"
-          },
-          "duration_ms": 148485,
-          "name": "I Ain't Worried",
-          "preview_url": null
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/1TpGeAzOJgAGdPkcWl95r2"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273c9f744b0d62da795bc21d04a",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02c9f744b0d62da795bc21d04a",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851c9f744b0d62da795bc21d04a",
-                "width": 64
-              }
-            ],
-            "name": "La Bachata"
-          },
-          "duration_ms": 162637,
-          "name": "La Bachata",
-          "preview_url": "https://p.scdn.co/mp3-preview/296da587969e145427d963bbe0680d9a25f61db8?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/3okhA6w5uau6ZNhnVpwVww"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2739a494f7d8909a6cc4ceb74ac",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e029a494f7d8909a6cc4ceb74ac",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048519a494f7d8909a6cc4ceb74ac",
-                "width": 64
-              }
-            ],
-            "name": "Indigo (Extended)"
-          },
-          "duration_ms": 184613,
-          "name": "Under The Influence",
-          "preview_url": "https://p.scdn.co/mp3-preview/965e3507e36132cea916d28f8faa64a581f5fb5e?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/0aIy6J8M9yHTnjtRu81Nr9"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b27304cd9a1664fb4539a55643fe",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e0204cd9a1664fb4539a55643fe",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d0000485104cd9a1664fb4539a55643fe",
-                "width": 64
-              }
-            ],
-            "name": "STAR WALKIN' (League of Legends Worlds Anthem)"
-          },
-          "duration_ms": 210575,
-          "name": "STAR WALKIN' (League of Legends Worlds Anthem)",
-          "preview_url": "https://p.scdn.co/mp3-preview/26d07a4d827a876270eaeb129bd61998cf2a45e7?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/3HHNR44YbP7XogMVwzbodx"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b27334362676667a4322838ccc97",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e0234362676667a4322838ccc97",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d0000485134362676667a4322838ccc97",
-                "width": 64
-              }
-            ],
-            "name": "Twelve Carat Toothache"
-          },
-          "duration_ms": 192840,
-          "name": "I Like You (A Happier Song) (with Doja Cat)",
-          "preview_url": null
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/4LVa9bljQRvLYpWr8qyaXs"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2731a4f1ada93881da4ca8060ff",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e021a4f1ada93881da4ca8060ff",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048511a4f1ada93881da4ca8060ff",
-                "width": 64
-              }
-            ],
-            "name": "Takin' It Back"
-          },
-          "duration_ms": 134256,
-          "name": "Made You Look",
-          "preview_url": "https://p.scdn.co/mp3-preview/6bb4d73ad1bbb0cb6c85eb4c882c1eddee26a705?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/5r36AJ6VOJtp00oxSkBZ5h"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2732e8ed79e177ff6011076f5f0",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e022e8ed79e177ff6011076f5f0",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048512e8ed79e177ff6011076f5f0",
-                "width": 64
-              }
-            ],
-            "name": "Harry's House"
-          },
-          "duration_ms": 177954,
-          "name": "Late Night Talking",
-          "preview_url": "https://p.scdn.co/mp3-preview/ab3568a72e1c016308c263854dc307251ce33a2b?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/3RQQmkQEvNCY4prGKE6oc5"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b27349d694203245f241a1bcaa72",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e0249d694203245f241a1bcaa72",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d0000485149d694203245f241a1bcaa72",
-                "width": 64
-              }
-            ],
-            "name": "Un Verano Sin Ti"
-          },
-          "duration_ms": 243716,
-          "name": "Tití Me Preguntó",
-          "preview_url": "https://p.scdn.co/mp3-preview/a174cca3a21422be508f4e108ea1c04114e42538?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/0h5MuD9O9o1VoN07mQmwMQ"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273c2b3ab9829aefad24fa2c1bc",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02c2b3ab9829aefad24fa2c1bc",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851c2b3ab9829aefad24fa2c1bc",
-                "width": 64
-              }
-            ],
-            "name": "Super Freaky Girl"
-          },
-          "duration_ms": 170977,
-          "name": "Super Freaky Girl",
-          "preview_url": null
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/69AaAkdktFGnk9POmHENkT"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273c2504e80ba2f258697ab2954",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02c2504e80ba2f258697ab2954",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851c2504e80ba2f258697ab2954",
-                "width": 64
-              }
-            ],
-            "name": "this is what ____ feels like (Vol. 1-4)"
-          },
-          "duration_ms": 209259,
-          "name": "golden hour",
-          "preview_url": "https://p.scdn.co/mp3-preview/e3635ebe8f904dce32483b18e19b7f194ced72df?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/1Q9SnHWPNEjVM0LrBFvJ1q"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273813713582dcc508e7d5073c4",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02813713582dcc508e7d5073c4",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851813713582dcc508e7d5073c4",
-                "width": 64
-              }
-            ],
-            "name": "Bones"
-          },
-          "duration_ms": 165264,
-          "name": "Bones",
-          "preview_url": null
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/4JApkbiesQxv5drdEZRlZC"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273b817e721691aff3d67f26c04",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02b817e721691aff3d67f26c04",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851b817e721691aff3d67f26c04",
-                "width": 64
-              }
-            ],
-            "name": "About Damn Time"
-          },
-          "duration_ms": 191822,
-          "name": "About Damn Time",
-          "preview_url": "https://p.scdn.co/mp3-preview/1e881f08e10f2f8dbac20185389fdacb1ea42342?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/4fb1QzgTJpTk9TBjFzjmlR"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2731391b1fdb63da53e5b112224",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e021391b1fdb63da53e5b112224",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048511391b1fdb63da53e5b112224",
-                "width": 64
-              }
-            ],
-            "name": "SNAP"
-          },
-          "duration_ms": 179551,
-          "name": "SNAP",
-          "preview_url": "https://p.scdn.co/mp3-preview/a020cbe5950aed4af7a5678260290b54f9bc266a?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/5pJtcJojr98hbb6KF0ImMe"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b27327b5b57343431306a7f9daec",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e0227b5b57343431306a7f9daec",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d0000485127b5b57343431306a7f9daec",
-                "width": 64
-              }
-            ],
-            "name": "Monotonía"
-          },
-          "duration_ms": 158804,
-          "name": "Monotonía",
-          "preview_url": "https://p.scdn.co/mp3-preview/7e488609d687bf024f2bf5389e1870cb9a595b08?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/2Q5DPv9uliinOBSdNooIe3"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b27329e2914af6e83df7e963d365",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e0229e2914af6e83df7e963d365",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d0000485129e2914af6e83df7e963d365",
-                "width": 64
-              }
-            ],
-            "name": "Vegas (From the Original Motion Picture Soundtrack ELVIS)"
-          },
-          "duration_ms": 182906,
-          "name": "Vegas (From the Original Motion Picture Soundtrack ELVIS)",
-          "preview_url": "https://p.scdn.co/mp3-preview/d82f00d7dae8f764475569afdfb88984456c9efd?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/69JpAhN3XgLkOsJ7MCtW4V"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2739904ecb0b1148a128bdd5e36",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e029904ecb0b1148a128bdd5e36",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048519904ecb0b1148a128bdd5e36",
-                "width": 64
-              }
-            ],
-            "name": "Bad Habit"
-          },
-          "duration_ms": 232114,
-          "name": "Bad Habit",
-          "preview_url": "https://p.scdn.co/mp3-preview/103fa8ca028f3830dba0bee1896548975254618e?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/2lQgd3Svp1ZWAzZPLobAPK"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273eb15b994e15a3a6634d1694e",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02eb15b994e15a3a6634d1694e",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851eb15b994e15a3a6634d1694e",
-                "width": 64
-              }
-            ],
-            "name": "B.O.T.A. (Baddest Of Them All)"
-          },
-          "duration_ms": 226626,
-          "name": "B.O.T.A. (Baddest Of Them All) - Edit",
-          "preview_url": "https://p.scdn.co/mp3-preview/ef846b1bc7718027bfc7e91e121aed7618a72ad3?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/4QQWpCEX4BxMXwRQmtkKY6"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2735d872e7b0c1ba964541f07e8",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e025d872e7b0c1ba964541f07e8",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048515d872e7b0c1ba964541f07e8",
-                "width": 64
-              }
-            ],
-            "name": "Hold Me Closer"
-          },
-          "duration_ms": 202245,
-          "name": "Hold Me Closer",
-          "preview_url": null
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/4LyiYe4wZ6XwzUne79hidF"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2731c069c836dc6cd5b34c310fe",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e021c069c836dc6cd5b34c310fe",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048511c069c836dc6cd5b34c310fe",
-                "width": 64
-              }
-            ],
-            "name": "Left and Right (Feat. Jung Kook of BTS)"
-          },
-          "duration_ms": 154486,
-          "name": "Left and Right (Feat. Jung Kook of BTS)",
-          "preview_url": "https://p.scdn.co/mp3-preview/7b872d741e9af03f02569b2f1f5b7e738c573d34?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/1DFNeS38zvoPkx9wwMEwbc"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b27309f2f176083d10c8c3c822da",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e0209f2f176083d10c8c3c822da",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d0000485109f2f176083d10c8c3c822da",
-                "width": 64
-              }
-            ],
-            "name": "THE LONELIEST"
-          },
-          "duration_ms": 247067,
-          "name": "THE LONELIEST",
-          "preview_url": "https://p.scdn.co/mp3-preview/f1afff95af41614913ba0a34f2d6d2162451bf85?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/1CmTOKCeyz1aHH04OwvTPv"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273b2b6670e3aca9bcd55fbabbb",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02b2b6670e3aca9bcd55fbabbb",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851b2b6670e3aca9bcd55fbabbb",
-                "width": 64
-              }
-            ],
-            "name": "Something in the Orange"
-          },
-          "duration_ms": 228013,
-          "name": "Something in the Orange",
-          "preview_url": "https://p.scdn.co/mp3-preview/7be5cf801c5eb74f5d97b02e632c9e3c3d36bc8d?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/6tE9Dnp2zInFij4jKssysL"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b27386badd635b69aea887862214",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e0286badd635b69aea887862214",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d0000485186badd635b69aea887862214",
-                "width": 64
-              }
-            ],
-            "name": "I NEVER LIKED YOU"
-          },
-          "duration_ms": 189893,
-          "name": "WAIT FOR U (feat. Drake & Tems)",
-          "preview_url": "https://p.scdn.co/mp3-preview/a225651eb324272ab25dbf3b757db8d6420b0f4a?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/4PNqWiJAfjj32hVvlchV5u"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2731630dd349221a35ce03a0ccf",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e021630dd349221a35ce03a0ccf",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048511630dd349221a35ce03a0ccf",
-                "width": 64
-              }
-            ],
-            "name": "Quevedo: Bzrp Music Sessions, Vol. 52"
-          },
-          "duration_ms": 198937,
-          "name": "Quevedo: Bzrp Music Sessions, Vol. 52",
-          "preview_url": "https://p.scdn.co/mp3-preview/2bbcf481555f012987ea9f5fd3f771a3f2710922?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/5z7TD11Qh81Gbf52hd5zAv"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b27390cf5d1ccfca2beb86149a19",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e0290cf5d1ccfca2beb86149a19",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d0000485190cf5d1ccfca2beb86149a19",
-                "width": 64
-              }
-            ],
-            "name": "Ivory"
-          },
-          "duration_ms": 216680,
-          "name": "Evergreen (You Didn’t Deserve Me At All)",
-          "preview_url": "https://p.scdn.co/mp3-preview/0f7aafa94545f7f851f4c8a93367d60b45949552?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/1NgFBv1PxMG1zhFDW1OrRr"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273fe3b1b9cb7183a94e1aafd43",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02fe3b1b9cb7183a94e1aafd43",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851fe3b1b9cb7183a94e1aafd43",
-                "width": 64
-              }
-            ],
-            "name": "Special"
-          },
-          "duration_ms": 187107,
-          "name": "2 Be Loved (Am I Ready)",
-          "preview_url": "https://p.scdn.co/mp3-preview/5de13186b9510b7bf5d43c6724888462ebb5d085?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/3cptxwPFf3Ioj7I3AVX3mp"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273bfedccaca3c8425fdc0a7c73",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02bfedccaca3c8425fdc0a7c73",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851bfedccaca3c8425fdc0a7c73",
-                "width": 64
-              }
-            ],
-            "name": "How Do I Say Goodbye"
-          },
-          "duration_ms": 163603,
-          "name": "How Do I Say Goodbye",
-          "preview_url": null
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/50IWCes196EP2nWO6i4I67"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273711fab3ee0bbeddfac44d7d6",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02711fab3ee0bbeddfac44d7d6",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851711fab3ee0bbeddfac44d7d6",
-                "width": 64
-              }
-            ],
-            "name": "Forget Me"
-          },
-          "duration_ms": 203472,
-          "name": "Forget Me",
-          "preview_url": null
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/6ZZvx0aefZV3LKa053fn71"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b27308596cc28b9f5b00bfe08ae7",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e0208596cc28b9f5b00bfe08ae7",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d0000485108596cc28b9f5b00bfe08ae7",
-                "width": 64
-              }
-            ],
-            "name": "Glimpse of Us"
-          },
-          "duration_ms": 233456,
-          "name": "Glimpse of Us",
-          "preview_url": "https://p.scdn.co/mp3-preview/071c22f355ed0d03fdc176dcb25a487f5ffb661c?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/4B3FsNFguOEJ4TWEsct83B"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2736870c3bd1adbc744cb8f386e",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e026870c3bd1adbc744cb8f386e",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048516870c3bd1adbc744cb8f386e",
-                "width": 64
-              }
-            ],
-            "name": "Romantic Homicide"
-          },
-          "duration_ms": 132630,
-          "name": "Romantic Homicide",
-          "preview_url": null
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/5omNd3Mkij9C3ZeW19rRmv"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2738f072024e0358fc5c62eba41",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e028f072024e0358fc5c62eba41",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048518f072024e0358fc5c62eba41",
-                "width": 64
-              }
-            ],
-            "name": "DESPECHÁ"
-          },
-          "duration_ms": 157017,
-          "name": "DESPECHÁ",
-          "preview_url": "https://p.scdn.co/mp3-preview/c9bada701f6ef03ef67d5ae0e8ff8bde40499313?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/4QLAtpLNUsHEYrcHXmMIZZ"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b27341e31d6ea1d493dd77933ee5",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e0241e31d6ea1d493dd77933ee5",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d0000485141e31d6ea1d493dd77933ee5",
-                "width": 64
-              }
-            ],
-            "name": "STAY (with Justin Bieber)"
-          },
-          "duration_ms": 141805,
-          "name": "STAY (with Justin Bieber)",
-          "preview_url": "https://p.scdn.co/mp3-preview/40a8daf1f3cbb5c6363e68de859ba4af3377344c?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/3SBeYxkc3Ce7lanK0f3epk"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2732ff34dbc50313f8cea7b5db5",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e022ff34dbc50313f8cea7b5db5",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048512ff34dbc50313f8cea7b5db5",
-                "width": 64
-              }
-            ],
-            "name": "Numb"
-          },
-          "duration_ms": 155588,
-          "name": "Numb",
-          "preview_url": "https://p.scdn.co/mp3-preview/04b902e5249b1acc3eb548d97bd3bdd73aef15b8?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/7jaSNQUBJbvfbZHLNFrV7P"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2734aeaaeeb0755f1d8a8b51738",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e024aeaaeeb0755f1d8a8b51738",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048514aeaaeeb0755f1d8a8b51738",
-                "width": 64
-              }
-            ],
-            "name": "BORN PINK"
-          },
-          "duration_ms": 175889,
-          "name": "Shut Down",
-          "preview_url": null
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/6oECjagksATHu2UaclXrq1"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2733c7d945b6baf935e8a0ebdaa",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e023c7d945b6baf935e8a0ebdaa",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048513c7d945b6baf935e8a0ebdaa",
-                "width": 64
-              }
-            ],
-            "name": "Doja"
-          },
-          "duration_ms": 97392,
-          "name": "Doja",
-          "preview_url": "https://p.scdn.co/mp3-preview/60ab803cd53b123a5c8968dfe6f63a7c2a979fa0?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/0VaHnwzDug4AcDkejYDUl5"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2730ed2184bf3fb4466d623a874",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e020ed2184bf3fb4466d623a874",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048510ed2184bf3fb4466d623a874",
-                "width": 64
-              }
-            ],
-            "name": "Sunroof"
-          },
-          "duration_ms": 163025,
-          "name": "Sunroof",
-          "preview_url": "https://p.scdn.co/mp3-preview/7c8b08cc640f6065a2daaf7d92ee49a640d8c4b8?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/18CtLoAMTr7F8ngtuM6D8i"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2738792c3e96f8ab97a767c5d0c",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e028792c3e96f8ab97a767c5d0c",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048518792c3e96f8ab97a767c5d0c",
-                "width": 64
-              }
-            ],
-            "name": "Until I Found You"
-          },
-          "duration_ms": 177720,
-          "name": "Until I Found You",
-          "preview_url": null
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/1nAQbHeOWTfQzbOoFrvndW"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b2734df3245f26298a1579ecc321",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e024df3245f26298a1579ecc321",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d000048514df3245f26298a1579ecc321",
-                "width": 64
-              }
-            ],
-            "name": "Planet Her"
-          },
-          "duration_ms": 172626,
-          "name": "Woman",
-          "preview_url": "https://p.scdn.co/mp3-preview/01b49a95f322c2c708b48e56a9da43777620af9b?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      },
-      {
-        "track": {
-          "album": {
-            "external_urls": {
-              "spotify": "https://open.spotify.com/album/6FIMt58naoGYrOe4Wn2P3n"
-            },
-            "images": [
-              {
-                "height": 640,
-                "url": "https://i.scdn.co/image/ab67616d0000b273364ef5f9057092741f667fea",
-                "width": 640
-              },
-              {
-                "height": 300,
-                "url": "https://i.scdn.co/image/ab67616d00001e02364ef5f9057092741f667fea",
-                "width": 300
-              },
-              {
-                "height": 64,
-                "url": "https://i.scdn.co/image/ab67616d00004851364ef5f9057092741f667fea",
-                "width": 64
-              }
-            ],
-            "name": "Bam Bam (feat. Ed Sheeran)"
-          },
-          "duration_ms": 206070,
-          "name": "Bam Bam (feat. Ed Sheeran)",
-          "preview_url": "https://p.scdn.co/mp3-preview/c7d17a94330a3789118aa4d7a8823fcc1f049125?cid=1186cf593217449090a7a556fc12fed0"
-        }
-      }
-    ]
-  },
-  "uri": "spotify:playlist:37i9dQZF1DXcBWIGoYBM5M"
+	"description": "",
+	"external_urls": {
+		"spotify": "https://open.spotify.com/playlist/6C6IZB8oY1VgSSjerp9edG"
+	},
+	"followers": {
+		"href": null,
+		"total": 1
+	},
+	"id": "6C6IZB8oY1VgSSjerp9edG",
+	"images": [
+		{
+			"height": 640,
+			"url": "https://mosaic.scdn.co/640/ab67616d0000b2732303ff14be7f1817b33660bdab67616d0000b2735b1bff1152ef6d402c9b75a8ab67616d0000b273c66a0eb4fd12efc7acca5bc1ab67616d0000b273d1a93a12fc43df9f2e800da4",
+			"width": 640
+		},
+		{
+			"height": 300,
+			"url": "https://mosaic.scdn.co/300/ab67616d0000b2732303ff14be7f1817b33660bdab67616d0000b2735b1bff1152ef6d402c9b75a8ab67616d0000b273c66a0eb4fd12efc7acca5bc1ab67616d0000b273d1a93a12fc43df9f2e800da4",
+			"width": 300
+		},
+		{
+			"height": 60,
+			"url": "https://mosaic.scdn.co/60/ab67616d0000b2732303ff14be7f1817b33660bdab67616d0000b2735b1bff1152ef6d402c9b75a8ab67616d0000b273c66a0eb4fd12efc7acca5bc1ab67616d0000b273d1a93a12fc43df9f2e800da4",
+			"width": 60
+		}
+	],
+	"name": "Acid",
+	"owner": {
+		"display_name": "roscrl",
+		"external_urls": {
+			"spotify": "https://open.spotify.com/user/rcarlislee"
+		},
+		"id": "rcarlislee"
+	},
+	"tracks": {
+		"items": [
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/32G4vFNwLJQjpzkOoGEUUo"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2735b1bff1152ef6d402c9b75a8",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e025b1bff1152ef6d402c9b75a8",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048515b1bff1152ef6d402c9b75a8",
+								"width": 64
+							}
+						],
+						"name": "Miss You"
+					},
+					"artists": [
+						{
+							"name": "Oliver Tree"
+						},
+						{
+							"name": "Robin Schulz"
+						}
+					],
+					"duration_ms": 206000,
+					"name": "Miss You",
+					"preview_url": "https://p.scdn.co/mp3-preview/44c504a7bb97d3ee67be1003326e5362044dce34?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/5s6CTwlOCnEQUgkfBl4UCQ"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2732303ff14be7f1817b33660bd",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e022303ff14be7f1817b33660bd",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048512303ff14be7f1817b33660bd",
+								"width": 64
+							}
+						],
+						"name": "Friday Night Basement, Vol. 1"
+					},
+					"artists": [
+						{
+							"name": "Yameii Online"
+						}
+					],
+					"duration_ms": 99056,
+					"name": "Yameii Vs. The World",
+					"preview_url": "https://p.scdn.co/mp3-preview/8fca882627076db135f5ae60bccc16195c73597b?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/3fLglAkAwRiXwFKjGRQxQq"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273d1a93a12fc43df9f2e800da4",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02d1a93a12fc43df9f2e800da4",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851d1a93a12fc43df9f2e800da4",
+								"width": 64
+							}
+						],
+						"name": "Baby My Phone"
+					},
+					"artists": [
+						{
+							"name": "Yameii Online"
+						}
+					],
+					"duration_ms": 215771,
+					"name": "Baby My Phone",
+					"preview_url": "https://p.scdn.co/mp3-preview/ac5fd2a77f544f3b7e1939f98250ba1edb502edb?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/6b1r1SaI0XWiMkg5x19LK9"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273c66a0eb4fd12efc7acca5bc1",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02c66a0eb4fd12efc7acca5bc1",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851c66a0eb4fd12efc7acca5bc1",
+								"width": 64
+							}
+						],
+						"name": "Play Poker Remix"
+					},
+					"artists": [
+						{
+							"name": "SEBii"
+						},
+						{
+							"name": "Maple"
+						}
+					],
+					"duration_ms": 140016,
+					"name": "Play Poker Remix - Remix",
+					"preview_url": "https://p.scdn.co/mp3-preview/d598574275e8c4021e2e611aa466818b20bebd2c?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/2iguPTaSTwtx4MiAkj6w5O"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273e189a58c143802bd6c85ed94",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02e189a58c143802bd6c85ed94",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851e189a58c143802bd6c85ed94",
+								"width": 64
+							}
+						],
+						"name": "Haunted"
+					},
+					"artists": [
+						{
+							"name": "Laura Les"
+						}
+					],
+					"duration_ms": 102007,
+					"name": "Haunted",
+					"preview_url": "https://p.scdn.co/mp3-preview/a926612ba53c61e4377682ff6726a0b02d04736a?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/2PCs0ZB8bHofV9khzpRmal"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273cedc44ef5d41b6d67494ee96",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02cedc44ef5d41b6d67494ee96",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851cedc44ef5d41b6d67494ee96",
+								"width": 64
+							}
+						],
+						"name": "#miles"
+					},
+					"artists": [
+						{
+							"name": "skaiwater"
+						}
+					],
+					"duration_ms": 115138,
+					"name": "#miles",
+					"preview_url": "https://p.scdn.co/mp3-preview/4d5656b9fcfd80236762a3bb0c7094307fd2f1f1?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/2We9hFPWAKxXBmKqSDHXOK"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273e2825adb7ff73e872fb61be0",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02e2825adb7ff73e872fb61be0",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851e2825adb7ff73e872fb61be0",
+								"width": 64
+							}
+						],
+						"name": "The Midnight Club GT"
+					},
+					"artists": [
+						{
+							"name": "Funk Tribu"
+						}
+					],
+					"duration_ms": 286145,
+					"name": "Phonky Tribu",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/0DYBVhC6GV7SDThIrpNtTn"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2736620260d3aa20438ba574b0c",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e026620260d3aa20438ba574b0c",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048516620260d3aa20438ba574b0c",
+								"width": 64
+							}
+						],
+						"name": "4 morant better luck next time"
+					},
+					"artists": [
+						{
+							"name": "Rap Plug"
+						}
+					],
+					"duration_ms": 168308,
+					"name": "4 morant better luck next time",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/6N4ySRXQsXl6g9mCr7QPFx"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b27328976d0c0940104dbb85ce09",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e0228976d0c0940104dbb85ce09",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d0000485128976d0c0940104dbb85ce09",
+								"width": 64
+							}
+						],
+						"name": "Pain"
+					},
+					"artists": [
+						{
+							"name": "PinkPantheress"
+						}
+					],
+					"duration_ms": 98544,
+					"name": "Pain",
+					"preview_url": "https://p.scdn.co/mp3-preview/b5c7a7b534fd44e136790dbbedf87f3d7e37887c?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/3apQZbgVql9mHJlp43jk5D"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273b852a616ae3a49a1f6b0f16e",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02b852a616ae3a49a1f6b0f16e",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851b852a616ae3a49a1f6b0f16e",
+								"width": 64
+							}
+						],
+						"name": "METAMORPHOSIS"
+					},
+					"artists": [
+						{
+							"name": "INTERWORLD"
+						}
+					],
+					"duration_ms": 142839,
+					"name": "METAMORPHOSIS",
+					"preview_url": "https://p.scdn.co/mp3-preview/61baac6cfee58ae57f9f767a86fa5e99f9797664?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/4X2vOIggOwcX7BFIH0xqng"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2739ffeba899705015ec01f5bd7",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e029ffeba899705015ec01f5bd7",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048519ffeba899705015ec01f5bd7",
+								"width": 64
+							}
+						],
+						"name": "moment"
+					},
+					"artists": [
+						{
+							"name": "Vierre Cloud"
+						}
+					],
+					"duration_ms": 129541,
+					"name": "moment",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/6GT4vCgq2pjorkbu3pNYlf"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2732096f2f83b3ac9483b820d7e",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e022096f2f83b3ac9483b820d7e",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048512096f2f83b3ac9483b820d7e",
+								"width": 64
+							}
+						],
+						"name": "help_urself"
+					},
+					"artists": [
+						{
+							"name": "Ezekiel"
+						}
+					],
+					"duration_ms": 139651,
+					"name": "help_urself",
+					"preview_url": "https://p.scdn.co/mp3-preview/1f0e92fafc179bc175e62b35410d56738a773667?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/78X1D2vooZVMQdPY581dNg"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2730a29856bf1c65d2f1b72990e",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e020a29856bf1c65d2f1b72990e",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048510a29856bf1c65d2f1b72990e",
+								"width": 64
+							}
+						],
+						"name": "The Dino Soars"
+					},
+					"artists": [
+						{
+							"name": "Stegosaurus Rex"
+						}
+					],
+					"duration_ms": 300000,
+					"name": "Nowhere To Run",
+					"preview_url": "https://p.scdn.co/mp3-preview/973594ef5c102172bab5df1829edda52ebc2db7f?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/1pzWzxEYfQ1pp04EAJgy9r"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2739a28d50a73d2699dc60d014e",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e029a28d50a73d2699dc60d014e",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048519a28d50a73d2699dc60d014e",
+								"width": 64
+							}
+						],
+						"name": "Time Goes By"
+					},
+					"artists": [
+						{
+							"name": "Take Van"
+						}
+					],
+					"duration_ms": 121379,
+					"name": "Time Goes By",
+					"preview_url": "https://p.scdn.co/mp3-preview/e8f02ddfc3b281b954f515ab88334fc46becb152?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/6Y4jnyOjMD3iGs0aIvlvE0"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273fcc1ef4b803dd2a5acecf42d",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02fcc1ef4b803dd2a5acecf42d",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851fcc1ef4b803dd2a5acecf42d",
+								"width": 64
+							}
+						],
+						"name": "Passion"
+					},
+					"artists": [
+						{
+							"name": "PinkPantheress"
+						}
+					],
+					"duration_ms": 138268,
+					"name": "Passion",
+					"preview_url": "https://p.scdn.co/mp3-preview/ab38b70f14746c2bb193f2c41a4cfe664d1179ed?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/5kjdoMRqX7raZFTidMp4Hj"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273e110e0dd54b61db64033cc9d",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02e110e0dd54b61db64033cc9d",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851e110e0dd54b61db64033cc9d",
+								"width": 64
+							}
+						],
+						"name": "Iridescent"
+					},
+					"artists": [
+						{
+							"name": "Deko"
+						},
+						{
+							"name": "Yameii"
+						}
+					],
+					"duration_ms": 193560,
+					"name": "Phantasy Star Online",
+					"preview_url": "https://p.scdn.co/mp3-preview/57117d0b471c7b2388d851717826657d6f099cb8?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/00fcDjvEq4elj756TESO0c"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273604b12dca6ef6821bdf3f0a2",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02604b12dca6ef6821bdf3f0a2",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851604b12dca6ef6821bdf3f0a2",
+								"width": 64
+							}
+						],
+						"name": "Just for me"
+					},
+					"artists": [
+						{
+							"name": "PinkPantheress"
+						}
+					],
+					"duration_ms": 115800,
+					"name": "Just for me",
+					"preview_url": "https://p.scdn.co/mp3-preview/5492fe1dc0dd6ba320cc13918cf16d95ff875b4b?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/1Lpu55DV9ThB7G0ClRpM7N"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273699bda7ba6349ba350e9a339",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02699bda7ba6349ba350e9a339",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851699bda7ba6349ba350e9a339",
+								"width": 64
+							}
+						],
+						"name": "Wedbecutetoget-her"
+					},
+					"artists": [
+						{
+							"name": "o0o"
+						}
+					],
+					"duration_ms": 219036,
+					"name": "Wedbecutetoget-her",
+					"preview_url": "https://p.scdn.co/mp3-preview/8c268276c73bf0c8c07a2cc1460aa4742ea592d6?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/3e6HcRWTkyGi6dA0Zg5pxw"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273eaa8721ebcf45d4316d4c823",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02eaa8721ebcf45d4316d4c823",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851eaa8721ebcf45d4316d4c823",
+								"width": 64
+							}
+						],
+						"name": "PHONKY TOWN"
+					},
+					"artists": [
+						{
+							"name": "PlayaPhonk"
+						}
+					],
+					"duration_ms": 141373,
+					"name": "PHONKY TOWN",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/0ONcqjwwNqJJgaPmQ7nC4y"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b27394230bd59fb8985a26e8a1c6",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e0294230bd59fb8985a26e8a1c6",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d0000485194230bd59fb8985a26e8a1c6",
+								"width": 64
+							}
+						],
+						"name": "SugarCrash!"
+					},
+					"artists": [
+						{
+							"name": "ElyOtto"
+						}
+					],
+					"duration_ms": 80117,
+					"name": "SugarCrash!",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/6blypuaTKOZLkqUbQyfwXa"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273a458b7f15cff5bac47535297",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02a458b7f15cff5bac47535297",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851a458b7f15cff5bac47535297",
+								"width": 64
+							}
+						],
+						"name": "Cyberspace"
+					},
+					"artists": [
+						{
+							"name": "Yameii Online"
+						}
+					],
+					"duration_ms": 111882,
+					"name": "Friday Night Basement",
+					"preview_url": "https://p.scdn.co/mp3-preview/3524fbadd8f0ae62158e136b131c6a123cac09d3?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/744TnMqUCSGWPa17iii3LU"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273897de13d496e00c2d72f8ee1",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02897de13d496e00c2d72f8ee1",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851897de13d496e00c2d72f8ee1",
+								"width": 64
+							}
+						],
+						"name": "Picture in my mind"
+					},
+					"artists": [
+						{
+							"name": "PinkPantheress"
+						},
+						{
+							"name": "Sam Gellaitry"
+						}
+					],
+					"duration_ms": 176930,
+					"name": "Picture in my mind",
+					"preview_url": "https://p.scdn.co/mp3-preview/4791c2428d8a702e8ac0c755cff22cf22f8a498b?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/1IpRdn708iz9eyBnWScxcj"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2730d282f18904d2972a3a21737",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e020d282f18904d2972a3a21737",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048510d282f18904d2972a3a21737",
+								"width": 64
+							}
+						],
+						"name": "Crystalline"
+					},
+					"artists": [
+						{
+							"name": "Deko"
+						}
+					],
+					"duration_ms": 198408,
+					"name": "Midnight Tokyo",
+					"preview_url": "https://p.scdn.co/mp3-preview/a6fdb4ac79edc54492a17497bc81991962988f32?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/63s9WyYZQJH9hap6qsgGOJ"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b27389636ad8579edc18edb7d8b4",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e0289636ad8579edc18edb7d8b4",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d0000485189636ad8579edc18edb7d8b4",
+								"width": 64
+							}
+						],
+						"name": "No Error"
+					},
+					"artists": [
+						{
+							"name": "Yameii Online"
+						}
+					],
+					"duration_ms": 107102,
+					"name": "No Error",
+					"preview_url": "https://p.scdn.co/mp3-preview/be9638f6ab04b4808ea3fd81a5ff93eab287722e?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/1IpRdn708iz9eyBnWScxcj"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2730d282f18904d2972a3a21737",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e020d282f18904d2972a3a21737",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048510d282f18904d2972a3a21737",
+								"width": 64
+							}
+						],
+						"name": "Crystalline"
+					},
+					"artists": [
+						{
+							"name": "Deko"
+						},
+						{
+							"name": "Yameii Online"
+						}
+					],
+					"duration_ms": 240528,
+					"name": "Ethereal Sakura",
+					"preview_url": "https://p.scdn.co/mp3-preview/bd6b51a77c8ebc6e657f916b630e923d0aeed0c1?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/6blypuaTKOZLkqUbQyfwXa"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273a458b7f15cff5bac47535297",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02a458b7f15cff5bac47535297",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851a458b7f15cff5bac47535297",
+								"width": 64
+							}
+						],
+						"name": "Cyberspace"
+					},
+					"artists": [
+						{
+							"name": "Yameii Online"
+						}
+					],
+					"duration_ms": 118125,
+					"name": "Cyber Baby Angel, Pt. 1",
+					"preview_url": "https://p.scdn.co/mp3-preview/c2cdd6b523e45d69004862d9741858c9ca0a52ba?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/3a9qH2VEsSiOZvMrjaS0Nu"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273664e38c99d077cc52ab48914",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02664e38c99d077cc52ab48914",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851664e38c99d077cc52ab48914",
+								"width": 64
+							}
+						],
+						"name": "how i'm feeling now"
+					},
+					"artists": [
+						{
+							"name": "Charli XCX"
+						}
+					],
+					"duration_ms": 149390,
+					"name": "claws",
+					"preview_url": "https://p.scdn.co/mp3-preview/c5974dd22279aa1b9083784cf1836556a3ca0a1f?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/78zySHGi3bB36rQ8NVGxFt"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273d42b26c9d197df7d2d1293a1",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02d42b26c9d197df7d2d1293a1",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851d42b26c9d197df7d2d1293a1",
+								"width": 64
+							}
+						],
+						"name": "all I want is you"
+					},
+					"artists": [
+						{
+							"name": "Rebzyyx"
+						},
+						{
+							"name": "hoshie star"
+						}
+					],
+					"duration_ms": 151415,
+					"name": "all I want is you",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/6blypuaTKOZLkqUbQyfwXa"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273a458b7f15cff5bac47535297",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02a458b7f15cff5bac47535297",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851a458b7f15cff5bac47535297",
+								"width": 64
+							}
+						],
+						"name": "Cyberspace"
+					},
+					"artists": [
+						{
+							"name": "Yameii Online"
+						}
+					],
+					"duration_ms": 161462,
+					"name": "Dreams",
+					"preview_url": "https://p.scdn.co/mp3-preview/d7a8f35683ba1c9e6538179d5b3f3ff2d048bafc?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/3NsswFStcZCr6mm5pf4egj"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2733503b7288cc3812f673a716f",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e023503b7288cc3812f673a716f",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048513503b7288cc3812f673a716f",
+								"width": 64
+							}
+						],
+						"name": "Moonkid Monday, Vol. 2"
+					},
+					"artists": [
+						{
+							"name": "Deko"
+						},
+						{
+							"name": "Yameii Online"
+						}
+					],
+					"duration_ms": 95582,
+					"name": "Pink",
+					"preview_url": "https://p.scdn.co/mp3-preview/1ee166666b85642dad6abdcebdbd0d236d0caa63?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/3NsswFStcZCr6mm5pf4egj"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2733503b7288cc3812f673a716f",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e023503b7288cc3812f673a716f",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048513503b7288cc3812f673a716f",
+								"width": 64
+							}
+						],
+						"name": "Moonkid Monday, Vol. 2"
+					},
+					"artists": [
+						{
+							"name": "Deko"
+						},
+						{
+							"name": "Yameii Online"
+						}
+					],
+					"duration_ms": 230844,
+					"name": "Starwave",
+					"preview_url": "https://p.scdn.co/mp3-preview/87ec66573ce0837911cca3270e0456236eb84922?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/1IpRdn708iz9eyBnWScxcj"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2730d282f18904d2972a3a21737",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e020d282f18904d2972a3a21737",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048510d282f18904d2972a3a21737",
+								"width": 64
+							}
+						],
+						"name": "Crystalline"
+					},
+					"artists": [
+						{
+							"name": "Deko"
+						}
+					],
+					"duration_ms": 107102,
+					"name": "Ctrl Alt Delete 777",
+					"preview_url": "https://p.scdn.co/mp3-preview/632a70df7e6db7fc7a0103c8d013d6b09d01a7e1?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/6blypuaTKOZLkqUbQyfwXa"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273a458b7f15cff5bac47535297",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02a458b7f15cff5bac47535297",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851a458b7f15cff5bac47535297",
+								"width": 64
+							}
+						],
+						"name": "Cyberspace"
+					},
+					"artists": [
+						{
+							"name": "Yameii Online"
+						},
+						{
+							"name": "Deko"
+						}
+					],
+					"duration_ms": 140930,
+					"name": "Cyberkids 777",
+					"preview_url": "https://p.scdn.co/mp3-preview/733a158b7630eea05d64cf3503106fd2492d5e00?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/5TvtnfNEMO9r3aD5MdlfLX"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273c6302b2d5858fbe7a437a3dd",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02c6302b2d5858fbe7a437a3dd",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851c6302b2d5858fbe7a437a3dd",
+								"width": 64
+							}
+						],
+						"name": "Play Poker"
+					},
+					"artists": [
+						{
+							"name": "SEBii"
+						}
+					],
+					"duration_ms": 116407,
+					"name": "Play Poker",
+					"preview_url": "https://p.scdn.co/mp3-preview/7a28b1382a5c0e90d8318d87c77ebaae3b07299b?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/209wPO4XXcc3zTKtV8kKhN"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273257c48e54ad7e419b4b23357",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02257c48e54ad7e419b4b23357",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851257c48e54ad7e419b4b23357",
+								"width": 64
+							}
+						],
+						"name": "Visored Vitality"
+					},
+					"artists": [
+						{
+							"name": "SEBii"
+						}
+					],
+					"duration_ms": 152032,
+					"name": "Butterfly Bankai",
+					"preview_url": "https://p.scdn.co/mp3-preview/9da9e3304aa7f0116793040532a2ed4dc2c33a2f?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/5s6CTwlOCnEQUgkfBl4UCQ"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2732303ff14be7f1817b33660bd",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e022303ff14be7f1817b33660bd",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048512303ff14be7f1817b33660bd",
+								"width": 64
+							}
+						],
+						"name": "Friday Night Basement, Vol. 1"
+					},
+					"artists": [
+						{
+							"name": "Yameii Online"
+						}
+					],
+					"duration_ms": 123715,
+					"name": "Party Den",
+					"preview_url": "https://p.scdn.co/mp3-preview/c9608e08f84caa61e0b96f8b5d94d2946c0f743d?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/6blypuaTKOZLkqUbQyfwXa"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273a458b7f15cff5bac47535297",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02a458b7f15cff5bac47535297",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851a458b7f15cff5bac47535297",
+								"width": 64
+							}
+						],
+						"name": "Cyberspace"
+					},
+					"artists": [
+						{
+							"name": "Yameii Online"
+						},
+						{
+							"name": "Deko"
+						}
+					],
+					"duration_ms": 69903,
+					"name": "Take Wrisks",
+					"preview_url": "https://p.scdn.co/mp3-preview/f002248af77d4cb0f6b7cdeebae52ad8c8f7e87c?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/5wP6HQqd4IKTwymm5NlL7A"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273fcb871c1035d8ea065733c2d",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02fcb871c1035d8ea065733c2d",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851fcb871c1035d8ea065733c2d",
+								"width": 64
+							}
+						],
+						"name": "Moonkid Mondays, Vol. 1"
+					},
+					"artists": [
+						{
+							"name": "Deko"
+						}
+					],
+					"duration_ms": 97152,
+					"name": "Where's My Mind",
+					"preview_url": "https://p.scdn.co/mp3-preview/cbb6be84af65b9655e7e2c37e58ac69b936c8153?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/5kjdoMRqX7raZFTidMp4Hj"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273e110e0dd54b61db64033cc9d",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02e110e0dd54b61db64033cc9d",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851e110e0dd54b61db64033cc9d",
+								"width": 64
+							}
+						],
+						"name": "Iridescent"
+					},
+					"artists": [
+						{
+							"name": "Deko"
+						}
+					],
+					"duration_ms": 101160,
+					"name": "Iridescent",
+					"preview_url": "https://p.scdn.co/mp3-preview/e64d113398b4555cc09f50cba19b14f2738d800e?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/61RNveS2386a2ETGfSMP4u"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2735955c8361d9c03da73511451",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e025955c8361d9c03da73511451",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048515955c8361d9c03da73511451",
+								"width": 64
+							}
+						],
+						"name": "its hard :/"
+					},
+					"artists": [
+						{
+							"name": "oaf1"
+						}
+					],
+					"duration_ms": 130540,
+					"name": "its hard :/",
+					"preview_url": "https://p.scdn.co/mp3-preview/37a79dee4664955756fe37a3914bd040a911fe17?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/68i0gDIA5T5YVUIxj9QdsU"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273ddba34f7e71bb61ea2311eae",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02ddba34f7e71bb61ea2311eae",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851ddba34f7e71bb61ea2311eae",
+								"width": 64
+							}
+						],
+						"name": "#BrooklynBloodPop!"
+					},
+					"artists": [
+						{
+							"name": "SyKo"
+						}
+					],
+					"duration_ms": 145610,
+					"name": "#BrooklynBloodPop!",
+					"preview_url": "https://p.scdn.co/mp3-preview/8fc0537a699605abca1c1a5bd45a296c9bd8280a?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/70s3pT3CMwRrOw2DmEbx5V"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273cd4a595ef20e19689e5f1122",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02cd4a595ef20e19689e5f1122",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851cd4a595ef20e19689e5f1122",
+								"width": 64
+							}
+						],
+						"name": "think abt it"
+					},
+					"artists": [
+						{
+							"name": "oaf1"
+						},
+						{
+							"name": "Caspr"
+						}
+					],
+					"duration_ms": 144332,
+					"name": "think abt it",
+					"preview_url": "https://p.scdn.co/mp3-preview/42c8ed71b62e9ec42628a46ff9391ced889ae525?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/7aPolrSqVawIhC7iTo2b5F"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273918fee4073aa392349123e63",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02918fee4073aa392349123e63",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851918fee4073aa392349123e63",
+								"width": 64
+							}
+						],
+						"name": "Visions"
+					},
+					"artists": [
+						{
+							"name": "Grimes"
+						}
+					],
+					"duration_ms": 251266,
+					"name": "Oblivion",
+					"preview_url": "https://p.scdn.co/mp3-preview/ef54244377a6bc6a5a7e5a062c51911b7dcf800a?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/5mzVvcba6gp9mGOhlOcIX8"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2730b85e96756077c80f4d9e7e7",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e020b85e96756077c80f4d9e7e7",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048510b85e96756077c80f4d9e7e7",
+								"width": 64
+							}
+						],
+						"name": "Sorry 4 Being Famous"
+					},
+					"artists": [
+						{
+							"name": "Alice Gas"
+						}
+					],
+					"duration_ms": 202267,
+					"name": "Ferrari",
+					"preview_url": "https://p.scdn.co/mp3-preview/d032b8caaed90d2a8fa7a66c654ead3e2993d7ab?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/7phID8AQ7xBxZXGEjjCtJc"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2736aaa661e5c3dcc982ff51716",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e026aaa661e5c3dcc982ff51716",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048516aaa661e5c3dcc982ff51716",
+								"width": 64
+							}
+						],
+						"name": "Hell and HI Water 2"
+					},
+					"artists": [
+						{
+							"name": "Ark Woods"
+						}
+					],
+					"duration_ms": 213499,
+					"name": "She Stole My Heart",
+					"preview_url": "https://p.scdn.co/mp3-preview/91dbc527f3e208c1355beca67111b524e632b32f?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/12KPZwjrDgmkdHSBM3nRma"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273441b078aeef2a71ba937df57",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02441b078aeef2a71ba937df57",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851441b078aeef2a71ba937df57",
+								"width": 64
+							}
+						],
+						"name": "poster"
+					},
+					"artists": [
+						{
+							"name": "oaf1"
+						}
+					],
+					"duration_ms": 121879,
+					"name": "poster",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/28gU5oJBHI69qeT5BQMyte"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273a3686c2af7d1ec2429ac2cb6",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02a3686c2af7d1ec2429ac2cb6",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851a3686c2af7d1ec2429ac2cb6",
+								"width": 64
+							}
+						],
+						"name": "Destroy All Monsters!"
+					},
+					"artists": [
+						{
+							"name": "ITSOKTOCRY"
+						}
+					],
+					"duration_ms": 125648,
+					"name": "DEADSET RADIO FUTURE",
+					"preview_url": "https://p.scdn.co/mp3-preview/8d22289cb6940cb2afe06b8644ae88bb94a25064?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/2vNdOCShNdOCi4TnN4aSKB"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273001a2c71c82d87c527234ee5",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02001a2c71c82d87c527234ee5",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851001a2c71c82d87c527234ee5",
+								"width": 64
+							}
+						],
+						"name": "ilove urr girl"
+					},
+					"artists": [
+						{
+							"name": "oaf1"
+						}
+					],
+					"duration_ms": 116154,
+					"name": "ilove urr girl",
+					"preview_url": "https://p.scdn.co/mp3-preview/549625ab06d448fce799fe8c32458b35c666a35f?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/0cT1SQDE7wSh1eUJkGFXse"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2737e041a457bd312e73440532a",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e027e041a457bd312e73440532a",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048517e041a457bd312e73440532a",
+								"width": 64
+							}
+						],
+						"name": "Icedancer"
+					},
+					"artists": [
+						{
+							"name": "Bladee"
+						}
+					],
+					"duration_ms": 127791,
+					"name": "Be Nice 2 Me",
+					"preview_url": "https://p.scdn.co/mp3-preview/65c878a2a54b22cc2d307fc8c72fe18a5c36724f?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/1WJrt49Bnq4TBkr9G1L1Z4"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273fea52feaa678bfe75068c6fc",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02fea52feaa678bfe75068c6fc",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851fea52feaa678bfe75068c6fc",
+								"width": 64
+							}
+						],
+						"name": "God and I Worked Things Out"
+					},
+					"artists": [
+						{
+							"name": "shamana"
+						}
+					],
+					"duration_ms": 86663,
+					"name": "Percocet Perry",
+					"preview_url": "https://p.scdn.co/mp3-preview/13e50c5d5ca6c264dacc061983d6cdf9e94dc09b?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/2HICqd0ltMKNrkhfmWSuKy"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273bcf6d999338f72005c8522a7",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02bcf6d999338f72005c8522a7",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851bcf6d999338f72005c8522a7",
+								"width": 64
+							}
+						],
+						"name": "Deep End"
+					},
+					"artists": [
+						{
+							"name": "Fousheé"
+						}
+					],
+					"duration_ms": 141223,
+					"name": "Deep End",
+					"preview_url": "https://p.scdn.co/mp3-preview/5daf2dc408662e8d9ee90314b2b9a412d9795133?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/4H8zRNpiAfbdJxCgWMqosu"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2731621440f64b798201a0cb641",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e021621440f64b798201a0cb641",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048511621440f64b798201a0cb641",
+								"width": 64
+							}
+						],
+						"name": "Sewer//slvt"
+					},
+					"artists": [
+						{
+							"name": "Sewerslvt"
+						}
+					],
+					"duration_ms": 220689,
+					"name": "Pretty Cvnt",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/7y89IwnXil6Rg4Vw6LVKnV"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273c22a5bdbea4cc80411365e10",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02c22a5bdbea4cc80411365e10",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851c22a5bdbea4cc80411365e10",
+								"width": 64
+							}
+						],
+						"name": "hi, i'm dante"
+					},
+					"artists": [
+						{
+							"name": "ericdoa"
+						}
+					],
+					"duration_ms": 105247,
+					"name": "witchcraft",
+					"preview_url": "https://p.scdn.co/mp3-preview/541ee1a6d49045cb503d9d6a879b0a14e36c85ae?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/5A2VPzbzuv1EpSoie07kFe"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273f41e4b57be03c4fd08b53c44",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02f41e4b57be03c4fd08b53c44",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851f41e4b57be03c4fd08b53c44",
+								"width": 64
+							}
+						],
+						"name": "VVSS"
+					},
+					"artists": [
+						{
+							"name": "SEBii"
+						}
+					],
+					"duration_ms": 107407,
+					"name": "BONErr",
+					"preview_url": "https://p.scdn.co/mp3-preview/f4d81401d8335d24f9d043bb8ec45a1185797e9f?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/21HZHrMjU4h3Du9cLTFpEp"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273bea0fd72b61ebee575036de5",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02bea0fd72b61ebee575036de5",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851bea0fd72b61ebee575036de5",
+								"width": 64
+							}
+						],
+						"name": "AMERICAN WASTELAND"
+					},
+					"artists": [
+						{
+							"name": "nascar aloe"
+						}
+					],
+					"duration_ms": 90594,
+					"name": "AMERICAN WASTELAND",
+					"preview_url": "https://p.scdn.co/mp3-preview/08aa2201e980c6a5a5052afeb935a24f4b1afb78?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/6Y884qUpvihb0XbagTrUFG"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2739d32fffd49ea7d9b38d464d3",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e029d32fffd49ea7d9b38d464d3",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048519d32fffd49ea7d9b38d464d3",
+								"width": 64
+							}
+						],
+						"name": "BAFFLEdd"
+					},
+					"artists": [
+						{
+							"name": "SEBii"
+						}
+					],
+					"duration_ms": 121020,
+					"name": "BAFFLEdd",
+					"preview_url": "https://p.scdn.co/mp3-preview/300303b7d9fc6465630309c701c2ee29f51e7578?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/1iMU09jzWv9rCwaMvCizyn"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273ae72766579b00e2aaf81e9c1",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02ae72766579b00e2aaf81e9c1",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851ae72766579b00e2aaf81e9c1",
+								"width": 64
+							}
+						],
+						"name": "No Mercy"
+					},
+					"artists": [
+						{
+							"name": "Lil Kaine"
+						},
+						{
+							"name": "Freddie Dredd"
+						}
+					],
+					"duration_ms": 117133,
+					"name": "Hope",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/6OA2c3w8XjpOPeyfNcAUSq"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2739ef84cbf92475f83c8e5486d",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e029ef84cbf92475f83c8e5486d",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048519ef84cbf92475f83c8e5486d",
+								"width": 64
+							}
+						],
+						"name": "COA"
+					},
+					"artists": [
+						{
+							"name": "ericdoa"
+						}
+					],
+					"duration_ms": 138893,
+					"name": "2008",
+					"preview_url": "https://p.scdn.co/mp3-preview/15d4aeefd210b49339a5a3a21244e63663912364?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/7rWOAx9oDGHy4PtJk4GwYQ"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273c81c8746b70c76df75996276",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02c81c8746b70c76df75996276",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851c81c8746b70c76df75996276",
+								"width": 64
+							}
+						],
+						"name": "My Chakras Are Fast and Hype"
+					},
+					"artists": [
+						{
+							"name": "Drainpuppet"
+						}
+					],
+					"duration_ms": 175183,
+					"name": "My Chakras Are Fast and Hype",
+					"preview_url": "https://p.scdn.co/mp3-preview/f5ce30124c93e4881f8bd171b8bdc58b2afe0e84?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/383qcrfxKodAdnhXGXbdRX"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273bc613763b881853644a613cb",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02bc613763b881853644a613cb",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851bc613763b881853644a613cb",
+								"width": 64
+							}
+						],
+						"name": "WFLYTD"
+					},
+					"artists": [
+						{
+							"name": "six impala"
+						}
+					],
+					"duration_ms": 202735,
+					"name": "EPSILON LOVE",
+					"preview_url": "https://p.scdn.co/mp3-preview/eab2c3cc7fd2fd5f25b6380e18acd35cd3e33727?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/4NgEu7SlyyuO2HqJidl4gp"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273b1d2a5e4a2f182f9aac76067",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02b1d2a5e4a2f182f9aac76067",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851b1d2a5e4a2f182f9aac76067",
+								"width": 64
+							}
+						],
+						"name": "Whatuworried4?"
+					},
+					"artists": [
+						{
+							"name": "ericdoa"
+						}
+					],
+					"duration_ms": 155506,
+					"name": "Whatuworried4?",
+					"preview_url": "https://p.scdn.co/mp3-preview/6658441bcfb958c9e04d5cdf4ce1d33a6eee5bb3?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/0eUUQ4rly8Q8PyJPWLgde2"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2732aa34d5906e01231eff70f82",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e022aa34d5906e01231eff70f82",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048512aa34d5906e01231eff70f82",
+								"width": 64
+							}
+						],
+						"name": "Velocity: Design: Comfort."
+					},
+					"artists": [
+						{
+							"name": "Sweet Trip"
+						}
+					],
+					"duration_ms": 191133,
+					"name": "Dsco",
+					"preview_url": "https://p.scdn.co/mp3-preview/793b9ec537096ae1115b07fd468aa37727020c1e?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/7JkklGVVb5DKH5lAEx23Ys"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b27397dfaed3a753c57aed2da58b",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e0297dfaed3a753c57aed2da58b",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d0000485197dfaed3a753c57aed2da58b",
+								"width": 64
+							}
+						],
+						"name": "The Classics"
+					},
+					"artists": [
+						{
+							"name": "Aests"
+						}
+					],
+					"duration_ms": 122088,
+					"name": "FIGHT! - Flyday Chinatown",
+					"preview_url": "https://p.scdn.co/mp3-preview/607e21ab16e0766abf2d9d183a158f7a8e157b62?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/4zjkHnGvh38hYeGAf7jFG7"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273f6eec670fed13203429e5471",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02f6eec670fed13203429e5471",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851f6eec670fed13203429e5471",
+								"width": 64
+							}
+						],
+						"name": "LATE NIGHT"
+					},
+					"artists": [
+						{
+							"name": "454"
+						}
+					],
+					"duration_ms": 308133,
+					"name": "LATE NIGHT",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/7IjOfbF7Lb1L6i7wlHbE2Y"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2736eb0a5dae2811e6673847c37",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e026eb0a5dae2811e6673847c37",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048516eb0a5dae2811e6673847c37",
+								"width": 64
+							}
+						],
+						"name": "Giving My All 2 U"
+					},
+					"artists": [
+						{
+							"name": "WEB"
+						}
+					],
+					"duration_ms": 77297,
+					"name": "Giving My All 2 U",
+					"preview_url": "https://p.scdn.co/mp3-preview/c4ef91921935a409aba2e65611e10dc52fe32ca0?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/0cF9M8eWDJfgbf0XtyrTL9"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2730a994d905b3983b535de6149",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e020a994d905b3983b535de6149",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048510a994d905b3983b535de6149",
+								"width": 64
+							}
+						],
+						"name": "cypress grove"
+					},
+					"artists": [
+						{
+							"name": "glaive"
+						}
+					],
+					"duration_ms": 101938,
+					"name": "astrid",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/4Ne1eeeJkUdQ45hGlmtW87"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273759ce27bd6c909e3814189c8",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02759ce27bd6c909e3814189c8",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851759ce27bd6c909e3814189c8",
+								"width": 64
+							}
+						],
+						"name": "asshole"
+					},
+					"artists": [
+						{
+							"name": "Internet Girl"
+						},
+						{
+							"name": "Hugo Pooe"
+						}
+					],
+					"duration_ms": 156428,
+					"name": "asshole",
+					"preview_url": "https://p.scdn.co/mp3-preview/1c8aa8cefbcd4ae79c4912ebe406299d6214e07d?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/5KWDHBSc9h4QkMTG2XS0Lz"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273bd6edefb1589e7a360c93be5",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02bd6edefb1589e7a360c93be5",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851bd6edefb1589e7a360c93be5",
+								"width": 64
+							}
+						],
+						"name": "gnb"
+					},
+					"artists": [
+						{
+							"name": "Goreshit"
+						}
+					],
+					"duration_ms": 316424,
+					"name": "Fine Night",
+					"preview_url": "https://p.scdn.co/mp3-preview/713a46a1e55d327acb7c7dbd5448bea824487cc5?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/7g4XojQ2pydUEIMA9Eq80x"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2734ffb30e2458be7e2cf0750be",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e024ffb30e2458be7e2cf0750be",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048514ffb30e2458be7e2cf0750be",
+								"width": 64
+							}
+						],
+						"name": "night before ko"
+					},
+					"artists": [
+						{
+							"name": "SSGKobe"
+						}
+					],
+					"duration_ms": 148360,
+					"name": "thrax",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/5q84FQfWp3Q7XnoMlzLRD3"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273314d07d29cca8854b0e4cf19",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02314d07d29cca8854b0e4cf19",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851314d07d29cca8854b0e4cf19",
+								"width": 64
+							}
+						],
+						"name": "Break It Off"
+					},
+					"artists": [
+						{
+							"name": "PinkPantheress"
+						}
+					],
+					"duration_ms": 95317,
+					"name": "Break It Off",
+					"preview_url": "https://p.scdn.co/mp3-preview/7caf54d204b25dfb54362032781e18c378f68ab8?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/38xbAu3iEETF1Z9RiBlkTf"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273757ab11a842d45f2076435bb",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02757ab11a842d45f2076435bb",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851757ab11a842d45f2076435bb",
+								"width": 64
+							}
+						],
+						"name": "Metro City"
+					},
+					"artists": [
+						{
+							"name": "Vantage"
+						}
+					],
+					"duration_ms": 246167,
+					"name": "50//50",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/6wxav4nCiImWwjtyRsNBcz"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2734463766d27bbb06e798f54f3",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e024463766d27bbb06e798f54f3",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048514463766d27bbb06e798f54f3",
+								"width": 64
+							}
+						],
+						"name": "Melody"
+					},
+					"artists": [
+						{
+							"name": "Plustwo"
+						}
+					],
+					"duration_ms": 236588,
+					"name": "Melody (1983 Club Vinyl Mix)",
+					"preview_url": "https://p.scdn.co/mp3-preview/5a8a5260593c6bdcc313411777b159cb59ee6e51?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/1rH8ktBX4yTztPSi7nL9oy"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b27321ab7d03988d36c1803142ed",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e0221ab7d03988d36c1803142ed",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d0000485121ab7d03988d36c1803142ed",
+								"width": 64
+							}
+						],
+						"name": "Omae Wa Mou"
+					},
+					"artists": [
+						{
+							"name": "deadman 死人"
+						}
+					],
+					"duration_ms": 113499,
+					"name": "Omae Wa Mou",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/0Wibr4Xn7la0V69fnnujJw"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273730cc8eb459c92944233e891",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02730cc8eb459c92944233e891",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851730cc8eb459c92944233e891",
+								"width": 64
+							}
+						],
+						"name": "Utamonogatari Special Edition (Original Soundtrack)"
+					},
+					"artists": [
+						{
+							"name": "物語シリーズ"
+						}
+					],
+					"duration_ms": 255040,
+					"name": "恋愛サーキュレーション",
+					"preview_url": "https://p.scdn.co/mp3-preview/117c4ae5e28721f1d19aa0435fd7cb38323f13e5?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/3mZYp04OizDz8zkcZXnYTN"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b27341362a9268bd05250c849585",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e0241362a9268bd05250c849585",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d0000485141362a9268bd05250c849585",
+								"width": 64
+							}
+						],
+						"name": "Echo"
+					},
+					"artists": [
+						{
+							"name": "Yukari"
+						}
+					],
+					"duration_ms": 188960,
+					"name": "Am I Dreaming",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/7d1HSAZOAfCzvOXjriOuVf"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b27330a7a450660b982127e9d7bc",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e0230a7a450660b982127e9d7bc",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d0000485130a7a450660b982127e9d7bc",
+								"width": 64
+							}
+						],
+						"name": "Memory Lane"
+					},
+					"artists": [
+						{
+							"name": "AcesToAces"
+						}
+					],
+					"duration_ms": 135019,
+					"name": "Memory Lane",
+					"preview_url": "https://p.scdn.co/mp3-preview/67c02628d378ec2d105c1cab34c1be1b12946f08?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/3yQqw6ZJDHey6HZCpsrFTb"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273647e8069c98c7b23b6c80648",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02647e8069c98c7b23b6c80648",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851647e8069c98c7b23b6c80648",
+								"width": 64
+							}
+						],
+						"name": "Draining Love Story"
+					},
+					"artists": [
+						{
+							"name": "Sewerslvt"
+						}
+					],
+					"duration_ms": 471588,
+					"name": "Mr. Kill Myself",
+					"preview_url": "https://p.scdn.co/mp3-preview/98eed0f319c4d6467a2f18be8b1c6416973be5f9?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/2uhB1KivbFnlkARpbd0Cvu"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2734123c0f9b6689205d20f350f",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e024123c0f9b6689205d20f350f",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048514123c0f9b6689205d20f350f",
+								"width": 64
+							}
+						],
+						"name": "1000 gecs"
+					},
+					"artists": [
+						{
+							"name": "100 gecs"
+						},
+						{
+							"name": "Laura Les"
+						},
+						{
+							"name": "Dylan Brady"
+						}
+					],
+					"duration_ms": 114460,
+					"name": "money machine",
+					"preview_url": "https://p.scdn.co/mp3-preview/6b7d0ee5e4d2bda19a132273b84ee05aa3e2317e?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/2uhB1KivbFnlkARpbd0Cvu"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2734123c0f9b6689205d20f350f",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e024123c0f9b6689205d20f350f",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048514123c0f9b6689205d20f350f",
+								"width": 64
+							}
+						],
+						"name": "1000 gecs"
+					},
+					"artists": [
+						{
+							"name": "100 gecs"
+						},
+						{
+							"name": "Laura Les"
+						},
+						{
+							"name": "Dylan Brady"
+						}
+					],
+					"duration_ms": 121681,
+					"name": "stupid horse",
+					"preview_url": "https://p.scdn.co/mp3-preview/bbac6f64a287a8ab7fefa15bcae383d91c0f8d95?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/2uhB1KivbFnlkARpbd0Cvu"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2734123c0f9b6689205d20f350f",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e024123c0f9b6689205d20f350f",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048514123c0f9b6689205d20f350f",
+								"width": 64
+							}
+						],
+						"name": "1000 gecs"
+					},
+					"artists": [
+						{
+							"name": "100 gecs"
+						},
+						{
+							"name": "Laura Les"
+						},
+						{
+							"name": "Dylan Brady"
+						}
+					],
+					"duration_ms": 126616,
+					"name": "hand crushed by a mallet",
+					"preview_url": "https://p.scdn.co/mp3-preview/88eabd89d4881eb456d279310c09c1342adacf1c?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/2uhB1KivbFnlkARpbd0Cvu"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2734123c0f9b6689205d20f350f",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e024123c0f9b6689205d20f350f",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048514123c0f9b6689205d20f350f",
+								"width": 64
+							}
+						],
+						"name": "1000 gecs"
+					},
+					"artists": [
+						{
+							"name": "100 gecs"
+						},
+						{
+							"name": "Laura Les"
+						},
+						{
+							"name": "Dylan Brady"
+						}
+					],
+					"duration_ms": 140183,
+					"name": "800 db cloud",
+					"preview_url": "https://p.scdn.co/mp3-preview/83c3f3b0e8190b1b03c789650004395935664cde?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/2xLjorF0M6LHPqk2qmZJOV"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273d4eba34bd4ccf2d51d25e21c",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02d4eba34bd4ccf2d51d25e21c",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851d4eba34bd4ccf2d51d25e21c",
+								"width": 64
+							}
+						],
+						"name": "Flamingo"
+					},
+					"artists": [
+						{
+							"name": "Kero Kero Bonito"
+						}
+					],
+					"duration_ms": 197528,
+					"name": "Flamingo",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/4cQMG9J5WiIDMYaWf5axzy"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2735fcd8144ff007592c8018cd7",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e025fcd8144ff007592c8018cd7",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048515fcd8144ff007592c8018cd7",
+								"width": 64
+							}
+						],
+						"name": "Moe Moe"
+					},
+					"artists": [
+						{
+							"name": "Moe Shop"
+						},
+						{
+							"name": "TORIENA"
+						}
+					],
+					"duration_ms": 189130,
+					"name": "Notice",
+					"preview_url": "https://p.scdn.co/mp3-preview/b10ae3299b6cff5e78b0220b218afb4b2cc3af37?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/3qYvxOQTV8tAwpKdHPsnUf"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2730698885b0fd4401d67681e2f",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e020698885b0fd4401d67681e2f",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048510698885b0fd4401d67681e2f",
+								"width": 64
+							}
+						],
+						"name": "Cyberia Lyr1+2=3"
+					},
+					"artists": [
+						{
+							"name": "Sewerslvt"
+						}
+					],
+					"duration_ms": 294000,
+					"name": "Cyberia Lyr1",
+					"preview_url": "https://p.scdn.co/mp3-preview/b7767c781206739470500194d03f570e35c8cb99?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/2uhB1KivbFnlkARpbd0Cvu"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2734123c0f9b6689205d20f350f",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e024123c0f9b6689205d20f350f",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048514123c0f9b6689205d20f350f",
+								"width": 64
+							}
+						],
+						"name": "1000 gecs"
+					},
+					"artists": [
+						{
+							"name": "100 gecs"
+						},
+						{
+							"name": "Laura Les"
+						},
+						{
+							"name": "Dylan Brady"
+						}
+					],
+					"duration_ms": 174674,
+					"name": "xXXi_wud_nvrstøp_ÜXXx",
+					"preview_url": "https://p.scdn.co/mp3-preview/25d1a32ce96588dd3bb2f4c48ffb0190ca831408?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/6TRvxALhGHTGM1AjCd61SU"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273bcceb37517d4e80ac7912010",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02bcceb37517d4e80ac7912010",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851bcceb37517d4e80ac7912010",
+								"width": 64
+							}
+						],
+						"name": "ʅ͡͡͡͡͡͡͡͡͡͡͡(ƟӨ)ʃ͡͡͡͡͡͡͡͡͡͡ ꐑ(ཀ ඊູ ఠీੂ೧ູ࿃ूੂ✧ළඕั࿃ूੂ࿃ूੂੂ࿃ूੂළඕั✧ı̴̴̡ ̡̡͡|̲̲̲͡ ̲̲̲͡͡π̲̲͡͡ ɵੂ≢࿃ूੂ೧ູఠీੂ ඊູཀ ꐑ(ʅ͡͡͡͡͡͡͡͡͡͡͡(ƟӨ)ʃ͡͡͡͡͡͡͡͡͡͡"
+					},
+					"artists": [
+						{
+							"name": "⣎⡇ꉺლ༽இ•̛)ྀ◞ ༎ຶ ༽ৣৢ؞ৢ؞ؖ ꉺლ"
+						}
+					],
+					"duration_ms": 282524,
+					"name": "ੂ࿃ूੂළඕั✧✧ı̴̴̡ ̡̡͡|̲̲̲͡ ̲̲̲͡͡π̲̲͡͡ ɵੂ≢࿃ूੂ೧ູఠీੂ ඊູཀ ꐑ(ʅ͡͡͡͡͡͡͡͡͡͡͡(ƟӨ)ʃ͡͡͡͡͡͡͡͡͡͡",
+					"preview_url": "https://p.scdn.co/mp3-preview/fda6a656cb62c8e216028eed40e9860d3cfc48b7?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/5W150vEDIbzQt4BMWaxNbY"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2739b84fb41222f14328b9bc8ab",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e029b84fb41222f14328b9bc8ab",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048519b84fb41222f14328b9bc8ab",
+								"width": 64
+							}
+						],
+						"name": "Everywhereigo"
+					},
+					"artists": [
+						{
+							"name": "Babyxsosa"
+						}
+					],
+					"duration_ms": 135471,
+					"name": "Everywhereigo",
+					"preview_url": "https://p.scdn.co/mp3-preview/b1e400ee06826e363f69d38c12cbdbc7b801974c?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/6o9upHXskl8ECxKuDhouAo"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273015477b050253027c9eb875c",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02015477b050253027c9eb875c",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851015477b050253027c9eb875c",
+								"width": 64
+							}
+						],
+						"name": "Heartless"
+					},
+					"artists": [
+						{
+							"name": "Yameii Online"
+						}
+					],
+					"duration_ms": 87405,
+					"name": "Heartless",
+					"preview_url": "https://p.scdn.co/mp3-preview/26688fd6b18adceb0e309af7a2ca1e9f8faadbbd?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/65YAjLCn7Jp33nJpOxIPMe"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b27312c2eefb1d28509c632d915d",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e0212c2eefb1d28509c632d915d",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d0000485112c2eefb1d28509c632d915d",
+								"width": 64
+							}
+						],
+						"name": "to hell with it"
+					},
+					"artists": [
+						{
+							"name": "PinkPantheress"
+						}
+					],
+					"duration_ms": 131906,
+					"name": "Reason",
+					"preview_url": "https://p.scdn.co/mp3-preview/cbd6eb5eb7e38e8d9ed6216506d7ef22f37ff659?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/65YAjLCn7Jp33nJpOxIPMe"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b27312c2eefb1d28509c632d915d",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e0212c2eefb1d28509c632d915d",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d0000485112c2eefb1d28509c632d915d",
+								"width": 64
+							}
+						],
+						"name": "to hell with it"
+					},
+					"artists": [
+						{
+							"name": "PinkPantheress"
+						}
+					],
+					"duration_ms": 108373,
+					"name": "I must apologise",
+					"preview_url": "https://p.scdn.co/mp3-preview/663636b53e99462533fa4ac162f7a5e6c3c2a833?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/65YAjLCn7Jp33nJpOxIPMe"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b27312c2eefb1d28509c632d915d",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e0212c2eefb1d28509c632d915d",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d0000485112c2eefb1d28509c632d915d",
+								"width": 64
+							}
+						],
+						"name": "to hell with it"
+					},
+					"artists": [
+						{
+							"name": "PinkPantheress"
+						}
+					],
+					"duration_ms": 153306,
+					"name": "Nineteen",
+					"preview_url": "https://p.scdn.co/mp3-preview/66029fcee1f305d02f458930c972605d4d4b18e9?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/5fKRY9wwJ82sQPb32iJKev"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2737f9be015b3726d31f7e70c80",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e027f9be015b3726d31f7e70c80",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048517f9be015b3726d31f7e70c80",
+								"width": 64
+							}
+						],
+						"name": "Want Me"
+					},
+					"artists": [
+						{
+							"name": "Cl4pers"
+						}
+					],
+					"duration_ms": 70104,
+					"name": "Want Me",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/0tMQ0WClc4aez32B3BiqxJ"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b27316cb9f7da3faab76570ca3ff",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e0216cb9f7da3faab76570ca3ff",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d0000485116cb9f7da3faab76570ca3ff",
+								"width": 64
+							}
+						],
+						"name": "SUICIDE YEAR"
+					},
+					"artists": [
+						{
+							"name": "WEEDMANE"
+						},
+						{
+							"name": "Suicideyear"
+						}
+					],
+					"duration_ms": 91731,
+					"name": "SUICIDE YEAR",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/7KpuGjIfduSD45wl5IQc7G"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b27305d2d7b20beccb9b866f1037",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e0205d2d7b20beccb9b866f1037",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d0000485105d2d7b20beccb9b866f1037",
+								"width": 64
+							}
+						],
+						"name": "100 gecs"
+					},
+					"artists": [
+						{
+							"name": "100 gecs"
+						}
+					],
+					"duration_ms": 129015,
+					"name": "bloodstains",
+					"preview_url": "https://p.scdn.co/mp3-preview/a4e0a4f492f587d8d8e86b6b2a62b30c721b8dee?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/20blibqF1THTtLCzQq0Ovx"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2735e5ba38487dbb11ece7b7ef8",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e025e5ba38487dbb11ece7b7ef8",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048515e5ba38487dbb11ece7b7ef8",
+								"width": 64
+							}
+						],
+						"name": "masquerade"
+					},
+					"artists": [
+						{
+							"name": "siouxxie sixxsta"
+						}
+					],
+					"duration_ms": 144535,
+					"name": "masquerade",
+					"preview_url": null
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/13JoBPPaKWh2eusprVgAFu"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2739660b2d26342813fabe3bd8c",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e029660b2d26342813fabe3bd8c",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048519660b2d26342813fabe3bd8c",
+								"width": 64
+							}
+						],
+						"name": "Freak Show"
+					},
+					"artists": [
+						{
+							"name": "Punkinloveee"
+						},
+						{
+							"name": "H3artcrush"
+						}
+					],
+					"duration_ms": 125361,
+					"name": "Freak Show",
+					"preview_url": "https://p.scdn.co/mp3-preview/73753e5e54270177d29463c4db76b9f8371d00f4?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/0WbWUiRNyqqnVGIEkHPxjo"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b27364ff55270dad8686a9603f35",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e0264ff55270dad8686a9603f35",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d0000485164ff55270dad8686a9603f35",
+								"width": 64
+							}
+						],
+						"name": "Baylor Swift"
+					},
+					"artists": [
+						{
+							"name": "Bali Baby"
+						}
+					],
+					"duration_ms": 237563,
+					"name": "Electrical",
+					"preview_url": "https://p.scdn.co/mp3-preview/47664ee9e6edbd3ba07b757281a2f55cb530a5ee?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/2k5HlmocImUDMDh80YXFXH"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2735596284437b8c6b2858781d7",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e025596284437b8c6b2858781d7",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048515596284437b8c6b2858781d7",
+								"width": 64
+							}
+						],
+						"name": "GFOTYBUCKS"
+					},
+					"artists": [
+						{
+							"name": "GFOTY"
+						}
+					],
+					"duration_ms": 205000,
+					"name": "Friday Night",
+					"preview_url": "https://p.scdn.co/mp3-preview/76e868581c85a96cd4702b44e5eeca29de6f6c5a?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/0i3fo94zIdI1gSs9t2QtMb"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b2739dea7685976c35783f4f189e",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e029dea7685976c35783f4f189e",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d000048519dea7685976c35783f4f189e",
+								"width": 64
+							}
+						],
+						"name": "Friday Night Funkin': Mid-Fight Masses Original Soundtrack"
+					},
+					"artists": [
+						{
+							"name": "Mike Geno"
+						}
+					],
+					"duration_ms": 138161,
+					"name": "Zavodila",
+					"preview_url": "https://p.scdn.co/mp3-preview/e961851b41cbd5738b095b5f6fc846b1f720b23c?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			},
+			{
+				"track": {
+					"album": {
+						"external_urls": {
+							"spotify": "https://open.spotify.com/album/3tPYAoubf1DYBo4ZKPMQgC"
+						},
+						"images": [
+							{
+								"height": 640,
+								"url": "https://i.scdn.co/image/ab67616d0000b273ce0f1b7e2a501d859122c9a9",
+								"width": 640
+							},
+							{
+								"height": 300,
+								"url": "https://i.scdn.co/image/ab67616d00001e02ce0f1b7e2a501d859122c9a9",
+								"width": 300
+							},
+							{
+								"height": 64,
+								"url": "https://i.scdn.co/image/ab67616d00004851ce0f1b7e2a501d859122c9a9",
+								"width": 64
+							}
+						],
+						"name": "ART GANG MONEY"
+					},
+					"artists": [
+						{
+							"name": "Swervy"
+						},
+						{
+							"name": "REDDY"
+						}
+					],
+					"duration_ms": 194920,
+					"name": "ART GANG MONEY (feat. Reddy)",
+					"preview_url": "https://p.scdn.co/mp3-preview/36e5943f879a0fb05568cd6ed465a690cdb10995?cid=1186cf593217449090a7a556fc12fed0"
+				}
+			}
+		]
+	},
+	"uri": "spotify:playlist:6C6IZB8oY1VgSSjerp9edG"
 }

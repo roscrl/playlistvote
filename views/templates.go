@@ -1,6 +1,7 @@
 package views
 
 import (
+	"app/services/spotify"
 	"embed"
 	"fmt"
 	"html/template"
@@ -38,6 +39,9 @@ func New(env config.Environment) *Views {
 		},
 		"rawHTML": func(s string) template.HTML {
 			return template.HTML(s)
+		},
+		"stripSpotifyURI": func(s string) string {
+			return strings.TrimPrefix(s, spotify.URIPlaylistPrefix)
 		},
 	}
 	views := &Views{env: env, funcMap: funcMap}

@@ -38,6 +38,8 @@ var (
 
 const (
 	UserCopiedPlaylistPrefix = "https://open.spotify.com/playlist/"
+	AlbumCopiedPrefix        = "https://open.spotify.com/album/"
+	URIPlaylistPrefix        = "spotify:playlist:"
 )
 
 func (s *Spotify) InitToken() {
@@ -187,6 +189,65 @@ func (s *Spotify) Playlist(ctx context.Context, playlistId string) (*Playlist, e
 
 	q := req.URL.Query()
 	q.Add("fields", "id, name, images, description, owner(display_name, id, external_urls(spotify)), followers, uri, external_urls, tracks.items(track(name, duration_ms, preview_url, artists(name), album(name, images, external_urls(spotify))))")
+	req.URL.RawQuery = q.Encode()
+
+	resp, err := http.DefaultClient.Do(req)
+	select {
+	case <-ctx.Done():
+		return nil, ctx.Err()
+	default:
+	}
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode == http.StatusNotFound {
+		return nil, PlaylistNotFound
+	}
+
+	if resp.StatusCode == http.StatusTooManyRequests {
+		return nil, TooManyRequestsErr
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		body, err := io.ReadAll(resp.Body)
+		if err != nil {
+			return nil, fmt.Errorf("reading response body: %w", err)
+		}
+		return nil, fmt.Errorf("spotify: %s %s, request: %s", resp.Status, body, req.URL)
+	}
+
+	var playlist Playlist
+	if err := json.NewDecoder(resp.Body).Decode(&playlist); err != nil {
+		return nil, err
+	}
+
+	if len(playlist.Tracks.Items) == 0 {
+		return nil, PlaylistEmptyErr
+	}
+
+	if len(playlist.Images) == 0 {
+		return nil, PlaylistNoImageErr
+	}
+
+	if len(playlist.Tracks.Items) < 4 {
+		return nil, PlaylistTooSmallErr
+	}
+
+	return &playlist, nil
+}
+
+func (s *Spotify) PlaylistMetadata(ctx context.Context, playlistId string) (*Playlist, error) {
+	req, err := http.NewRequestWithContext(ctx, "GET", s.PlaylistEndpoint+"/"+playlistId, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Set("Authorization", "Bearer "+s.token.AccessToken())
+
+	q := req.URL.Query()
+	q.Add("fields", "id, name, images, description, owner(display_name, id, external_urls(spotify)), followers, uri, external_urls, tracks.items(track(artists(name)))")
 	req.URL.RawQuery = q.Encode()
 
 	resp, err := http.DefaultClient.Do(req)

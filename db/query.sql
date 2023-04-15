@@ -7,8 +7,13 @@ SELECT *
 FROM playlists
 WHERE id = ?;
 
+-- name: GetPlaylistUpvotes :one
+SELECT upvotes
+FROM playlists
+WHERE id = ?;
+
 -- name: PlaylistExists :one
-SELECT EXISTS(SELECT 1 FROM playlists WHERE id = ?);
+SELECT COUNT(*) FROM playlists WHERE id = ?;
 
 -- name: GetTop100PlaylistsByUpvotesPastWeek :many
 SELECT *

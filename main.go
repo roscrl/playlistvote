@@ -26,15 +26,21 @@ type Server struct {
 
 	spotify *spotify.Spotify
 
-	apm    *newrelic.Application
-	router http.Handler
+	apm     *newrelic.Application
+	router  http.Handler
+	mocking bool
 }
 
 func NewServer(env config.Environment, sqliteDBPath string, mock bool) *Server {
 	srv := &Server{}
 
 	srv.env = env
-	srv.db = database(sqliteDBPath)
+	db, err := db.New(sqliteDBPath)
+	if err != nil {
+		log.Fatal(err)
+	}
+	srv.db = db
+
 	srv.qry = sqlc.New(srv.db)
 	srv.views = views.New(srv.env)
 
@@ -42,6 +48,7 @@ func NewServer(env config.Environment, sqliteDBPath string, mock bool) *Server {
 
 	srv.apm = apm()
 	srv.router = srv.routes()
+	srv.mocking = mock
 
 	return srv
 }
@@ -75,14 +82,6 @@ func setupServices(srv *Server, mock bool) {
 	}
 }
 
-func database(sqliteDBPath string) *sql.DB {
-	db, err := db.New(sqliteDBPath)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return db
-}
-
 func apm() *newrelic.Application {
 	app, err := newrelic.NewApplication(
 		newrelic.ConfigAppName("Playlist Vote"),
@@ -94,6 +93,14 @@ func apm() *newrelic.Application {
 		log.Fatal(err)
 	}
 	return app
+}
+
+func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	s.router.ServeHTTP(w, req)
+}
+
+func startSegment(req *http.Request, name string) *newrelic.Segment {
+	return newrelic.FromContext(req.Context()).StartSegment(name)
 }
 
 func (s *Server) Start(addr string) error {
