@@ -29,8 +29,8 @@ format:
 test:
 	go test -v ./...
 
-test-flow:
-	cd flowtests/ && npm run test
+test-browser:
+	cd browsertests/ && npm run test
 
 build: generate lint format test
 	go build -o bin/app .
@@ -65,7 +65,7 @@ logs-prod:
 	ssh root@$(VPS_IP) "journalctl -u $(SERVICE_NAME) -f"
 
 # Separately install Zig for its built in C cross compiler to linux (or any c compiler for make target build-arm64)
-# Separately install NodeJS for userflowtests/ browser testing
+# Separately install NodeJS for browsertests/ browser testing
 make tools:
 	go install github.com/kyleconroy/sqlc/cmd/sqlc@latest
 	go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest

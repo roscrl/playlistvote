@@ -10,7 +10,7 @@ import (
 	"github.com/matryer/is"
 )
 
-// TODO rm in favor of userflowtests/??
+// TODO rm in favor of browsertests/??
 func TestHandleHome(t *testing.T) {
 	is, server := is.New(t), NewServer(config.DevConfig(true))
 
