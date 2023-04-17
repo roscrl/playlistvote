@@ -8,7 +8,7 @@ config/.dev
 config/.dev.mock
 config/.prod
 
-db/playlist-vote.db
+# db/playlist-vote.db
 db/playlist-vote.db-shm
 db/playlist-vote.db-wal
 
