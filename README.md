@@ -1,8 +1,11 @@
 ![config/readme/example.png](config/readme/example.png)
 
-[playlistvote.com](playlistvote.com)
+[playlistvote.com](https://playlistvote.com)
+
 
 ## Setup
+
+See [Makefile](Makefile) for details
 
 `make tools` 
 
@@ -24,14 +27,13 @@ Server side rendered Go templates with `html/template`
 
 ### Production 
 
-`go-sqlite3` for database driver, requires CGO enabled and to compile to x86 from ARM requires `zig cc`
+`go-sqlite3` for database driver, requires `zig cc` to compile x86 from ARM
 
-`sqlc` for SQL code generation
+`sqlc` for Go code generation from SQL queries see [query.sql](db/query.sql)
 
 `prominentcolor` for image color extraction of playlist covers
 
 `newrelic/go-agent` for monitoring
-
 
 ### Development 
 
@@ -49,7 +51,7 @@ Server side rendered Go templates with `html/template`
 
 ### Deploy
 
-Single VPS server with Caddy, New Relic Agent, and a SQLite database.
+[VPS](https://specbranch.com/posts/one-big-server/) with Caddy, New Relic Agent, and a SQLite database.
 
 #### VPS Setup Script (Debian)
 ```bash
