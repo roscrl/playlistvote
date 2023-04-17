@@ -14,7 +14,9 @@
 
 ### Frontend
 
-`tailwindcss` at build time, Node not required
+Server side rendered Go templates with `html/template`
+
+`tailwindcss` styling
 
 `hotwire/turbo` for frontend JS, vendored
 
@@ -37,6 +39,14 @@
 
 `fsnotify` for watching Go template changes for dev mode without recompiling
 
+#### User Flow Tests
+
+`node/npm` required, see [.node-version](flowtest/.node-version) for version
+
+`make test-flow` to run
+
+`playwright` for browser automation
+
 ### Deploy
 
 Single VPS server with Caddy, New Relic Agent, and a SQLite database.
@@ -57,8 +67,9 @@ curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh |
 sudo apt install sqlite3
 ```
 
-[Caddy Systemd Service](config/caddy.service) `make caddy-service-reload`  
-[Caddyfile](config/caddy/Caddyfile) `make caddy-reload`  
+`make caddy-service-reload` [Caddy Systemd Service](config/caddy.service)   
+
+`make caddy-reload` [Caddyfile](config/caddy/Caddyfile) 
 
 ### Cloudflare
 

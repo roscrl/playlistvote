@@ -12,7 +12,7 @@ db/playlist-vote.db
 db/playlist-vote.db-shm
 db/playlist-vote.db-wal
 
-flowtests/node_modules/
-flowtests/test-results/
-flowtests/playwright-report/
-flowtests/playwright/.cache/
+userflowtests/node_modules/
+userflowtests/test-results/
+userflowtests/playwright-report/
+userflowtests/playwright/.cache/
