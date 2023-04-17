@@ -1,15 +1,14 @@
 ![config/readme/example.png](config/readme/example.png)
 
-[playlistvote.com](https://playlistvote.com)
-
+<p align="center">[playlistvote.com](https://playlistvote.com)</p>
 
 ## Setup
 
 See [Makefile](Makefile) for details
 
-`make tools` 
+`make tools`
 
-`make hotreload-mock` 
+`make hotreload-mock`
 
 `make hotreload`
 
@@ -25,7 +24,7 @@ Server side rendered Go templates with `html/template`
 
 `alpinejs` for frontend JS, vendored
 
-### Production 
+### Production
 
 `go-sqlite3` for database driver, requires `zig cc` to compile x86 from ARM
 
@@ -35,9 +34,9 @@ Server side rendered Go templates with `html/template`
 
 `newrelic/go-agent` for monitoring
 
-### Development 
+### Development
 
-`is` for assertions  
+`is` for assertions
 
 `fsnotify` for watching Go template changes for dev mode without recompiling
 
@@ -54,6 +53,7 @@ Server side rendered Go templates with `html/template`
 [VPS](https://specbranch.com/posts/one-big-server/) with Caddy, New Relic Agent, and a SQLite database.
 
 #### VPS Setup Script (Debian)
+
 ```bash
 # Caddy
 sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https &&
@@ -69,9 +69,9 @@ curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh |
 sudo apt install sqlite3
 ```
 
-`make caddy-service-reload` [Caddy Systemd Service](config/caddy.service)   
+`make caddy-service-reload` [Caddy Systemd Service](config/caddy.service)
 
-`make caddy-reload` [Caddyfile](config/caddy/Caddyfile) 
+`make caddy-reload` [Caddyfile](config/caddy/Caddyfile)
 
 ### Cloudflare
 
