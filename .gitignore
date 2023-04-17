@@ -4,9 +4,10 @@
 bin/
 tmp/
 
-.env
-app
+config/.dev
+config/.dev.mock
+config/.prod
 
-playlist-vote.db
-playlist-vote.db-shm
-playlist-vote.db-wal
+db/playlist-vote.db
+db/playlist-vote.db-shm
+db/playlist-vote.db-wal

@@ -1,10 +1,10 @@
 # Air is a hotreloader app which rebuilds the app whenever source files change
 [build]
-  cmd = "go build -o ./bin/app ."
-  bin = "./bin/app"
+  cmd = "make build-quick"
+  bin = "./bin/app --config ./config/.dev"
   args_bin = []
   delay = 0
-  exclude_dir = ["assets", "tmp", "vendor", "views/assets"]
+  exclude_dir = ["bin", "config/readme", "db/migrate", "assets", "tmp", "vendor", "views/assets", "views", "db/sqlc"]
   exclude_file = []
   exclude_regex = ["_test.go"]
   exclude_unchanged = false

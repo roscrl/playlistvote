@@ -7,4 +7,4 @@ PRAGMA cache_size   = 50000;
 PRAGMA foreign_keys = ON;
 PRAGMA busy_timeout = 5000;
 PRAGMA temp_store   = MEMORY;
-pragma mmap_size = 30000000000; -- TODO test this
+PRAGMA mmap_size = 300000000;

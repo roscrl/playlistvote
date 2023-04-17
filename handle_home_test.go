@@ -11,8 +11,7 @@ import (
 )
 
 func TestHandleHome(t *testing.T) {
-	_ = config.LoadEnv(".env")
-	is, server := is.New(t), NewServer(config.DEV, "", true)
+	is, server := is.New(t), NewServer(config.DevConfig(true))
 
 	w := httptest.NewRecorder()
 	req := httptest.NewRequest("GET", "/", nil)

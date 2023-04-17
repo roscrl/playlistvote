@@ -1,0 +1,12 @@
+# App
+ENVIRONMENT=DEV
+PORT=3000
+MOCK=false
+SQLITE_DB_PATH=./db/playlist-vote.db
+
+# Spotify
+SPOTIFY_CLIENT_ID=
+SPOTIFY_CLIENT_SECRET=
+
+# New Relic
+NEW_RELIC_LICENSE=

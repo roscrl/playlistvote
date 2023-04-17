@@ -43,7 +43,7 @@ func (s *Server) routes() http.Handler {
 
 	instrumentRoutes(routes, s.apm)
 
-	return maxBytesReaderMiddleware(requestDurationMiddleware(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	routerEntry := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		var allow []string
 		for _, route := range routes {
 			matches := route.regex.FindStringSubmatch(r.URL.Path)
@@ -63,7 +63,9 @@ func (s *Server) routes() http.Handler {
 			return
 		}
 		http.NotFound(w, r)
-	})))
+	})
+
+	return requestDurationMiddleware(routerEntry)
 }
 
 func getField(r *http.Request, index int) string {
@@ -79,7 +81,6 @@ func instrumentRoutes(routes []route, apm *newrelic.Application) {
 }
 
 func requestDurationMiddleware(next http.Handler) http.Handler {
-	// TODO use caddy middleware instead
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()
 
@@ -87,13 +88,5 @@ func requestDurationMiddleware(next http.Handler) http.Handler {
 
 		elapsed := time.Since(start)
 		log.Printf("%s %s took %s", r.Method, r.URL.Path, elapsed)
-	})
-}
-
-func maxBytesReaderMiddleware(next http.Handler) http.Handler {
-	// TODO use caddy middleware instead
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		r.Body = http.MaxBytesReader(w, r.Body, 1024*5) // 5KB
-		next.ServeHTTP(w, r)
 	})
 }

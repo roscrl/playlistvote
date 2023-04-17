@@ -13,7 +13,7 @@ import (
 var assetsFS embed.FS
 
 func (s *Server) handleAssets() http.HandlerFunc {
-	if s.env == config.PROD {
+	if s.cfg.Env == config.PROD {
 		subFS, err := fs.Sub(assetsFS, "views/assets/dist")
 		if err != nil {
 			log.Fatal(err)

@@ -1,8 +1,9 @@
 package main
 
 import (
-	"app/views"
 	"net/http"
+
+	"app/views"
 )
 
 func (s *Server) handleUpVote() http.HandlerFunc {
@@ -14,11 +15,15 @@ func (s *Server) handleUpVote() http.HandlerFunc {
 
 		playlistID := getField(req, 0)
 
+		seg := startSegment(req, "IncrementPlaylistUpvotes")
 		_, err := s.qry.IncrementPlaylistUpvotes(req.Context(), playlistID)
 		if err != nil {
-			s.views.Render(w, "error.tmpl", map[string]any{})
+			s.views.Render(w, "error.tmpl", map[string]any{
+				"error": "Something went wrong on our side trying to upvote this playlist. Please try again later.",
+			})
 			return
 		}
+		seg.End()
 
 		s.views.RenderStream(w, "playlist/_upvote_success.stream.tmpl", map[string]any{
 			"playlist_id": playlistID,

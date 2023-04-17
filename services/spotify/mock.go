@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-func MockEndpoints() (*httptest.Server, *httptest.Server) {
+func MockEndpoints(mockPlaylistFilePath string) (*httptest.Server, *httptest.Server) {
 	tsToken := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		w.Header().Set("Content-Type", "application/json")
@@ -25,7 +25,7 @@ func MockEndpoints() (*httptest.Server, *httptest.Server) {
 		w.WriteHeader(http.StatusOK)
 		w.Header().Set("Content-Type", "application/json")
 
-		f, err := os.ReadFile("services/spotify/mock_playlist.json")
+		f, err := os.ReadFile(mockPlaylistFilePath)
 		if err != nil {
 			panic(err)
 		}
@@ -35,8 +35,8 @@ func MockEndpoints() (*httptest.Server, *httptest.Server) {
 	return tsToken, tsPlaylist
 }
 
-func MockPlaylists() []Playlist {
-	file, err := os.ReadFile("services/spotify/mock_playlists.json")
+func MockPlaylists(mockPlaylistsFilePath string) []Playlist {
+	file, err := os.ReadFile(mockPlaylistsFilePath)
 	if err != nil {
 		log.Fatal(err)
 	}

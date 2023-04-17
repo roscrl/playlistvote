@@ -42,7 +42,7 @@ const (
 	URIPlaylistPrefix        = "spotify:playlist:"
 )
 
-func (s *Spotify) InitToken() {
+func (s *Spotify) InitTokenLifecycle() {
 	initTokenOnce.Do(func() {
 		s.token = token{
 			ClientID:      s.ClientID,
@@ -55,13 +55,15 @@ func (s *Spotify) InitToken() {
 }
 
 type Playlist struct {
+	Upvotes int64
+
 	Description  string `json:"description"`
 	ID           string `json:"id"`
 	ExternalUrls struct {
 		Spotify string `json:"spotify"`
 	} `json:"external_urls"`
 	Followers struct {
-		Total int `json:"total"`
+		Total int64 `json:"total"`
 	} `json:"followers"`
 	Images []struct {
 		Height *int   `json:"height"`

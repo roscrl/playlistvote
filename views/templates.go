@@ -1,7 +1,6 @@
 package views
 
 import (
-	"app/services/spotify"
 	"embed"
 	"fmt"
 	"html/template"
@@ -12,6 +11,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"app/services/spotify"
 
 	"app/config"
 
@@ -30,7 +31,7 @@ type Views struct {
 
 func New(env config.Environment) *Views {
 	funcMap := template.FuncMap{
-		"formatNumberInK": func(n int) string {
+		"formatNumberInK": func(n int64) string {
 			if n >= 1000 {
 				quotient := n / 1000
 				return fmt.Sprintf("%dk", quotient)

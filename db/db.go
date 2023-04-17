@@ -46,5 +46,10 @@ func setPragmas(db *sql.DB) error {
 		return err
 	}
 
+	_, err = db.Exec("PRAGMA mmap_size = 300000000")
+	if err != nil {
+		return err
+	}
+
 	return nil
 }

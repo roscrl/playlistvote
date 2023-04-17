@@ -14,7 +14,6 @@ import (
 
 func (s *Server) handleGetPlaylist() http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
-
 		playlistURI := getField(req, 0)
 		playlistID := strings.TrimPrefix(playlistURI, spotify.URIPlaylistPrefix)
 
@@ -28,7 +27,9 @@ func (s *Server) handleGetPlaylist() http.HandlerFunc {
 
 			if playlistExists == 0 {
 				log.Printf("playlist %s does not exist", playlistID)
-				s.views.Render(w, "error.tmpl", map[string]any{})
+				s.views.Render(w, "error.tmpl", map[string]any{
+					"error": "playlist does not exist on our side! add it on the home page!",
+				})
 				return
 			}
 		}
@@ -46,10 +47,10 @@ func (s *Server) handleGetPlaylist() http.HandlerFunc {
 			s.views.Render(w, "error.tmpl", map[string]any{})
 			return
 		}
+		playlist.Upvotes = upvotes
 
 		s.views.Render(w, "playlist/view.tmpl", map[string]any{
 			"playlist": playlist,
-			"upvotes":  upvotes,
 		})
 	}
 }
@@ -98,15 +99,7 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 
 			if playlistExists == 1 {
 				log.Printf("playlist %s already exists", playlistID)
-				// redirect to playlist page
 				http.Redirect(w, req, PlaylistBaseRoute+"/"+playlistID, http.StatusSeeOther)
-
-				//// TODO redirect to playlist page
-				//s.views.RenderStream(w, "playlist/_new.stream.tmpl", map[string]any{
-				//	"playlist_id":    playlistID,
-				//	"playlist_input": playlistLinkOrID,
-				//	"error":          "Playlist " + playlistID + " already exists",
-				//})
 				return
 			}
 		}

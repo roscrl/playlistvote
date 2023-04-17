@@ -1,5 +1,5 @@
 {{define "playlist_card" }}
-    <div class="w-full h-[120px] p-1 rounded-[10px] overflow-hidden lg:col-span-3"
+    <div class="w-full h-[120px] p-1 rounded-[10px] overflow-hidden lg:col-span-3 relative"
          style="background-image: linear-gradient(to right,
          {{ $fourHexColors := .ProminentFourCoverColors }}
          {{ index $fourHexColors 3  }} 56px,
@@ -8,6 +8,7 @@
          {{ index $fourHexColors 0  }} 100%
                  )"
     >
+        <a href="playlists/{{ stripSpotifyURI .URI }}" class="absolute top-0 left-0 w-full h-full z-10" data-turbo-frame="_top"></a>
         <div class="flex gap-[5px]">
             <div class="shrink-0 w-[112px] h-[112px] rounded-[6px] bg-gray-300 animate-pulse opacity-20"
                  x-data="{ isLoadingPlaylistImage: true }"
@@ -33,14 +34,13 @@
             <div class="w-full text-white flex flex-col overflow-hidden">
                 <div class="text-lg flex justify-between items-center">
                     <div class="overflow-hidden truncate">
-                        <a href="playlists/{{ stripSpotifyURI .URI }}" class="hover:underline truncate" data-turbo-frame="_top">{{.Name}}</a>
+                        {{.Name}}
                     </div>
                     <turbo-frame id="playlist-upvote-{{ stripSpotifyURI .URI }}">
                         <form class="flex cursor-none" action="/playlists/{{ stripSpotifyURI .URI }}/upvote" method="post">
-                            <button class="rounded-[6px] p-1 w-[26px] h-[26px] shrink-0 flex self-start overflow-visible items-center justify-center w-full active:outline outline-1 outline-[#ffe484] p-1 hover:cursor-pointer hover:bg-gray-100/[.20] hover:fill-white group outline-offset-[-1px]">
-                                <span class="text-xs self-center mr-1 group-active:text-[#ffe484]">{{formatNumberInK 200 }}</span>
+                            <button class="rounded-[6px] p-1 w-[26px] h-[26px] shrink-0 flex self-start overflow-visible items-center justify-center w-full active:outline outline-1 outline-[#ffe484] p-1 hover:cursor-pointer hover:bg-gray-100/[.20] hover:fill-white group outline-offset-[-1px] z-20">
+                                <span class="text-xs self-center mr-1 group-active:text-[#ffe484]">{{formatNumberInK .Upvotes }}</span>
                                 <svg class="overflow-visible fill-none group-active:fill-[#ffe484] group-active:stroke-[#ffe484] stroke-white stroke-[4px] opacity-100" width="14" height="14" viewBox="0 0 75 84" xmlns="http://www.w3.org/2000/svg">
-
                                     <path d="M4.16374 49.9219H20.8304V79.0885C20.8304 80.1936 21.2694 81.2534 22.0508 82.0348C22.8322 82.8162 23.892 83.2552 24.9971 83.2552H49.9971C51.1021 83.2552 52.162 82.8162 52.9434 82.0348C53.7248 81.2534 54.1637 80.1936 54.1637 79.0885C54.1637 77.9835 54.1637 49.9219 54.1637 49.9219H70.8304C71.6148 49.9205 72.383 49.698 73.0467 49.2798C73.7104 48.8617 74.2427 48.2648 74.5825 47.5578C74.9223 46.8507 75.0559 46.0622 74.9678 45.2827C74.8797 44.5033 74.5736 43.7644 74.0846 43.151L40.7512 1.48437C39.1637 -0.494792 35.8304 -0.494792 34.2429 1.48437L0.909576 43.151C0.42057 43.7644 0.114454 44.5033 0.0263763 45.2827C-0.0617016 46.0622 0.0718296 46.8507 0.411637 47.5578C0.751444 48.2648 1.28375 48.8617 1.94744 49.2798C2.61113 49.698 3.3793 49.9205 4.16374 49.9219Z"/>
                                 </svg>
                             </button>
@@ -59,7 +59,7 @@
                     {{ end }}
                 </div>
                 <div class="text-xs flex items-center leading-tight mt-auto mb-0.5">
-                    <a href="{{.Owner.ExternalUrls.Spotify }}" class="ml-0.5 max-w-[130px] truncate hover:underline flex items-center">
+                    <a href="{{.Owner.ExternalUrls.Spotify }}" class="ml-0.5 max-w-[130px] truncate hover:underline flex items-center z-20">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3 shrink-0">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
                         </svg>
