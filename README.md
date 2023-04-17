@@ -1,6 +1,8 @@
-![config/readme/example.png](config/readme/example.png)
+![config/readme/example.png](config/readme/showoff.png)
 
-<p align="center">[playlistvote.com](https://playlistvote.com)</p>
+<p align="center">
+    <a href="https://playlistvote.com">playlistvote.com</a>
+</p>
 
 ## Setup
 
