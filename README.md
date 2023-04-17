@@ -39,11 +39,11 @@ Server side rendered Go templates with `html/template`
 
 `fsnotify` for watching Go template changes for dev mode without recompiling
 
-#### User Flow Tests
+#### Browser Tests
 
-`node/npm` required, see [.node-version](flowtest/.node-version) for version
+`node/npm` required, see [.node-version](browsertests/.node-version) for version
 
-`make test-flow` to run
+`make test-browser` to run
 
 `playwright` for browser automation
 
