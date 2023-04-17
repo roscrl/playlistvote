@@ -55,7 +55,7 @@ curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh |
 sudo apt install sqlite3
 ```
 
-[Caddy Systemd Service](config/caddy.service) `caddy-service-reload`  
+[Caddy Systemd Service](config/caddy.service) `make caddy-service-reload`  
 [Caddyfile](config/caddy/Caddyfile) `make caddy-reload`  
 
 ### Cloudflare
