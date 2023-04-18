@@ -44,9 +44,9 @@ Server side rendered Go templates with `html/template`
 
 #### Browser Tests
 
-`node/npm` required, see [.node-version](browsertests/.node-version) for version
+`node/npm` required, [.node-version](browsertests/.node-version)
 
-`make test-browser` to run
+`make test-browser` to run from project root
 
 `playwright` for browser automation
 
@@ -58,17 +58,19 @@ Server side rendered Go templates with `html/template`
 
 ```bash
 # Caddy
-sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https &&
+sudo apt-get update && sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https &&
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg &&
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list &&
 sudo apt update &&
 sudo apt install caddy &&
 
-# New Relic
-curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && sudo NEW_RELIC_API_KEY=<KEY_HERE> NEW_RELIC_ACCOUNT_ID=<ACC_ID_HERE> /usr/local/bin/newrelic install &&
-
 # SQLite
 sudo apt install sqlite3
+```
+
+```bash
+# New Relic
+curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && sudo NEW_RELIC_API_KEY=<KEY_HERE> NEW_RELIC_ACCOUNT_ID=<ACC_ID_HERE> /usr/local/bin/newrelic install &&
 ```
 
 `make caddy-service-reload` [Caddy Systemd Service](config/caddy.service)

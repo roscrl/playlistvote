@@ -38,31 +38,56 @@ build: generate lint format test
 build-amd64: generate lint format test
 	CC="zig cc -target x86_64-linux-musl" CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build -o bin/app .
 
+build-arm64: generate lint format test
+	CC="zig cc -target aarch64-linux-musl" CGO_ENABLED=1 GOOS=linux GOARCH=arm64 go build -o bin/app .
+
 build-quick: test
 	go build -o bin/app .
 
 VPS_IP=5.161.84.223
 SERVICE_NAME=playlist-vote.service
 
-upload: build-amd64
-	scp -r bin/app root@$(VPS_IP):~/new/app
+make ssh:
+	ssh root@$(VPS_IP)
 
-deploy: upload
-	ssh root@$(VPS_IP) "mkdir -p ~/new && mkdir -p ~/archive"
-	ssh root@$(VPS_IP) "mv ~/app ~/archive/app_$$(date +"%Y%m%d%H%M%S") && mv ~/new/app ~/app"
-	ssh root@$(VPS_IP) "systemctl restart $(SERVICE_NAME)"
-
-caddy-reload:
-	scp -r ./config/Caddyfile root@$(VPS_IP):/etc/caddy/Caddyfile
-	ssh root@$(VPS_IP) "systemctl reload caddy"
+new-vps:
+	# Run VPS Setup Script in README.md
+	make caddy-service-reload
+	make db-copy-over
+	make app-service-reload
+	make deploy
 
 caddy-service-reload:
 	scp -r ./config/caddy.service root@$(VPS_IP):/lib/systemd/system/caddy.service
 	ssh root@$(VPS_IP) "systemctl daemon-reload"
 	ssh root@$(VPS_IP) "systemctl restart caddy"
 
+caddy-reload:
+	scp -r ./config/Caddyfile root@$(VPS_IP):/etc/caddy/Caddyfile
+	ssh root@$(VPS_IP) "systemctl reload caddy"
+
+db-copy-over:
+	rsync -avz --ignore-existing ./db/playlist-vote.db root@$(VPS_IP):~/db/
+
+app-service-reload:
+	scp -r ./config/$(SERVICE_NAME) root@$(VPS_IP):/lib/systemd/system/$(SERVICE_NAME)
+	ssh root@$(VPS_IP) "systemctl daemon-reload"
+	ssh root@$(VPS_IP) "systemctl restart $(SERVICE_NAME)"
+
+upload: build-amd64
+	ssh root@$(VPS_IP) "mkdir -p ~/new"
+	scp -r bin/app root@$(VPS_IP):~/new/app
+
+deploy: upload
+	ssh root@$(VPS_IP) "mkdir -p ~/archive"
+	ssh root@$(VPS_IP) "if [ -d ~/app ]; then mv ~/app ~/archive/app_$$(date +"%Y%m%d%H%M%S"); fi"
+	ssh root@$(VPS_IP) "mv ~/new/app ~/app"
+	ssh root@$(VPS_IP) "systemctl restart $(SERVICE_NAME)"
+
 logs-prod:
 	ssh root@$(VPS_IP) "journalctl -u $(SERVICE_NAME) -f"
+
+############################################################################################################
 
 # Separately install Zig for its built in C cross compiler to linux (or any c compiler for make target build-arm64)
 # Separately install NodeJS for browsertests/ browser testing

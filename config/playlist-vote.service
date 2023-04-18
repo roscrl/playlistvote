@@ -1,0 +1,10 @@
+[Unit]
+Description=Playlist Vote
+
+[Service]
+ExecStart=/root/app
+WorkingDirectory=/root
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
