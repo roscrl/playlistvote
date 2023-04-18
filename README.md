@@ -1,6 +1,4 @@
-<p align="center">
-#    <a href="https://playlistvote.com">playlistvote.com</a>
-</p>
+# [playlistvote.com](playlistvote.com)
 
 spotify playlist voting<br>
 
