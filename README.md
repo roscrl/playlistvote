@@ -30,9 +30,9 @@ Server side rendered Go templates with `html/template`
 
 `go-sqlite3` for database driver, requires `zig cc` to compile x86 from ARM
 
-`sqlc` for Go code generation from SQL queries see [query.sql](db/query.sql)
+`sqlc` for Go code generation from [SQL queries](db/query.sql)
 
-`prominentcolor` for image color extraction of playlist covers
+`prominentcolor` for prominent playlist image colors
 
 `newrelic/go-agent` for monitoring
 
@@ -44,9 +44,9 @@ Server side rendered Go templates with `html/template`
 
 #### Browser Tests
 
-`node/npm` required, [.node-version](browsertests/.node-version)
+`node/npm` requires [node](browsertests/.node-version)
 
-`make test-browser` to run from project root
+`make test-browser`
 
 `playwright` for browser automation
 
