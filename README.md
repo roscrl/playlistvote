@@ -1,8 +1,10 @@
-![config/readme/example.png](config/readme/showoff.png)
-
 <p align="center">
-    <a href="https://playlistvote.com">playlistvote.com</a>
+#    <a href="https://playlistvote.com">playlistvote.com</a>
 </p>
+
+spotify playlist voting<br>
+
+![config/readme/example.png](config/readme/showoff.png)
 
 ## Setup
 

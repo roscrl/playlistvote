@@ -59,7 +59,6 @@ func (s *Server) Start() error {
 }
 
 func (s *Server) Stop() error {
-	log.Println("closing server")
 	return s.db.Close()
 }
 

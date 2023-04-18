@@ -2,7 +2,7 @@
 ENVIRONMENT=DEV
 PORT=3000
 MOCK=false
-SQLITE_DB_PATH=./db/playlist-vote.db
+SQLITE_DB_PATH=./db/playlistvote.db
 
 # Spotify
 SPOTIFY_CLIENT_ID=

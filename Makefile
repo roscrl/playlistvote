@@ -47,10 +47,11 @@ build-quick: test
 ############################################################################################################
 
 VPS_IP=5.161.84.223
-SERVICE_NAME=playlist-vote.service
+SERVICE_NAME=playlistvote.service
+USER=root
 
 make ssh:
-	ssh root@$(VPS_IP)
+	ssh $(USER)@$(VPS_IP)
 
 new-vps:
 	# Run VPS Setup Script in README.md
@@ -60,34 +61,34 @@ new-vps:
 	make deploy
 
 caddy-service-reload:
-	scp -r ./config/caddy.service root@$(VPS_IP):/lib/systemd/system/caddy.service
-	ssh root@$(VPS_IP) "systemctl daemon-reload"
-	ssh root@$(VPS_IP) "systemctl restart caddy"
+	scp -r ./config/caddy.service $(USER)@$(VPS_IP):/lib/systemd/system/caddy.service
+	ssh $(USER)@$(VPS_IP) "systemctl daemon-reload"
+	ssh $(USER)@$(VPS_IP) "systemctl restart caddy"
 
 caddy-reload:
-	scp -r ./config/Caddyfile root@$(VPS_IP):/etc/caddy/Caddyfile
-	ssh root@$(VPS_IP) "systemctl reload caddy"
+	scp -r ./config/Caddyfile $(USER)@$(VPS_IP):/etc/caddy/Caddyfile
+	ssh $(USER)@$(VPS_IP) "systemctl reload caddy"
 
 db-copy-over:
-	rsync -avz --ignore-existing ./db/playlist-vote.db root@$(VPS_IP):~/db/
+	rsync -avz --ignore-existing ./db/playlistvote.db $(USER)@$(VPS_IP):~/db/
 
 app-service-reload:
-	scp -r ./config/$(SERVICE_NAME) root@$(VPS_IP):/lib/systemd/system/$(SERVICE_NAME)
-	ssh root@$(VPS_IP) "systemctl daemon-reload"
-	ssh root@$(VPS_IP) "systemctl restart $(SERVICE_NAME)"
+	scp -r ./config/$(SERVICE_NAME) $(USER)@$(VPS_IP):/lib/systemd/system/$(SERVICE_NAME)
+	ssh $(USER)@$(VPS_IP) "systemctl daemon-reload"
+	ssh $(USER)@$(VPS_IP) "systemctl restart $(SERVICE_NAME)"
 
 upload: build-amd64
-	ssh root@$(VPS_IP) "mkdir -p ~/new"
-	scp -r bin/app root@$(VPS_IP):~/new/app
+	ssh $(USER)@$(VPS_IP) "mkdir -p ~/new"
+	scp -r bin/app $(USER)@$(VPS_IP):~/new/app
 
 deploy: upload
-	ssh root@$(VPS_IP) "mkdir -p ~/archive"
-	ssh root@$(VPS_IP) "if [ -d ~/app ]; then mv ~/app ~/archive/app_$$(date +"%Y%m%d%H%M%S"); fi"
-	ssh root@$(VPS_IP) "mv ~/new/app ~/app"
-	ssh root@$(VPS_IP) "systemctl restart $(SERVICE_NAME)"
+	ssh $(USER)@$(VPS_IP) "mkdir -p ~/archive"
+	ssh $(USER)@$(VPS_IP) "if [ -d ~/app ]; then mv ~/app ~/archive/app_$$(date +"%Y%m%d%H%M%S"); fi"
+	ssh $(USER)@$(VPS_IP) "mv ~/new/app ~/app"
+	ssh $(USER)@$(VPS_IP) "systemctl restart $(SERVICE_NAME)"
 
 logs-prod:
-	ssh root@$(VPS_IP) "journalctl -u $(SERVICE_NAME) -f"
+	ssh $(USER)@$(VPS_IP) "journalctl -u $(SERVICE_NAME) -f"
 
 ############################################################################################################
 
