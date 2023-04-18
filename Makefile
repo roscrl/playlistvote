@@ -44,6 +44,8 @@ build-arm64: generate lint format test
 build-quick: test
 	go build -o bin/app .
 
+############################################################################################################
+
 VPS_IP=5.161.84.223
 SERVICE_NAME=playlist-vote.service
 
