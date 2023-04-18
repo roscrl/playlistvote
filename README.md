@@ -50,7 +50,7 @@ Server side rendered Go templates with `html/template`
 
 `playwright` for browser automation
 
-### Deploy
+## Deploy
 
 [VPS](https://specbranch.com/posts/one-big-server/) with Caddy, New Relic Agent, and a SQLite database.
 
@@ -82,7 +82,9 @@ curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh |
 SSL Full  
 DNS A Record set to VPS IP
 
-## Code Structure Inspiration
+## Misc
+
+#### Code Structure Inspiration
 
 [Mat Ryer - How I write HTTP services after eight years talk](https://www.youtube.com/watch?v=XGVZ0Ip4XPM)  
 [Mat Ryer - Deep dive of real application](https://www.youtube.com/watch?v=VRZZeJwIAIM)  
