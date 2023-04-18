@@ -2,7 +2,7 @@
 
 spotify playlist voting<br>
 
-![config/readme/example.png](config/readme/showoff.png)
+![config/readme/showoff.png](config/readme/showoff.png)
 
 ## Setup
 
