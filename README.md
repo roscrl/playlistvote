@@ -1,18 +1,16 @@
 # [playlistvote.com](https://playlistvote.com)
 
-spotify playlist voting<br>
+vote on user submitted Spotify playlists
 
 ![config/readme/showoff.png](config/readme/showoff.png)
 
 ## Setup
 
-See [Makefile](Makefile) for details
+Refer to the [Makefile](Makefile) for setup details
 
-`make tools`
+Set up the environment by installing Zig for the built-in C cross-compiler to Linux (or any C compiler for the 'make build' target) and Node.js for browser testing.
 
-`make hotreload-mock`
-
-`make hotreload`
+`make tools && make hotreload-mock`
 
 ## Dependencies
 
@@ -22,29 +20,27 @@ Server side rendered Go templates with `html/template`
 
 `tailwindcss` styling
 
-`hotwire/turbo` for frontend JS, vendored
-
-`alpinejs` for frontend JS, vendored
+`hotwire/turbo` and `alpinejs` for frontend JS, both vendored
 
 ### Production
 
-`go-sqlite3` for database driver, requires `zig cc` to compile x86 from ARM
+`go-sqlite3` as database driver (requires `zig cc` to compile x86 from ARM)
 
-`sqlc` for Go code generation from [SQL queries](db/query.sql)
+`sqlc` for generating Go code from [SQL queries](db/query.sql)
 
-`prominentcolor` for prominent playlist image colors
+`prominentcolor` for extracting prominent colors from playlist images
 
-`newrelic/go-agent` for monitoring
+`newrelic/go-agent` for application monitoring
 
 ### Development
 
 `is` for assertions
 
-`fsnotify` for watching Go template changes for dev mode without recompiling
+`fsnotify` for watching Go template changes in dev mode without recompiling
 
 #### Browser Tests
 
-`node/npm` requires [.node](browsertests/.node-version)
+`node/npm` (requires [.node](browsertests/.node-version))
 
 `make test-browser`
 
@@ -52,37 +48,19 @@ Server side rendered Go templates with `html/template`
 
 ## Deploy
 
-[VPS](https://specbranch.com/posts/one-big-server/) with Caddy, New Relic Agent, and a SQLite database.
+The application is deploy on a [VPS](https://specbranch.com/posts/one-big-server/)
 
-#### VPS Setup Script (Debian)
+#### VPS Setup
 
-```bash
-# Caddy
-sudo apt-get update && sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https &&
-curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg &&
-curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list &&
-sudo apt update &&
-sudo apt install caddy &&
-
-# SQLite
-sudo apt install sqlite3
-```
-
-```bash
-# New Relic
-curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash && sudo NEW_RELIC_API_KEY=<KEY_HERE> NEW_RELIC_ACCOUNT_ID=<ACC_ID_HERE> /usr/local/bin/newrelic install &&
-```
-
-`make caddy-service-reload` [Caddy Systemd Service](config/caddy.service)
-
-`make caddy-reload` [Caddyfile](config/caddy/Caddyfile)
+- Set `VPS_IP` variable in the Makefile
+- Run `make new-vps`
 
 ### Cloudflare
 
-SSL Full  
-DNS A Record set to VPS IP
+- Set SSL Full
+- Add an A record in the DNS settings pointing to VPS IP
 
-## Misc
+## Miscellaneous
 
 #### Structure Inspiration
 

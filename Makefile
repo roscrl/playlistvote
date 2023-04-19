@@ -15,8 +15,8 @@ tailwind-watch:
 
 generate:
 	./bin/tailwindcss -i ./views/assets/main.css -o ./views/assets/dist/main.css --config ./config/tailwind.config.js
-	./bin/esbuild views/assets/dist/js/alpine-3.12.0/alpine.js --minify --outfile=views/assets/dist/js/alpine-3.12.0/alpine.min.js
-	./bin/esbuild views/assets/dist/js/alpine-3.12.0/intersect.js --minify --outfile=views/assets/dist/js/alpine-3.12.0/intersect.min.js
+	./bin/esbuild views/assets/dist/js/alpine-3.12.0/alpine.js 							--minify --outfile=views/assets/dist/js/alpine-3.12.0/alpine.min.js
+	./bin/esbuild views/assets/dist/js/alpine-3.12.0/intersect.js 					--minify --outfile=views/assets/dist/js/alpine-3.12.0/intersect.min.js
 	./bin/esbuild views/assets/dist/js/turbo-7.3.0/dist/turbo.es2017-esm.js --minify --outfile=views/assets/dist/js/turbo-7.3.0/dist/turbo.es2017-esm.min.js
 	cd ./db && sqlc generate
 
@@ -48,17 +48,31 @@ build-quick: test
 
 VPS_IP=5.161.84.223
 SERVICE_NAME=playlistvote.service
+SQLITE_DB_PATH=./db/playlistvote.db
 USER=root
 
 make ssh:
 	ssh $(USER)@$(VPS_IP)
 
 new-vps:
-	# Run VPS Setup Script in README.md
+	make setup-script
 	make caddy-service-reload
 	make db-copy-over
 	make app-service-reload
 	make deploy
+
+make setup-script:
+	ssh $(USER)@$(VPS_IP) "																																																															\
+		# Caddy																																																																						\
+		sudo apt-get update && sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https &&																						\
+		curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg && \
+		curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list && 									\
+		sudo apt update && 																																																																\
+		sudo apt install caddy && 																																																												\
+																																																																											\
+		# SQLite to view DB																																																																\
+		sudo apt install sqlite3																																																													\
+	"
 
 caddy-service-reload:
 	scp -r ./config/caddy.service $(USER)@$(VPS_IP):/lib/systemd/system/caddy.service
@@ -70,7 +84,7 @@ caddy-reload:
 	ssh $(USER)@$(VPS_IP) "systemctl reload caddy"
 
 db-copy-over:
-	rsync -avz --ignore-existing ./db/playlistvote.db $(USER)@$(VPS_IP):~/db/
+	rsync -avz --ignore-existing $(SQLITE_DB_PATH) $(USER)@$(VPS_IP):~/db/
 
 app-service-reload:
 	scp -r ./config/$(SERVICE_NAME) $(USER)@$(VPS_IP):/lib/systemd/system/$(SERVICE_NAME)
@@ -92,15 +106,14 @@ logs-prod:
 
 ############################################################################################################
 
-# Separately install Zig for its built in C cross compiler to linux (or any c compiler for make target build-arm64)
-# Separately install NodeJS for browsertests/ browser testing
 make tools:
-	go install github.com/kyleconroy/sqlc/cmd/sqlc@latest
-	go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-	go install mvdan.cc/gofumpt@latest
-	go install github.com/cosmtrek/air@latest
+	go install github.com/kyleconroy/sqlc/cmd/sqlc@v1.17.2
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.52.2
+	go install mvdan.cc/gofumpt@v0.5.0
+	go install github.com/cosmtrek/air@v1.43.0
 	make tooling-esbuild
 	make tooling-tailwind
+	echo "Remember to install Zig for the built-in C cross-compiler to Linux (or any C compiler for the 'make build' target) and Node.js for browser testing."
 
 # MacOS ARM specific
 tooling-tailwind:
@@ -110,5 +123,5 @@ tooling-tailwind:
 	mv tailwindcss ./bin
 
 tooling-esbuild:
-	curl -fsSL https://esbuild.github.io/dl/latest | sh
+	curl -fsSL https://esbuild.github.io/dl/v0.17.17 | sh
 	mv esbuild ./bin
