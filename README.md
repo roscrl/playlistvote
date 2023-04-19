@@ -1,4 +1,4 @@
-# [playlistvote.com](playlistvote.com)
+# [playlistvote.com](www.playlistvote.com)
 
 spotify playlist voting<br>
 
