@@ -4,7 +4,7 @@ spotify playlist voting<br>
 
 ![config/readme/showoff.png](config/readme/showoff.png)
 
-## setup
+## Setup
 
 See [Makefile](Makefile) for details
 
@@ -14,9 +14,9 @@ See [Makefile](Makefile) for details
 
 `make hotreload`
 
-## dependencies
+## Dependencies
 
-### frontend
+### Frontend
 
 Server side rendered Go templates with `html/template`
 
@@ -26,7 +26,7 @@ Server side rendered Go templates with `html/template`
 
 `alpinejs` for frontend JS, vendored
 
-### production
+### Production
 
 `go-sqlite3` for database driver, requires `zig cc` to compile x86 from ARM
 
@@ -36,25 +36,25 @@ Server side rendered Go templates with `html/template`
 
 `newrelic/go-agent` for monitoring
 
-### development
+### Development
 
 `is` for assertions
 
 `fsnotify` for watching Go template changes for dev mode without recompiling
 
-#### browser tests
+#### Browser Tests
 
-`node/npm` requires [node](browsertests/.node-version)
+`node/npm` requires [.node](browsertests/.node-version)
 
 `make test-browser`
 
 `playwright` for browser automation
 
-## deploy
+## Deploy
 
 [VPS](https://specbranch.com/posts/one-big-server/) with Caddy, New Relic Agent, and a SQLite database.
 
-#### VPS setup script (Debian)
+#### VPS Setup Script (Debian)
 
 ```bash
 # Caddy
@@ -77,14 +77,14 @@ curl -Ls https://download.newrelic.com/install/newrelic-cli/scripts/install.sh |
 
 `make caddy-reload` [Caddyfile](config/caddy/Caddyfile)
 
-### cloudflare
+### Cloudflare
 
 SSL Full  
 DNS A Record set to VPS IP
 
-## misc
+## Misc
 
-#### structure inspiration
+#### Structure Inspiration
 
 [Mat Ryer - How I write HTTP services after eight years talk](https://www.youtube.com/watch?v=XGVZ0Ip4XPM)  
 [Mat Ryer - Deep dive of real application](https://www.youtube.com/watch?v=VRZZeJwIAIM)  
