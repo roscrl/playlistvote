@@ -8,7 +8,7 @@ vote on user submitted Spotify playlists
 
 Refer to the [Makefile](Makefile) for setup details
 
-Set up the environment by installing Zig for the built-in C cross-compiler to Linux (or any C compiler for the 'make build' target) and Node.js for browser testing.
+Install Zig for the built-in C cross-compiler to Linux (or any C compiler for the 'make build' target) and Node.js for browser testing.
 
 `make tools && make hotreload-mock`
 
