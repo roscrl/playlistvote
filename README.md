@@ -53,7 +53,7 @@ The application is deploy on a [VPS](https://specbranch.com/posts/one-big-server
 #### VPS Setup
 
 - Set `VPS_IP` variable in the Makefile
-- Run `make new-vps`
+- Run `make vps-new`
 
 ### Cloudflare
 

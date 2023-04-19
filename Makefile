@@ -54,24 +54,24 @@ USER=root
 make ssh:
 	ssh $(USER)@$(VPS_IP)
 
-new-vps:
-	make setup-script
+vps-new:
+	make vps-dependencies
 	make caddy-service-reload
 	make db-copy-over
 	make app-service-reload
 	make deploy
 
-make setup-script:
-	ssh $(USER)@$(VPS_IP) "																																																															\
-		# Caddy																																																																						\
-		sudo apt-get update && sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https &&																						\
+make vps-dependencies:
+	ssh $(USER)@$(VPS_IP) "																																  \
+		# Caddy																																		      \
+		sudo apt-get update && sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https &&											  \
 		curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg && \
-		curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list && 									\
-		sudo apt update && 																																																																\
-		sudo apt install caddy && 																																																												\
-																																																																											\
-		# SQLite to view DB																																																																\
-		sudo apt install sqlite3																																																													\
+		curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list && 				  \
+		sudo apt update && 																															      \
+		sudo apt install caddy && 																														  \
+																																						  \
+		# SQLite to view DB																																  \
+		sudo apt install sqlite3																			  											  \
 	"
 
 caddy-service-reload:
