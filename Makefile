@@ -1,3 +1,7 @@
+#########################
+##  Local Development  ##
+#########################
+
 run:
 	go run . --config ./config/.dev
 
@@ -32,6 +36,10 @@ test:
 test-browser:
 	cd browsertests/ && npm run test
 
+#########################
+#####    Builds     #####
+#########################
+
 build: generate lint format test
 	go build -o bin/app .
 
@@ -44,7 +52,9 @@ build-arm64: generate lint format test
 build-quick: test
 	go build -o bin/app .
 
-############################################################################################################
+#########################
+##### Remote server #####
+#########################
 
 VPS_IP=5.161.84.223
 SERVICE_NAME=playlistvote.service
@@ -104,7 +114,9 @@ deploy: upload
 logs-prod:
 	ssh $(USER)@$(VPS_IP) "journalctl -u $(SERVICE_NAME) -f"
 
-############################################################################################################
+#########################
+#####    Tooling    #####
+#########################
 
 make tools:
 	go install github.com/kyleconroy/sqlc/cmd/sqlc@v1.17.2
@@ -115,8 +127,8 @@ make tools:
 	make tooling-tailwind
 	echo "Remember to install Zig for the built-in C cross-compiler to Linux (or any C compiler for the 'make build' target) and Node.js for browser testing."
 
-# MacOS ARM specific
 tooling-tailwind:
+	# MacOS ARM specific
 	curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/download/v3.3.1/tailwindcss-macos-arm64
 	chmod +x tailwindcss-macos-arm64
 	mv tailwindcss-macos-arm64 tailwindcss

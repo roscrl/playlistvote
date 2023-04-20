@@ -2,13 +2,9 @@ package main
 
 import (
 	"context"
-	"log"
 	"net/http"
 	"regexp"
 	"strings"
-	"time"
-
-	"github.com/newrelic/go-agent/v3/newrelic"
 )
 
 type route struct {
@@ -73,20 +69,3 @@ func getField(r *http.Request, index int) string {
 	return fields[index]
 }
 
-func instrumentRoutes(routes []route, apm *newrelic.Application) {
-	for i := range routes {
-		_, handler := newrelic.WrapHandleFunc(apm, routes[i].regex.String(), routes[i].handler)
-		routes[i].handler = handler
-	}
-}
-
-func requestDurationMiddleware(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		start := time.Now()
-
-		next.ServeHTTP(w, r)
-
-		elapsed := time.Since(start)
-		log.Printf("%s %s took %s", r.Method, r.URL.Path, elapsed)
-	})
-}

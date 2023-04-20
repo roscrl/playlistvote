@@ -2,22 +2,23 @@ package db
 
 import (
 	"database/sql"
+	"log"
 
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func New(dbFilePath string) (*sql.DB, error) {
+func New(dbFilePath string) *sql.DB {
 	db, err := sql.Open("sqlite3", dbFilePath)
 	if err != nil {
-		return nil, err
+		log.Fatal(err)
 	}
 
 	err = setPragmas(db)
 	if err != nil {
-		return nil, err
+		log.Fatal(err)
 	}
 
-	return db, nil
+	return db
 }
 
 func setPragmas(db *sql.DB) error {
