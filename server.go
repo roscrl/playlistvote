@@ -1,14 +1,15 @@
 package main
 
 import (
+	"database/sql"
+	"net/http"
+	"os"
+
 	"app/config"
 	"app/db"
 	"app/db/sqlc"
 	"app/services/spotify"
 	"app/views"
-	"database/sql"
-	"net/http"
-	"os"
 
 	"github.com/newrelic/go-agent/v3/newrelic"
 	"golang.org/x/exp/slog"

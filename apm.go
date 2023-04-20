@@ -11,7 +11,6 @@ func newAPM(environment, license string) *newrelic.Application {
 	app, err := newrelic.NewApplication(
 		newrelic.ConfigAppName("Playlist Vote "+environment),
 		newrelic.ConfigLicense(license),
-		newrelic.ConfigAppLogForwardingEnabled(true),
 		newrelic.ConfigCodeLevelMetricsEnabled(true),
 	)
 	if err != nil {

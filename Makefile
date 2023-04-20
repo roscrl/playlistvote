@@ -57,32 +57,25 @@ build-quick: test
 #########################
 
 VPS_IP=5.161.84.223
+APP_FOLDER=~/playlistvote
 SERVICE_NAME=playlistvote.service
-SQLITE_DB_PATH=./db/playlistvote.db
+LOCAL_SQLITE_DB_PATH=./db/playlistvote.db
 USER=root
 
-make ssh:
+ssh:
 	ssh $(USER)@$(VPS_IP)
 
 vps-new:
+	ssh $(USER)@$(VPS_IP) "mkdir -p $(APP_FOLDER)"
 	make vps-dependencies
+	make caddy-reload
 	make caddy-service-reload
 	make db-copy-over
 	make app-service-reload
 	make deploy
 
-make vps-dependencies:
-	ssh $(USER)@$(VPS_IP) "																																  \
-		# Caddy																																		      \
-		sudo apt-get update && sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https &&											  \
-		curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg && \
-		curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list && 				  \
-		sudo apt update && 																															      \
-		sudo apt install caddy && 																														  \
-																																						  \
-		# SQLite to view DB																																  \
-		sudo apt install sqlite3																			  											  \
-	"
+vps-dependencies:
+	ssh $(USER)@$(VPS_IP) "sudo apt-get update && sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list && sudo apt update && sudo apt install caddy && sudo apt install sqlite3"
 
 caddy-service-reload:
 	scp -r ./config/caddy.service $(USER)@$(VPS_IP):/lib/systemd/system/caddy.service
@@ -94,7 +87,10 @@ caddy-reload:
 	ssh $(USER)@$(VPS_IP) "systemctl reload caddy"
 
 db-copy-over:
-	rsync -avz --ignore-existing $(SQLITE_DB_PATH) $(USER)@$(VPS_IP):~/db/
+	rsync -avz --ignore-existing $(LOCAL_SQLITE_DB_PATH) $(USER)@$(VPS_IP):$(APP_FOLDER)/db/
+
+db-copy-prod:
+	rsync -avz --ignore-existing $(USER)@$(VPS_IP):$(APP_FOLDER)/db/ $(LOCAL_SQLITE_DB_PATH).prod
 
 app-service-reload:
 	scp -r ./config/$(SERVICE_NAME) $(USER)@$(VPS_IP):/lib/systemd/system/$(SERVICE_NAME)
@@ -102,23 +98,26 @@ app-service-reload:
 	ssh $(USER)@$(VPS_IP) "systemctl restart $(SERVICE_NAME)"
 
 upload: build-amd64
-	ssh $(USER)@$(VPS_IP) "mkdir -p ~/new"
-	scp -r bin/app $(USER)@$(VPS_IP):~/new/app
+	ssh $(USER)@$(VPS_IP) "mkdir -p $(APP_FOLDER)/new"
+	scp -r bin/app $(USER)@$(VPS_IP):$(APP_FOLDER)/new/app
 
 deploy: upload
-	ssh $(USER)@$(VPS_IP) "mkdir -p ~/archive"
-	ssh $(USER)@$(VPS_IP) "if [ -d ~/app ]; then mv ~/app ~/archive/app_$$(date +"%Y%m%d%H%M%S"); fi"
-	ssh $(USER)@$(VPS_IP) "mv ~/new/app ~/app"
+	ssh $(USER)@$(VPS_IP) "mkdir -p $(APP_FOLDER)/archive"
+	ssh $(USER)@$(VPS_IP) "if [ -d $(APP_FOLDER)/app ]; then mv $(APP_FOLDER)/app $(APP_FOLDER)/archive/app_$$(date +"%Y%m%d%H%M%S"); fi"
+	ssh $(USER)@$(VPS_IP) "mv $(APP_FOLDER)/new/app $(APP_FOLDER)/app"
 	ssh $(USER)@$(VPS_IP) "systemctl restart $(SERVICE_NAME)"
 
 logs-prod:
 	ssh $(USER)@$(VPS_IP) "journalctl -u $(SERVICE_NAME) -f"
 
+logs-caddy-prod:
+	ssh $(USER)@$(VPS_IP) "journalctl -u caddy -f"
+
 #########################
 #####    Tooling    #####
 #########################
 
-make tools:
+tools:
 	go install github.com/kyleconroy/sqlc/cmd/sqlc@v1.17.2
 	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.52.2
 	go install mvdan.cc/gofumpt@v0.5.0

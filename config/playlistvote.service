@@ -2,9 +2,10 @@
 Description=Playlist Vote
 
 [Service]
-ExecStart=/root/app
-WorkingDirectory=/root
+ExecStart=/root/playlistvote/app
+WorkingDirectory=/root/playlistvote
 Restart=always
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target

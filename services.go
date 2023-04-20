@@ -1,10 +1,11 @@
 package main
 
 import (
-	"app/services/spotify"
 	"log"
 	"net/http"
 	"time"
+
+	"app/services/spotify"
 )
 
 func setupServices(srv *Server, mocking bool) {

@@ -68,4 +68,3 @@ func getField(r *http.Request, index int) string {
 	fields := r.Context().Value(ctxKey{}).([]string)
 	return fields[index]
 }
-
