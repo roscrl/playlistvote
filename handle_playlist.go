@@ -64,7 +64,7 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 
 		if err := req.ParseForm(); err != nil {
 			log.Printf("failed to parse form: %v", err)
-			s.views.RenderStream(w, "playlist/_new.stream.tmpl", map[string]any{
+			s.views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 				"error": "Failed to parse form",
 			})
 			return
@@ -74,7 +74,7 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 		playlistLinkOrID := req.Form.Get("playlist_link_or_id")
 
 		if strings.HasPrefix(playlistLinkOrID, spotify.AlbumCopiedPrefix) {
-			s.views.RenderStream(w, "playlist/_new.stream.tmpl", map[string]any{
+			s.views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 				"playlist_input": playlistLinkOrID,
 				"error":          "Looks like you copied a album link, try again with a playlist link",
 			})
@@ -89,7 +89,7 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 			playlistExists, err := s.qry.PlaylistExists(req.Context(), playlistID)
 			if err != nil {
 				log.Printf("failed to check if playlist %s exists: %v", playlistID, err)
-				s.views.RenderStream(w, "playlist/_new.stream.tmpl", map[string]any{
+				s.views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 					"playlist_id":    playlistID,
 					"playlist_input": playlistLinkOrID,
 					"error":          "Oops, something went wrong on checking if playlist already exists",
@@ -111,7 +111,7 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 		if err != nil {
 			if errors.Is(err, spotify.PlaylistNotFound) {
 				log.Printf("playlist %s is empty", playlistID)
-				s.views.RenderStream(w, "playlist/_new.stream.tmpl", map[string]any{
+				s.views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 					"playlist_id":    playlistID,
 					"playlist_input": playlistLinkOrID,
 					"error":          playlistID + " not found in Spotify, double check the link and try again",
@@ -119,7 +119,7 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 				return
 			} else if errors.Is(err, spotify.PlaylistEmptyErr) {
 				log.Printf("playlist %s is empty", playlistID)
-				s.views.RenderStream(w, "playlist/_new.stream.tmpl", map[string]any{
+				s.views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 					"playlist_id":    playlistID,
 					"playlist_input": playlistLinkOrID,
 					"error":          playlistID + " is an empty playlist! Add some songs and try again",
@@ -127,7 +127,7 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 				return
 			} else if errors.Is(err, spotify.TooManyRequestsErr) {
 				log.Printf("too many requests for playlist %s", playlistID)
-				s.views.RenderStream(w, "playlist/_new.stream.tmpl", map[string]any{
+				s.views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 					"playlist_id":    playlistID,
 					"playlist_input": playlistLinkOrID,
 					"error":          "Too many requests for the Spotify API, ping @spotify on Twitter (kindly!) so they increase the rate limit for Playlist Vote!",
@@ -135,7 +135,7 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 				return
 			} else {
 				log.Printf("failed to fetch playlist %s playlist: %v", playlistID, err)
-				s.views.RenderStream(w, "playlist/_new.stream.tmpl", map[string]any{
+				s.views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 					"playlist_id":    playlistID,
 					"playlist_input": playlistLinkOrID,
 					"error":          "Oops, something went wrong handling your playlist, try again later!",
@@ -153,7 +153,7 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 		seg.End()
 		if err != nil {
 			log.Printf("failed to add playlist %s playlist: %v", playlistID, err)
-			s.views.RenderStream(w, "playlist/_new.stream.tmpl", map[string]any{
+			s.views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 				"playlist_id":    playlistID,
 				"playlist_input": playlistLinkOrID,
 				"error":          "Oops, something went wrong inserting your playlist to our database, try again later!",
@@ -162,7 +162,7 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 		}
 
 		log.Printf("added new playlist %s to db", playlistID)
-		s.views.RenderStream(w, "playlist/_new.stream.tmpl", map[string]any{
+		s.views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 			"playlist": playlist,
 		})
 	}

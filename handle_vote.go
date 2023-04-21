@@ -25,7 +25,7 @@ func (s *Server) handleUpVote() http.HandlerFunc {
 		}
 		seg.End()
 
-		s.views.RenderStream(w, "playlist/_upvote_success.stream.tmpl", map[string]any{
+		s.views.Stream(w, "playlist/_upvote_success.stream.tmpl", map[string]any{
 			"playlist_id": playlistID,
 		})
 	}

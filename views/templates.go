@@ -68,7 +68,7 @@ func New(env config.Environment) *Views {
 	return views
 }
 
-func (v *Views) RenderStream(w http.ResponseWriter, name string, data any) {
+func (v *Views) Stream(w http.ResponseWriter, name string, data any) {
 	w.Header().Set("Content-Type", TurboStreamMIME)
 	v.Render(w, name, data)
 }
