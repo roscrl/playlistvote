@@ -19,7 +19,14 @@ import (
 	"github.com/fsnotify/fsnotify"
 )
 
-//go:embed *.tmpl **/*.tmpl
+const (
+	TemplateDir      = "templates"
+	TemplateDirSlash = TemplateDir + "/"
+
+	TemplatesPath = "views/" + TemplateDir
+)
+
+//go:embed templates/*.tmpl templates/**/*.tmpl
 var tmplFS embed.FS
 
 type Views struct {
@@ -48,7 +55,7 @@ func New(env config.Environment) *Views {
 	views := &Views{env: env, funcMap: funcMap}
 
 	if env == config.DEV {
-		templates, err := findAndParseTemplates(os.DirFS("views"), funcMap)
+		templates, err := findAndParseTemplates(os.DirFS(TemplatesPath), funcMap)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -56,6 +63,11 @@ func New(env config.Environment) *Views {
 		views.templates = templates
 		watchDevTemplates(views)
 	} else {
+		tmplFS, err := fs.Sub(tmplFS, TemplateDir)
+		if err != nil {
+			log.Fatal(err)
+		}
+
 		templates, err := findAndParseTemplates(tmplFS, funcMap)
 		if err != nil {
 			log.Fatal(err)
@@ -77,7 +89,7 @@ func (v *Views) Render(w io.Writer, name string, data any) {
 	tmpl := template.Must(v.templates.Clone())
 
 	if v.env == config.DEV {
-		tmpl = template.Must(tmpl.ParseGlob("views/" + name))
+		tmpl = template.Must(tmpl.ParseGlob(TemplatesPath + "/" + name))
 	} else {
 		tmpl = template.Must(tmpl.ParseFS(tmplFS, name))
 	}
@@ -107,12 +119,14 @@ func findAndParseTemplates(FS fs.FS, funcMap template.FuncMap) (*template.Templa
 				return err
 			}
 
-			templateContent, err := fs.ReadFile(FS, path)
+			strippedTemplateDirTemplatePath := strings.TrimPrefix(path, TemplateDirSlash)
+
+			templateContent, err := fs.ReadFile(FS, strippedTemplateDirTemplatePath)
 			if err != nil {
 				return err
 			}
 
-			tmpl := rootTemplate.New(path).Funcs(funcMap)
+			tmpl := rootTemplate.New(strippedTemplateDirTemplatePath).Funcs(funcMap)
 			_, err = tmpl.Parse(string(templateContent))
 			if err != nil {
 				return err
@@ -165,9 +179,11 @@ func watchDevTemplates(views *Views) {
 				if !ok {
 					return
 				}
+
 				if event.Has(fsnotify.Chmod) {
 					continue
 				}
+
 				if event.Has(fsnotify.Write) || event.Has(fsnotify.Create) {
 					if !strings.HasSuffix(event.Name, ".tmpl") {
 						continue

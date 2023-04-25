@@ -16,6 +16,11 @@ import (
 	"app/services/spotify/sampler"
 )
 
+const (
+	TokenEndpoint    = "https://accounts.spotify.com/api/token"
+	PlaylistEndpoint = "https://api.spotify.com/v1/playlists"
+)
+
 type Spotify struct {
 	ClientID         string
 	ClientSecret     string
@@ -55,7 +60,9 @@ func (s *Spotify) InitTokenLifecycle() {
 }
 
 type Playlist struct {
-	Upvotes int64
+	Upvotes           int64
+	ColorsCommonFour  []string
+	ArtistsCommonFour []string
 
 	Description  string `json:"description"`
 	ID           string `json:"id"`

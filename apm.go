@@ -23,6 +23,10 @@ func startSegment(req *http.Request, name string) *newrelic.Segment {
 	return newrelic.FromContext(req.Context()).StartSegment(name)
 }
 
+func noticeError(req *http.Request, err error) {
+	newrelic.FromContext(req.Context()).NoticeError(err)
+}
+
 func instrumentRoutes(routes []route, apm *newrelic.Application) {
 	for i := range routes {
 		_, handler := newrelic.WrapHandleFunc(apm, routes[i].regex.String(), routes[i].handler)

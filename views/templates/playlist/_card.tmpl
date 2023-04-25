@@ -1,7 +1,7 @@
 {{define "playlist_card" }}
     <div class="w-full h-[120px] p-1 rounded-[10px] overflow-hidden lg:col-span-3 relative"
          style="background-image: linear-gradient(to right,
-         {{ $fourHexColors := .ProminentFourCoverColors }}
+         {{ $fourHexColors := .ColorsCommonFour }}
          {{ index $fourHexColors 3  }} 56px,
          {{ index $fourHexColors 2  }} 108px,
          {{ index $fourHexColors 1  }} 66%,
@@ -51,7 +51,7 @@
                     {{ if .Description }}
                         {{ rawHTML .Description  }}
                     {{ else }}
-                        {{ $fourCommonArtistsInPlaylist := .MostCommonFourArtists }}
+                        {{ $fourCommonArtistsInPlaylist := .ArtistsCommonFour }}
                         <span>
                             {{ index $fourCommonArtistsInPlaylist 0  }}, {{ index $fourCommonArtistsInPlaylist 1  }},
                             {{ index $fourCommonArtistsInPlaylist 2  }} and {{ index $fourCommonArtistsInPlaylist 3  }}

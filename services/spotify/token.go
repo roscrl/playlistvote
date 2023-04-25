@@ -36,7 +36,7 @@ func (t *token) startRefreshLoop() {
 			err := t.refreshToken()
 			if err != nil {
 				log.Printf("refreshing token: %v", err)
-				time.Sleep(3 * time.Second)
+				time.Sleep(5 * time.Second)
 				continue
 			}
 		case <-t.done:

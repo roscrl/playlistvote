@@ -1,6 +1,8 @@
 package main
 
 import (
+	"app/db/sqlc"
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -13,59 +15,61 @@ import (
 
 func (s *Server) handleHome() http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
-		var playlists []spotify.Playlist
-		var mtx sync.Mutex
-		var wg sync.WaitGroup
-		// REDO
-
-		if s.cfg.Mocking {
-			playlists = spotify.MockPlaylists("services/spotify/mock_playlists.json")
-			s.views.Render(w, "index.tmpl", map[string]any{
-				"new_relic_head": template.HTML(newrelic.FromContext(req.Context()).BrowserTimingHeader().WithTags()),
-				"playlists":      playlists,
-			})
-			return
-		}
-
-		log.Println("getting top 500 playlists all time")
-		playlistInDb, err := s.qry.GetTop500PlaylistsByUpvotesAllTime(req.Context())
+		log.Println("getting top 500 skeleton playlists all time")
+		skeletonPlaylists, err := s.qry.GetTop500PlaylistsByUpvotesAllTime(req.Context())
 		if err != nil {
 			log.Printf("failed to query for top 500 playlists: %v", err)
 			s.views.Render(w, "error.tmpl", map[string]any{})
 			return
 		}
 
-		log.Println("playlist ids returned", len(playlistInDb))
-		wg.Add(len(playlistInDb))
+		playlistIdsToFetch := len(skeletonPlaylists)
+		log.Println("skeleton playlist ids returned", playlistIdsToFetch)
 
-		for _, playlist := range playlistInDb {
-			go func(playlistID string) {
+		var playlists []spotify.Playlist
+		var mtx sync.Mutex
+		var wg sync.WaitGroup
+
+		wg.Add(playlistIdsToFetch)
+		errorChannel := make(chan error, playlistIdsToFetch)
+
+		for _, skeletonPlaylist := range skeletonPlaylists {
+			go func(skeletonPlaylist sqlc.Playlist) {
 				defer wg.Done()
-				playlist, err := s.spotify.PlaylistMetadata(req.Context(), playlistID)
+
+				playlist, err := s.spotify.PlaylistMetadata(req.Context(), skeletonPlaylist.ID)
 				if err != nil {
-					log.Printf("failed to get playlist %s: %v", playlistID, err)
-					s.views.Render(w, "error.tmpl", map[string]any{})
+					err := fmt.Errorf("fetching playlist %s from spotify: %w", skeletonPlaylist.ID, err)
+					errorChannel <- err
 					return
 				}
+				playlist.Upvotes = skeletonPlaylist.Upvotes
+
+				if playlist.ColorsCommonFour == nil {
+					playlist.ColorsCommonFour, err = playlist.ProminentFourCoverColors()
+					if err != nil {
+						err := fmt.Errorf("fetching playlist %s prominent colors: %w", playlist.ID, err)
+						errorChannel <- err
+						return
+					}
+				}
+
+				if playlist.ArtistsCommonFour == nil {
+					playlist.ArtistsCommonFour = playlist.MostCommonFourArtists()
+				}
+
 				mtx.Lock()
 				defer mtx.Unlock()
 				playlists = append(playlists, *playlist)
-			}(playlist.ID)
+			}(skeletonPlaylist)
 		}
 
 		wg.Wait()
+		close(errorChannel)
 
-		// TODO this is dumb fix n+1 query, maybe dto time
-		for i := range playlists {
-			upvotes, err := s.qry.GetPlaylistUpvotes(req.Context(), playlists[i].ID)
-			if err != nil {
-				log.Printf("failed to query upvotes for playlist %s: %v", playlists[i].ID, err)
-				s.views.Render(w, "error.tmpl", map[string]any{
-					"error": "failed to query upvotes for playlist " + playlists[i].ID,
-				})
-				return
-			}
-			playlists[i].Upvotes = upvotes
+		for err := range errorChannel {
+			log.Printf("error fetching playlist for home page: %v", err)
+			noticeError(req, err)
 		}
 
 		w.Header().Set("Cache-Control", "public, max-age=300")

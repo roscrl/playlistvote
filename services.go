@@ -1,38 +1,45 @@
 package main
 
 import (
-	"log"
-	"net/http"
+	spotifymock "app/services/spotify/mock"
 	"time"
 
 	"app/services/spotify"
 )
 
 func setupServices(srv *Server, mocking bool) {
-	http.DefaultClient.Timeout = 10 * time.Second
 	if mocking {
-		log.Println("mocking enabled")
-		tsToken, tsPlaylist := spotify.MockEndpoints("services/spotify/mock_playlist.json")
-		srv.spotify = &spotify.Spotify{
-			ClientID:     srv.cfg.SpotifyClientID,
-			ClientSecret: srv.cfg.SpotifyClientSecret,
-
-			TokenEndpoint:    tsToken.URL,
-			PlaylistEndpoint: tsPlaylist.URL,
-
-			Now: time.Now,
-		}
-		srv.spotify.InitTokenLifecycle()
+		mockedServices(srv)
 	} else {
-		srv.spotify = &spotify.Spotify{
-			ClientID:     srv.cfg.SpotifyClientID,
-			ClientSecret: srv.cfg.SpotifyClientSecret,
-
-			TokenEndpoint:    "https://accounts.spotify.com/api/token",
-			PlaylistEndpoint: "https://api.spotify.com/v1/playlists",
-
-			Now: time.Now,
-		}
-		srv.spotify.InitTokenLifecycle()
+		realServices(srv)
 	}
+}
+
+func mockedServices(srv *Server) {
+	srv.log.Info("mocking services")
+	ms := spotifymock.NewServer()
+
+	srv.spotify = &spotify.Spotify{
+		ClientID:     srv.cfg.SpotifyClientID,
+		ClientSecret: srv.cfg.SpotifyClientSecret,
+
+		TokenEndpoint:    ms.TokenEndpoint,
+		PlaylistEndpoint: ms.PlaylistEndpoint,
+
+		Now: time.Now,
+	}
+	srv.spotify.InitTokenLifecycle()
+}
+
+func realServices(srv *Server) {
+	srv.spotify = &spotify.Spotify{
+		ClientID:     srv.cfg.SpotifyClientID,
+		ClientSecret: srv.cfg.SpotifyClientSecret,
+
+		TokenEndpoint:    spotify.TokenEndpoint,
+		PlaylistEndpoint: spotify.PlaylistEndpoint,
+
+		Now: time.Now,
+	}
+	srv.spotify.InitTokenLifecycle()
 }

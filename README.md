@@ -48,7 +48,7 @@ Server side rendered Go templates with `html/template`
 
 ## Deploy
 
-The application is deploy on a [VPS](https://specbranch.com/posts/one-big-server/)
+The application is deployed on a [VPS](https://specbranch.com/posts/one-big-server/)
 
 #### VPS Setup
 

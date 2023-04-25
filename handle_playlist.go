@@ -28,7 +28,7 @@ func (s *Server) handleGetPlaylist() http.HandlerFunc {
 			if playlistExists == 0 {
 				log.Printf("playlist %s does not exist", playlistID)
 				s.views.Render(w, "error.tmpl", map[string]any{
-					"error": "playlist does not exist on our side! add it on the home page!",
+					"error": "playlist does not exist on our side. add it on the home page",
 				})
 				return
 			}
