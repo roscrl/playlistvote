@@ -122,6 +122,7 @@ tools:
 	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.52.2
 	go install mvdan.cc/gofumpt@v0.5.0
 	go install github.com/cosmtrek/air@v1.43.0
+	mkdir -p ./bin/
 	make tooling-esbuild
 	make tooling-tailwind
 	echo "Remember to install Zig for the built-in C cross-compiler to Linux (or any C compiler for the 'make build' target) and Node.js for browser testing."
@@ -131,8 +132,8 @@ tooling-tailwind:
 	curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/download/v3.3.1/tailwindcss-macos-arm64
 	chmod +x tailwindcss-macos-arm64
 	mv tailwindcss-macos-arm64 tailwindcss
-	mv tailwindcss ./bin
+	mv tailwindcss ./bin/
 
 tooling-esbuild:
 	curl -fsSL https://esbuild.github.io/dl/v0.17.17 | sh
-	mv esbuild ./bin
+	mv esbuild ./bin/
