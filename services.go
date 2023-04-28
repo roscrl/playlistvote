@@ -1,8 +1,9 @@
 package main
 
 import (
-	spotifymock "app/services/spotify/mock"
 	"time"
+
+	spotifymock "app/services/spotify/mock"
 
 	"app/services/spotify"
 )

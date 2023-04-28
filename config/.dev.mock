@@ -1,0 +1,12 @@
+# App
+ENVIRONMENT=DEV
+PORT=3000
+MOCK=true
+SQLITE_DB_PATH=./db/playlistvote.db
+
+# Spotify
+SPOTIFY_CLIENT_ID=unused_in_mock_mode
+SPOTIFY_CLIENT_SECRET=unused_in_mock_mode
+
+# New Relic, must be 40 chars for agent to start mocked
+NEW_RELIC_LICENSE=0000000000000000000000000000000000000000

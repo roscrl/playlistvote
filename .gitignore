@@ -5,7 +5,6 @@ bin/
 tmp/
 
 config/.dev
-config/.dev.mock
 config/.prod
 
 # db/playlistvote.db

@@ -2,13 +2,12 @@ package main
 
 import (
 	"app/db/sqlc"
+	"app/services/spotify"
 	"fmt"
 	"html/template"
 	"log"
 	"net/http"
 	"sync"
-
-	"app/services/spotify"
 
 	"github.com/newrelic/go-agent/v3/newrelic"
 )
@@ -46,11 +45,16 @@ func (s *Server) handleHome() http.HandlerFunc {
 				playlist.Upvotes = skeletonPlaylist.Upvotes
 
 				if playlist.ColorsCommonFour == nil {
-					playlist.ColorsCommonFour, err = playlist.ProminentFourCoverColors()
-					if err != nil {
-						err := fmt.Errorf("fetching playlist %s prominent colors: %w", playlist.ID, err)
-						errorChannel <- err
-						return
+					// todo find cleaner way still takes 50ms
+					if s.cfg.Mocking {
+						playlist.ColorsCommonFour = []string{"#000000", "#000000", "#000000", "#000000"}
+					} else {
+						playlist.ColorsCommonFour, err = playlist.ProminentFourCoverColors()
+						if err != nil {
+							err := fmt.Errorf("fetching playlist %s prominent colors: %w", playlist.ID, err)
+							errorChannel <- err
+							return
+						}
 					}
 				}
 

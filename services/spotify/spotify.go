@@ -19,6 +19,10 @@ import (
 const (
 	TokenEndpoint    = "https://accounts.spotify.com/api/token"
 	PlaylistEndpoint = "https://api.spotify.com/v1/playlists"
+
+	UserCopiedPlaylistPrefix = "https://open.spotify.com/playlist/"
+	AlbumCopiedPrefix        = "https://open.spotify.com/album/"
+	URIPlaylistPrefix        = "spotify:playlist:"
 )
 
 type Spotify struct {
@@ -39,12 +43,6 @@ var (
 	TooManyRequestsErr  = errors.New("too many requests")
 
 	initTokenOnce sync.Once
-)
-
-const (
-	UserCopiedPlaylistPrefix = "https://open.spotify.com/playlist/"
-	AlbumCopiedPrefix        = "https://open.spotify.com/album/"
-	URIPlaylistPrefix        = "spotify:playlist:"
 )
 
 func (s *Spotify) InitTokenLifecycle() {
@@ -141,20 +139,20 @@ func (p *Playlist) MostCommonFourArtists() []string {
 		Value int
 	}
 
-	var ss []kv
+	var sortedArtistsSet []kv
 	for k, v := range artistCount {
-		ss = append(ss, kv{k, v})
+		sortedArtistsSet = append(sortedArtistsSet, kv{k, v})
 	}
 
 	sortByValueDesc := func(i, j int) bool {
-		return ss[i].Value > ss[j].Value
+		return sortedArtistsSet[i].Value > sortedArtistsSet[j].Value
 	}
-	sort.Slice(ss, sortByValueDesc)
+	sort.Slice(sortedArtistsSet, sortByValueDesc)
 
 	topCount := 4
 	mostCommonArtists := make([]string, topCount)
 	for i := 0; i < topCount; i++ {
-		mostCommonArtists[i] = ss[i].Key
+		mostCommonArtists[i] = sortedArtistsSet[i].Key
 	}
 
 	return mostCommonArtists

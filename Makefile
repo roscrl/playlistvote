@@ -19,7 +19,7 @@ tailwind-watch:
 
 generate:
 	./bin/tailwindcss -i ./views/assets/main.css -o ./views/assets/dist/main.css --config ./config/tailwind.config.js
-	./bin/esbuild views/assets/dist/js/alpine-3.12.0/alpine.js 							--minify --outfile=views/assets/dist/js/alpine-3.12.0/alpine.min.js
+	./bin/esbuild views/assets/dist/js/alpine-3.12.0/alpine.js 	    				--minify --outfile=views/assets/dist/js/alpine-3.12.0/alpine.min.js
 	./bin/esbuild views/assets/dist/js/alpine-3.12.0/intersect.js 					--minify --outfile=views/assets/dist/js/alpine-3.12.0/intersect.min.js
 	./bin/esbuild views/assets/dist/js/turbo-7.3.0/dist/turbo.es2017-esm.js --minify --outfile=views/assets/dist/js/turbo-7.3.0/dist/turbo.es2017-esm.min.js
 	cd ./db && sqlc generate
