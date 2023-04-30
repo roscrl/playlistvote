@@ -75,10 +75,10 @@
             <div class="flex items-center shrink min-w-0">
                 <img id="currently-playing-track-album-image" src="{{ .first_track_with_preview_url.SmallestAlbumImageURL }}" class="h-[50px] p-[2px] rounded-[5px]">
                 <div class="ml-2 text-md flex-col truncate overflow-hidden">
-                <span id="currently-playing-track-name" class="text-md block leading-none truncate overflow-hidden">
+                <span id="currently-playing-track-name" class="text-md block truncate leading-tight">
                     {{.first_track_with_preview_url.Name}}
                 </span>
-                    <span id="currently-playing-track-artists" class="text-xs block leading-none mt-[4px] truncate overflow-hidden">
+                    <span id="currently-playing-track-artists" class="text-xs block truncate leading-tight">
                     {{ .first_track_with_preview_url.ArtistsCommaSeparated }}
                 </span>
                 </div>
