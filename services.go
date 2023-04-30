@@ -8,8 +8,8 @@ import (
 	"app/services/spotify"
 )
 
-func setupServices(srv *Server, mocking bool) {
-	if mocking {
+func setupServices(srv *Server) {
+	if srv.cfg.Mocking {
 		mockedServices(srv)
 	} else {
 		realServices(srv)

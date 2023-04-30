@@ -2,7 +2,7 @@
 ENVIRONMENT=DEV
 PORT=3000
 MOCK=true
-SQLITE_DB_PATH=./db/playlistvote.db
+SQLITE_DB_PATH=./db/playlistvote-mock.db
 
 # Spotify
 SPOTIFY_CLIENT_ID=unused_in_mock_mode

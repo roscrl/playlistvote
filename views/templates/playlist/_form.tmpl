@@ -1,6 +1,6 @@
 {{define "playlist_form"}}
     <turbo-frame id="playlist_form_frame" target="_top">
-        <form class="grid grid-rows-1 grid-cols-9 mt-0.5 w-128" method="POST" action="/playlists">
+        <form class="grid grid-rows-1 grid-cols-9 mt-0.5 w-128" method="POST" action="/playlist">
             <div class="flex flex-col px-1 mt-[4px] mx-1 p-[3px] overflow-hidden h-fit
                         col-start-1 col-end-10
                         sm:col-start-2 sm:col-end-9
@@ -21,7 +21,6 @@
                                   rounded-[10px]
                                   placeholder:text-center
                                   block pl-[39px]"
-                           type="url"
                            autocomplete="off" required maxlength="200"
                            placeholder="spotify playlist link"
                            value="{{.playlist_input}}">

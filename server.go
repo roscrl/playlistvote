@@ -37,7 +37,7 @@ func NewServer(cfg *config.Server) *Server {
 	srv.qry = sqlc.New(srv.db)
 	srv.views = views.New(srv.cfg.Env)
 
-	setupServices(srv, cfg.Mocking)
+	setupServices(srv)
 
 	srv.apm = newAPM(srv.cfg.Env.String(), srv.cfg.NewRelicLicense)
 	srv.router = srv.routes()

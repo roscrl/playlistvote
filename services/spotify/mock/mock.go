@@ -25,13 +25,13 @@ type SpotifyServer struct {
 }
 
 func NewServer() *SpotifyServer {
-	f, err := os.ReadFile(PlaylistsPath)
+	playlistFile, err := os.ReadFile(PlaylistsPath)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	var playlists []spotify.Playlist
-	if err := json.Unmarshal(f, &playlists); err != nil {
+	if err := json.Unmarshal(playlistFile, &playlists); err != nil {
 		log.Fatal(err)
 	}
 

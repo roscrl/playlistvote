@@ -21,15 +21,13 @@ func (s *Server) handleGetPlaylist() http.HandlerFunc {
 			playlistExists, err := s.qry.PlaylistExists(req.Context(), playlistID)
 			if err != nil {
 				log.Printf("failed to check if playlist %s exists: %v", playlistID, err)
-				s.views.Render(w, "error.tmpl", map[string]any{})
+				s.views.RenderError(w, "")
 				return
 			}
 
 			if playlistExists == 0 {
 				log.Printf("playlist %s does not exist", playlistID)
-				s.views.Render(w, "error.tmpl", map[string]any{
-					"error": "playlist does not exist on our side. add it on the home page",
-				})
+				s.views.RenderError(w, "playlist does not exist on our side. add it on the home page")
 				return
 			}
 		}
@@ -37,20 +35,38 @@ func (s *Server) handleGetPlaylist() http.HandlerFunc {
 		playlist, err := s.spotify.Playlist(req.Context(), playlistID)
 		if err != nil {
 			log.Printf("failed to get playlist %s: %v", playlistID, err)
-			s.views.Render(w, "error.tmpl", map[string]any{})
+			s.views.RenderError(w, "")
 			return
+		}
+
+		if playlist.ColorsCommonFour == nil {
+			playlist.ColorsCommonFour, err = playlist.ProminentFourCoverColors()
+			if err != nil {
+				log.Printf("failed to query common four colors for playlist %s: %v", playlistID, err)
+				s.views.RenderError(w, "")
+				return
+			}
 		}
 
 		upvotes, err := s.qry.GetPlaylistUpvotes(req.Context(), playlistID)
 		if err != nil {
 			log.Printf("failed to query for playlist %s upvotes: %v", playlistID, err)
-			s.views.Render(w, "error.tmpl", map[string]any{})
+			s.views.RenderError(w, "")
 			return
 		}
 		playlist.Upvotes = upvotes
 
+		var firstTrackWithPreviewURL *spotify.Track
+		for i, item := range playlist.Tracks.Items {
+			if item.Track.PreviewURL != "" {
+				firstTrackWithPreviewURL = &playlist.Tracks.Items[i].Track
+				break
+			}
+		}
+
 		s.views.Render(w, "playlist/view.tmpl", map[string]any{
-			"playlist": playlist,
+			"playlist":                     playlist,
+			"first_track_with_preview_url": firstTrackWithPreviewURL,
 		})
 	}
 }
@@ -160,6 +176,15 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 			})
 			return
 		}
+
+		playlist.ColorsCommonFour, err = playlist.ProminentFourCoverColors()
+		if err != nil {
+			log.Printf("failed to query common four colors for playlist %s: %v", playlistID, err)
+			s.views.RenderError(w, "")
+			return
+		}
+
+		playlist.ArtistsCommonFour = playlist.MostCommonFourArtists()
 
 		log.Printf("added new playlist %s to db", playlistID)
 		s.views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{

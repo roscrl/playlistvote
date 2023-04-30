@@ -1,13 +1,15 @@
 package main
 
 import (
-	"app/db/sqlc"
-	"app/services/spotify"
 	"fmt"
 	"html/template"
 	"log"
 	"net/http"
+	"sort"
 	"sync"
+
+	"app/db/sqlc"
+	"app/services/spotify"
 
 	"github.com/newrelic/go-agent/v3/newrelic"
 )
@@ -18,7 +20,7 @@ func (s *Server) handleHome() http.HandlerFunc {
 		skeletonPlaylists, err := s.qry.GetTop500PlaylistsByUpvotesAllTime(req.Context())
 		if err != nil {
 			log.Printf("failed to query for top 500 playlists: %v", err)
-			s.views.Render(w, "error.tmpl", map[string]any{})
+			s.views.RenderError(w, "")
 			return
 		}
 
@@ -30,7 +32,7 @@ func (s *Server) handleHome() http.HandlerFunc {
 		var wg sync.WaitGroup
 
 		wg.Add(playlistIdsToFetch)
-		errorChannel := make(chan error, playlistIdsToFetch)
+		errors := make(chan error, playlistIdsToFetch)
 
 		for _, skeletonPlaylist := range skeletonPlaylists {
 			go func(skeletonPlaylist sqlc.Playlist) {
@@ -39,22 +41,17 @@ func (s *Server) handleHome() http.HandlerFunc {
 				playlist, err := s.spotify.PlaylistMetadata(req.Context(), skeletonPlaylist.ID)
 				if err != nil {
 					err := fmt.Errorf("fetching playlist %s from spotify: %w", skeletonPlaylist.ID, err)
-					errorChannel <- err
+					errors <- err
 					return
 				}
 				playlist.Upvotes = skeletonPlaylist.Upvotes
 
 				if playlist.ColorsCommonFour == nil {
-					// todo find cleaner way still takes 50ms
-					if s.cfg.Mocking {
-						playlist.ColorsCommonFour = []string{"#000000", "#000000", "#000000", "#000000"}
-					} else {
-						playlist.ColorsCommonFour, err = playlist.ProminentFourCoverColors()
-						if err != nil {
-							err := fmt.Errorf("fetching playlist %s prominent colors: %w", playlist.ID, err)
-							errorChannel <- err
-							return
-						}
+					playlist.ColorsCommonFour, err = playlist.ProminentFourCoverColors()
+					if err != nil {
+						err := fmt.Errorf("fetching playlist %s prominent colors: %w", playlist.ID, err)
+						errors <- err
+						return
 					}
 				}
 
@@ -69,12 +66,16 @@ func (s *Server) handleHome() http.HandlerFunc {
 		}
 
 		wg.Wait()
-		close(errorChannel)
+		close(errors)
 
-		for err := range errorChannel {
+		for err := range errors {
 			log.Printf("error fetching playlist for home page: %v", err)
 			noticeError(req, err)
 		}
+
+		sort.Slice(playlists, func(i, j int) bool {
+			return playlists[i].Upvotes > playlists[j].Upvotes
+		})
 
 		w.Header().Set("Cache-Control", "public, max-age=300")
 		s.views.Render(w, "index.tmpl", map[string]any{

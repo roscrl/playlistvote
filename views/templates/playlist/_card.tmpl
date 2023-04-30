@@ -1,14 +1,13 @@
 {{define "playlist_card" }}
     <div class="w-full h-[120px] p-1 rounded-[10px] overflow-hidden lg:col-span-3 relative"
          style="background-image: linear-gradient(to right,
-         {{ $fourHexColors := .ColorsCommonFour }}
-         {{ index $fourHexColors 3  }} 56px,
-         {{ index $fourHexColors 2  }} 108px,
-         {{ index $fourHexColors 1  }} 66%,
-         {{ index $fourHexColors 0  }} 100%
+         {{ index .ColorsCommonFour 3  }} 56px,
+         {{ index .ColorsCommonFour 2  }} 108px,
+         {{ index .ColorsCommonFour 1  }} 66%,
+         {{ index .ColorsCommonFour 0  }} 100%
                  )"
     >
-        <a href="playlists/{{ stripSpotifyURI .URI }}" class="absolute top-0 left-0 w-full h-full z-10" data-turbo-frame="_top"></a>
+        <a href="playlist/{{ stripSpotifyURI .URI }}" class="absolute top-0 left-0 w-full h-full z-10" data-turbo-frame="_top"></a>
         <div class="flex gap-[5px]">
             <div class="shrink-0 w-[112px] h-[112px] rounded-[6px] bg-gray-300 animate-pulse opacity-20"
                  x-data="{ isLoadingPlaylistImage: true }"
@@ -37,7 +36,7 @@
                         {{.Name}}
                     </div>
                     <turbo-frame id="playlist-upvote-{{ stripSpotifyURI .URI }}">
-                        <form class="flex cursor-none" action="/playlists/{{ stripSpotifyURI .URI }}/upvote" method="post">
+                        <form class="flex cursor-none" action="/playlist/{{ stripSpotifyURI .URI }}/upvote" method="post">
                             <button class="rounded-[6px] p-1 w-[26px] h-[26px] shrink-0 flex self-start overflow-visible items-center justify-center w-full active:outline outline-1 outline-[#ffe484] p-1 hover:cursor-pointer hover:bg-gray-100/[.20] hover:fill-white group outline-offset-[-1px] z-20">
                                 <span class="text-xs self-center mr-1 group-active:text-[#ffe484]">{{formatNumberInK .Upvotes }}</span>
                                 <svg class="overflow-visible fill-none group-active:fill-[#ffe484] group-active:stroke-[#ffe484] stroke-white stroke-[4px] opacity-100" width="14" height="14" viewBox="0 0 75 84" xmlns="http://www.w3.org/2000/svg">

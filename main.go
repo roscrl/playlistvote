@@ -22,8 +22,10 @@ func main() {
 	}
 
 	srv := NewServer(cfg)
-
 	slog.SetDefault(srv.log)
+
+	log.Printf("running in %v", cfg.Env)
+	log.Printf("using db %v", cfg.SqliteDBPath)
 
 	err := srv.Start()
 	if err != nil {

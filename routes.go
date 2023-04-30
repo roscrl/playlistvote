@@ -16,10 +16,10 @@ type route struct {
 const (
 	AssetRoute          = "/assets/(.*)"
 	HomeRoute           = "/"
-	PlaylistBaseRoute   = "/playlists"
-	PlaylistCreateRoute = "/playlists"
-	PlaylistViewRoute   = "/playlists/(.*)"
-	PlaylistUpvoteRoute = "/playlists/(.*)/upvote"
+	PlaylistBaseRoute   = "/playlist"
+	PlaylistCreateRoute = "/playlist"
+	PlaylistViewRoute   = "/playlist/(.*)"
+	PlaylistUpvoteRoute = "/playlist/(.*)/upvote"
 )
 
 type ctxKey struct{}

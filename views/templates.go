@@ -91,13 +91,21 @@ func (v *Views) Render(w io.Writer, name string, data any) {
 	if v.env == config.DEV {
 		tmpl = template.Must(tmpl.ParseGlob(TemplatesPath + "/" + name))
 	} else {
-		tmpl = template.Must(tmpl.ParseFS(tmplFS, name))
+		tmpl = template.Must(tmpl.ParseFS(tmplFS, TemplateDirSlash+name))
 	}
 
 	err := tmpl.ExecuteTemplate(w, name, data)
 	if err != nil {
 		log.Printf("failed to render template %s: %v, defined templates %v", name, err, tmpl.DefinedTemplates())
 		tmpl.ExecuteTemplate(w, "error.tmpl", err)
+	}
+}
+
+func (v *Views) RenderError(w io.Writer, msg string) {
+	if msg != "" {
+		v.Render(w, "error.tmpl", map[string]any{"error": msg})
+	} else {
+		v.Render(w, "error.tmpl", map[string]any{})
 	}
 }
 
@@ -189,7 +197,7 @@ func watchDevTemplates(views *Views) {
 						continue
 					}
 					log.Printf("%s changed %s, reloading~", event.Name, event.Op)
-					templates, err := findAndParseTemplates(os.DirFS("views"), views.funcMap)
+					templates, err := findAndParseTemplates(os.DirFS(TemplatesPath), views.funcMap)
 					if err != nil {
 						log.Fatal(err)
 					}
