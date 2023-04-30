@@ -38,7 +38,7 @@ Server side rendered Go templates with `html/template`
 
 `fsnotify` for watching Go template changes in dev mode without recompiling
 
-#### Browser Tests
+#### Browser Tests TODO
 
 `node/npm` (requires [.node](browsertests/.node-version))
 
