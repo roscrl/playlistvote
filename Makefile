@@ -92,6 +92,9 @@ caddy-reload:
 db-copy-over:
 	rsync -avz --ignore-existing $(LOCAL_SQLITE_DB_PATH) $(USER)@$(VPS_IP):$(APP_FOLDER)/db/
 
+db-copy-over-force:
+	rsync -avz $(LOCAL_SQLITE_DB_PATH) $(USER)@$(VPS_IP):$(APP_FOLDER)/db/
+
 db-copy-prod:
 	rsync -avz --ignore-existing $(USER)@$(VPS_IP):$(APP_FOLDER)/db/ $(LOCAL_SQLITE_DB_PATH).prod
 
