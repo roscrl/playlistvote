@@ -36,7 +36,7 @@
     </div>
 
     <div class="mt-3 mb-[60px]">
-        <span class="text-2xl ml-2">{{ .playlist.Name }}</span>
+        <span class="text-2xl ml-2 text-center block balance">{{ .playlist.Name }}</span>
 
         <div id="tracks" class="flex flex-col mt-2 leading-none">
             {{ range .playlist.Tracks.Items }}
@@ -47,7 +47,10 @@
                         opacity-50 cursor-not-allowed
                     {{end}}
                     " data-preview-url="{{.Track.PreviewURL}}" data-album-image="{{.Track.SmallestAlbumImageURL}}">
-                    <div>
+                    <div class="flex">
+                        <img src="{{.Track.SmallestAlbumImageURL}}" class="h-[40px] w-[40px] rounded-[4px]"/>
+
+                        <div class="ml-[7px] flex flex-col self-center">
                         <span class="text-md block" data-name="{{.Track.Name}}">
                             {{ .Track.Name }}
                         </span>
@@ -55,7 +58,7 @@
                         <span class="text-xs" data-artists="{{ .Track.ArtistsCommaSeparated }}">
                         {{ .Track.ArtistsCommaSeparated }}
                         </span>
-                        <hr class="w-full -left-2 absolute h-px mt-[2px] bg-gray-200 border-0 opacity-50">
+                        </div>
                     </div>
                 </button>
             {{ end }}
