@@ -1,37 +1,22 @@
 {{define "playlist_view" }}
-    <div class="flex items-center justify-center mt-[30px] image-container">
-        <div class="shrink-0 w-[300px] h-[300px] rounded-[6px] bg-gray-300 animate-pulse opacity-20 relative"
-             x-data="{ isLoadingPlaylistImage: true }"
-             x-init="() => {
-                            $el.classList.remove('bg-gray-300', 'animate-pulse', 'opacity-20');
-                            $nextTick(() => { if ($refs.img.complete) $refs.img.dispatchEvent(new Event('load')) })
-                        }"
-        >
-            <div x-cloak>
-                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[calc(100%+5px)] h-[calc(100%+5px)] -z-10"
-                     style="background-image: linear-gradient(45deg,
-                     {{ index .playlist.ColorsCommonFour 0  }},
-                     {{ index .playlist.ColorsCommonFour 1  }},
-                     {{ index .playlist.ColorsCommonFour 2  }},
-                     {{ index .playlist.ColorsCommonFour 3  }}
-                             );
-                             filter: blur(10px);
-                             opacity: 0.7;
-                             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5)">
-                </div>
-
-                <div x-show="isLoadingPlaylistImage"
-                     class="w-[300px] h-[300px] rounded-[6px] bg-gray-300 animate-pulse opacity-20">
-                </div>
-
-                <img src="{{ .playlist.LargestImageURL }}"
-                     x-ref="img"
-                     @load="isLoadingPlaylistImage = false"
-                     class="w-[300px] h-[300px] rounded-[6px] transition-opacity duration-100 ease-in-out opacity-0 object-cover"
-                     :class="{'opacity-100': !isLoadingPlaylistImage}"
-                     alt="{{ .playlist.Name }} playlist image"
-                     loading="lazy">
+    <div class="flex items-center justify-center mt-[30px]">
+        <div class="shrink-0 w-[300px] h-[300px] rounded-[6px] relative">
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[calc(100%+5px)] h-[calc(100%+5px)] -z-10"
+                 style="background-image: linear-gradient(45deg,
+                 {{ index .playlist.ColorsCommonFour 0  }},
+                 {{ index .playlist.ColorsCommonFour 1  }},
+                 {{ index .playlist.ColorsCommonFour 2  }},
+                 {{ index .playlist.ColorsCommonFour 3  }}
+                         );
+                         filter: blur(10px);
+                         opacity: 0.7;
+                         box-shadow: 0 0 20px rgba(0, 0, 0, 0.5)">
             </div>
+
+            <img src="{{ .playlist.LargestImageURL }}"
+                 class="w-[300px] h-[300px] rounded-[6px] object-cover"
+                 alt="{{ .playlist.Name }} playlist image"
+                 loading="eager">
         </div>
     </div>
 
@@ -48,14 +33,14 @@
                     {{end}}
                     " data-preview-url="{{.Track.PreviewURL}}" data-album-image="{{.Track.SmallestAlbumImageURL}}">
                     <div class="flex grow-0 w-full overflow-hidden">
-                        <img src="{{.Track.SmallestAlbumImageURL}}" class="h-[40px] w-[40px] rounded-[4px]"/>
+                        <img src="{{.Track.SmallestAlbumImageURL}}" class="h-[40px] w-[40px] rounded-[4px]" loading="lazy"/>
 
                         <div class="ml-[6px] flex flex-col self-center overflow-hidden leading-tight">
                         <span class="text-md text-ellipsis whitespace-nowrap overflow-hidden" data-name="{{.Track.Name}}">
                             {{ .Track.Name }}
                         </span>
 
-                        <span class="text-xs text-ellipsis whitespace-nowrap overflow-hidden" data-artists="{{ .Track.ArtistsCommaSeparated }}">
+                            <span class="text-xs text-ellipsis whitespace-nowrap overflow-hidden" data-artists="{{ .Track.ArtistsCommaSeparated }}">
                         {{ .Track.ArtistsCommaSeparated }}
                         </span>
                         </div>
@@ -76,7 +61,7 @@
     <div class="fixed bg-slate-900 text-white bottom-1 left-1 right-1 h-[50px] rounded-[4px]">
         <div class="flex w-full justify-between items-center">
             <div class="flex items-center shrink min-w-0">
-                <img id="currently-playing-track-album-image" src="{{ .first_track_with_preview_url.SmallestAlbumImageURL }}" class="h-[50px] p-[2px] rounded-[5px]">
+                <img id="currently-playing-track-album-image" src="{{ .first_track_with_preview_url.SmallestAlbumImageURL }}" class="h-[50px] p-[2px] rounded-[5px]" loading="eager">
                 <div class="ml-2 text-md flex-col truncate overflow-hidden">
                 <span id="currently-playing-track-name" class="text-md block truncate leading-tight">
                     {{.first_track_with_preview_url.Name}}

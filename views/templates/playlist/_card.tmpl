@@ -9,27 +9,13 @@
     >
         <a href="playlist/{{ stripSpotifyURI .URI }}" class="absolute top-0 left-0 w-full h-full z-10" data-turbo-frame="_top"></a>
         <div class="flex gap-[5px]">
-            <div class="shrink-0 w-[112px] h-[112px] rounded-[6px] bg-gray-300 animate-pulse opacity-20"
-                 x-data="{ isLoadingPlaylistImage: true }"
-                 x-init="() => {
-                            $el.classList.remove('bg-gray-300', 'animate-pulse', 'opacity-20');
-                            $nextTick(() => { if ($refs.img.complete) $refs.img.dispatchEvent(new Event('load')) })
-                        }"
-            >
-                <div x-cloak>
-                    <div x-show="isLoadingPlaylistImage"
-                         class="w-[112px] h-[112px] rounded-[6px] bg-gray-300 animate-pulse opacity-20">
-                    </div>
-
-                    <img src="{{.MiddleOrLargestImageURL}}"
-                         x-ref="img"
-                         @load="isLoadingPlaylistImage = false"
-                         class="w-[112px] h-[112px] rounded-[6px] transition-opacity duration-100 ease-in-out opacity-0 object-cover"
-                         :class="{'opacity-100': !isLoadingPlaylistImage}"
-                         alt="{{.Name}} playlist image"
-                         loading="lazy">
-                </div>
+            <div class="shrink-0 w-[112px] h-[112px] rounded-[6px] relative">
+                <img src="{{.MiddleOrLargestImageURL}}"
+                     class="w-[112px] h-[112px] rounded-[6px] object-cover"
+                     alt="{{.Name}} playlist image"
+                     loading="{{ if .EagerLoadImage}}eager{{else}}lazy{{end}}">
             </div>
+
             <div class="w-full text-white flex flex-col overflow-hidden">
                 <div class="text-lg flex justify-between items-center">
                     <div class="overflow-hidden truncate">

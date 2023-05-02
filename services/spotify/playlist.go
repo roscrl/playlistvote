@@ -14,6 +14,7 @@ type Playlist struct {
 	Upvotes           int64
 	ColorsCommonFour  []string
 	ArtistsCommonFour []string
+	EagerLoadImage    bool
 
 	Description  string `json:"description"`
 	ID           string `json:"id"`

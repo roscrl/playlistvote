@@ -64,6 +64,7 @@ func (s *Server) handleGetPlaylist() http.HandlerFunc {
 			}
 		}
 
+		w.Header().Set("Cache-Control", "public, max-age=5")
 		s.views.Render(w, "playlist/view.tmpl", map[string]any{
 			"playlist":                     playlist,
 			"first_track_with_preview_url": firstTrackWithPreviewURL,

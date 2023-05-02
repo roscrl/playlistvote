@@ -77,7 +77,13 @@ func (s *Server) handleHome() http.HandlerFunc {
 			return playlists[i].Upvotes > playlists[j].Upvotes
 		})
 
-		w.Header().Set("Cache-Control", "public, max-age=300")
+		if len(playlists) > 5 {
+			for i := 0; i < 5; i++ {
+				playlists[i].EagerLoadImage = true
+			}
+		}
+
+		w.Header().Set("Cache-Control", "public, max-age=5")
 		s.views.Render(w, "index.tmpl", map[string]any{
 			"new_relic_head": template.HTML(newrelic.FromContext(req.Context()).BrowserTimingHeader().WithTags()),
 			"playlists":      playlists,
