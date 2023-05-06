@@ -25,9 +25,8 @@ tailwind-watch:
 
 generate:
 	./bin/tailwindcss -i ./views/assets/main.css -o ./views/assets/dist/main.css --config ./config/tailwind.config.js
-	./bin/esbuild views/assets/dist/js/alpine-3.12.0/alpine.js 	    		--minify --outfile=views/assets/dist/js/alpine-3.12.0/alpine.min.js
-	./bin/esbuild views/assets/dist/js/alpine-3.12.0/intersect.js 			--minify --outfile=views/assets/dist/js/alpine-3.12.0/intersect.min.js
-	./bin/esbuild views/assets/dist/js/turbo-7.3.0/dist/turbo.es2017-esm.js --minify --outfile=views/assets/dist/js/turbo-7.3.0/dist/turbo.es2017-esm.min.js
+	./bin/esbuild views/assets/dist/js/vendor/stimulus-3.2.1/stimulus.js --minify --outfile=views/assets/dist/js/vendor/stimulus-3.2.1/stimulus.min.js
+	./bin/esbuild views/assets/dist/js/vendor/turbo-7.3.0/dist/turbo.es2017-esm.js --minify --outfile=views/assets/dist/js/vendor/turbo-7.3.0/dist/turbo.es2017-esm.min.js
 	cd ./db && sqlc generate
 
 lint:
@@ -78,7 +77,7 @@ vps-new:
 	make deploy
 
 vps-dependencies:
-	ssh $(USER)@$(VPS_IP) "sudo apt-get update && sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list && sudo apt update && sudo apt install caddy && sudo apt install sqlite3"
+	ssh $(USER)@$(VPS_IP) "sudo apt-get update && sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list && sudo apt update && sudo apt install caddy"
 
 caddy-service-reload:
 	scp -r ./config/caddy.service $(USER)@$(VPS_IP):/lib/systemd/system/caddy.service
@@ -131,7 +130,7 @@ tools:
 	mkdir -p ./bin/
 	make tooling-esbuild
 	make tooling-tailwind
-	echo "Remember to install Zig for the built-in C cross-compiler to Linux (or any C compiler for the 'make build' target) and Node.js for browser testing."
+	echo "Remember to install Zig for the built-in C cross-compiler to Linux (or any C compiler for the 'make build' target)"
 
 tooling-tailwind:
 	# MacOS ARM specific

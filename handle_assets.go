@@ -12,15 +12,19 @@ import (
 //go:embed views/assets/dist
 var assetsFS embed.FS
 
+const (
+	assetsPath = "views/assets/dist"
+)
+
 func (s *Server) handleAssets() http.HandlerFunc {
 	if s.cfg.Env == config.PROD {
-		subFS, err := fs.Sub(assetsFS, "views/assets/dist")
+		subFS, err := fs.Sub(assetsFS, assetsPath)
 		if err != nil {
 			log.Fatal(err)
 		}
 
 		return http.FileServer(http.FS(subFS)).ServeHTTP
 	} else {
-		return http.FileServer(http.Dir("./views/assets/dist/")).ServeHTTP
+		return http.FileServer(http.Dir("./" + assetsPath + "/")).ServeHTTP
 	}
 }

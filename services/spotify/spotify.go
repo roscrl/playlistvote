@@ -61,7 +61,7 @@ func (s *Spotify) Playlist(ctx context.Context, playlistId string) (*Playlist, e
 	req.Header.Set("Authorization", "Bearer "+s.token.AccessToken())
 
 	q := req.URL.Query()
-	q.Add("fields", "id, name, images, description, owner(display_name, id, external_urls(spotify)), followers, uri, external_urls, tracks.items(track(name, duration_ms, preview_url, artists(name), album(name, images, external_urls(spotify))))")
+	q.Add("fields", "id, name, images, description, owner(display_name, id, external_urls(spotify), uri), followers, uri, external_urls, tracks.items(track(name, duration_ms, preview_url, uri, artists(name, uri), album(name, images, external_urls(spotify), uri)))")
 	req.URL.RawQuery = q.Encode()
 
 	resp, err := http.DefaultClient.Do(req)
@@ -120,7 +120,7 @@ func (s *Spotify) PlaylistMetadata(ctx context.Context, playlistId string) (*Pla
 	req.Header.Set("Authorization", "Bearer "+s.token.AccessToken())
 
 	q := req.URL.Query()
-	q.Add("fields", "id, name, images, description, owner(display_name, id, external_urls(spotify)), followers, uri, external_urls, tracks.items(track(artists(name)))")
+	q.Add("fields", "id, name, images, description, owner(display_name, id, external_urls(spotify), uri), followers, uri, external_urls, tracks.items(track(artists(name)))")
 	req.URL.RawQuery = q.Encode()
 
 	resp, err := http.DefaultClient.Do(req)

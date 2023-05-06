@@ -35,7 +35,8 @@ type Playlist struct {
 		ExternalUrls struct {
 			Spotify string `json:"spotify"`
 		} `json:"external_urls"`
-		ID string `json:"id"`
+		ID  string `json:"id"`
+		URI string `json:"uri"`
 	} `json:"owner"`
 	Tracks struct {
 		Items []struct {

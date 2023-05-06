@@ -50,7 +50,8 @@ WHERE strftime('%Y-%m', added_at / 1000, 'unixepoch') = ?1
 ORDER BY upvotes DESC
 LIMIT 100;
 
--- name: IncrementPlaylistUpvotes :execresult
+-- name: IncrementPlaylistUpvotes :one
 UPDATE playlists
 SET upvotes = upvotes + 1
-WHERE id = ?;
+WHERE id = ?
+RETURNING upvotes;

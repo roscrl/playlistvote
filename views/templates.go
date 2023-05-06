@@ -45,6 +45,9 @@ func New(env config.Environment) *Views {
 			}
 			return fmt.Sprintf("%d", n)
 		},
+		"safeURL": func(s string) template.URL {
+			return template.URL(s)
+		},
 		"rawHTML": func(s string) template.HTML {
 			return template.HTML(s)
 		},

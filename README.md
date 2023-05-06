@@ -20,7 +20,7 @@ Server side rendered Go templates with `html/template`
 
 `tailwindcss` styling
 
-`hotwire/turbo` and `alpinejs` for frontend JS, both vendored
+`@hotwired/turbo` and `@hotwired/stimulus` for frontend JS, both vendored
 
 ### Production
 

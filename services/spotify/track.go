@@ -3,10 +3,8 @@ package spotify
 import "strings"
 
 type Track struct {
-	Artists []struct {
-		Name string `json:"name"`
-	} `json:"artists"`
-	Album struct {
+	Artists []ArtistWithUri `json:"artists"`
+	Album   struct {
 		ExternalUrls struct {
 			Spotify string `json:"spotify"`
 		} `json:"external_urls"`
@@ -16,10 +14,17 @@ type Track struct {
 			Width  *int   `json:"width"`
 		} `json:"images"`
 		Name string `json:"name"`
+		URI  string `json:"uri"`
 	} `json:"album"`
 	DurationMs int    `json:"duration_ms"`
 	Name       string `json:"name"`
 	PreviewURL string `json:"preview_url"`
+	URI        string `json:"uri"`
+}
+
+type ArtistWithUri struct {
+	Name string `json:"name"`
+	URI  string `json:"uri"`
 }
 
 func (t *Track) SmallestAlbumImageURL() string {

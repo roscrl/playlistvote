@@ -1,2 +1,5 @@
 <turbo-stream action="replace" target="playlist-upvote-{{.playlist_id}}">
+    <template>
+        <div class="text-xs mr-2 block">{{formatNumberInK .upvotes }}</div>
+    </template>
 </turbo-stream>

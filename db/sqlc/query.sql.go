@@ -206,14 +206,18 @@ func (q *Queries) GetTop500PlaylistsByUpvotesAllTime(ctx context.Context) ([]Pla
 	return items, nil
 }
 
-const incrementPlaylistUpvotes = `-- name: IncrementPlaylistUpvotes :execresult
+const incrementPlaylistUpvotes = `-- name: IncrementPlaylistUpvotes :one
 UPDATE playlists
 SET upvotes = upvotes + 1
 WHERE id = ?
+RETURNING upvotes
 `
 
-func (q *Queries) IncrementPlaylistUpvotes(ctx context.Context, id string) (sql.Result, error) {
-	return q.db.ExecContext(ctx, incrementPlaylistUpvotes, id)
+func (q *Queries) IncrementPlaylistUpvotes(ctx context.Context, id string) (int64, error) {
+	row := q.db.QueryRowContext(ctx, incrementPlaylistUpvotes, id)
+	var upvotes int64
+	err := row.Scan(&upvotes)
+	return upvotes, err
 }
 
 const playlistExists = `-- name: PlaylistExists :one
