@@ -88,7 +88,7 @@
 {{end}}
 
 {{ if .first_track_with_preview_url}}
-    <div data-controller="playerbar" class="fixed z-20 bg-slate-900 text-white bottom-1 left-1 right-1 lg:left-1/2 lg:transform lg:mb-[30px] lg:-translate-x-1/2 lg:w-[400px] xl:w-[500px] h-[50px] rounded-[4px] lg:drop-shadow-lg">
+    <div id="playerbar" data-turbo-permanent data-controller="playerbar" class="fixed z-20 bg-slate-900 text-white bottom-1 left-1 right-1 lg:left-1/2 lg:transform lg:mb-[30px] lg:-translate-x-1/2 lg:w-[400px] xl:w-[500px] h-[50px] rounded-[4px] lg:drop-shadow-lg">
         <div class="flex w-full justify-between items-center">
             <div class="flex items-center min-w-0">
                 <a class="shrink-0" data-playerbar-target="currentlyPlayingTrackAlbumUri" href="{{ .first_track_with_preview_url.Album.URI | safeURL }}">
@@ -108,12 +108,6 @@
                             </a>
                         {{end}}
                     </div>
-{{/*                    <div data-playerbar-target="currentlyPlayingTrackArtists" class="flex block text-xs truncate leading-tight white-space-collapse">*/}}
-{{/*                        {{$artists := .first_track_with_preview_url.Artists}}*/}}
-{{/*                        {{ range $index, $element := .first_track_with_preview_url.Artists}}*/}}
-{{/*                            <a href="{{ $element.URI | safeURL }}" class="hover:underline" data-artists="{{ $element.Name }}">{{if $index}},{{end}} {{ $element.Name }}</a>*/}}
-{{/*                        {{end}}*/}}
-{{/*                    </div>*/}}
                 </div>
             </div>
             <div class="flex shrink-0">
