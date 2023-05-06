@@ -21,7 +21,7 @@
         </a>
     </div>
 
-    <div class="mt-3 mb-[60px]">
+    <div class="mt-3 mb-[60px] lg:mb-[100px]">
         <div class="flex justify-center">
             <a href="{{ .playlist.URI | safeURL }}" class="text-2xl ml-2 text-center block hover:underline">{{ .playlist.Name }}</a>
         </div>
@@ -44,17 +44,17 @@
             </div>
         </div>
 
-        <div class="flex flex-col mt-2">
+        <div class="flex flex-col mt-2 lg:flex-row lg:flex-wrap lg:mt-6 lg:mx-auto lg:w-[1500px]">
             {{ range .playlist.Tracks.Items }}
-                <button {{if not .Track.PreviewURL}}disabled{{end}} class="flex justify-between z-0 relative p-1 px-3 w-full rounded-sm text-left items-center
+                <button {{if not .Track.PreviewURL}}disabled{{end}} class="lg:w-[300px] lg:hover:bg-gray-100 flex justify-between z-0 relative p-1 lg:px-1 lg:py:1 px-3 w-full rounded-sm text-left items-center lg:px-2 lg:self-start
                     {{if .Track.PreviewURL}}
-                        active:bg-gray-100
+                        active:bg-gray-100 lg:active:bg-gray-200
                     {{else}}
                         opacity-50 cursor-not-allowed
                     {{end}}
                     " data-track data-preview-url="{{.Track.PreviewURL}}" data-album-image="{{.Track.SmallestAlbumImageURL}}" data-album-uri="{{ .Track.Album.URI | safeURL }}" data-track-uri="{{ .Track.URI | safeURL }}">
                     <div class="flex grow-0 w-full overflow-hidden">
-                        <a href="{{ .Track.Album.URI | safeURL }}" class="z-10">
+                        <a href="{{ .Track.Album.URI | safeURL }}" class="z-10 shrink-0">
                             <img src="{{.Track.SmallestAlbumImageURL}}" class="h-[40px] w-[40px] rounded-[4px]" loading="lazy"/>
                         </a>
 
@@ -88,7 +88,7 @@
 {{end}}
 
 {{ if .first_track_with_preview_url}}
-    <div data-controller="playerbar" class="fixed z-20 bg-slate-900 text-white bottom-1 left-1 right-1 lg:left-auto lg:mt-[30px] lg:w-[400px] xl:w-[500px] lg:top-0 lg:right-1 h-[50px] rounded-[4px]">
+    <div data-controller="playerbar" class="fixed z-20 bg-slate-900 text-white bottom-1 left-1 right-1 lg:left-1/2 lg:transform lg:mb-[30px] lg:-translate-x-1/2 lg:w-[400px] xl:w-[500px] h-[50px] rounded-[4px] lg:drop-shadow-lg">
         <div class="flex w-full justify-between items-center">
             <div class="flex items-center min-w-0">
                 <a class="shrink-0" data-playerbar-target="currentlyPlayingTrackAlbumUri" href="{{ .first_track_with_preview_url.Album.URI | safeURL }}">
