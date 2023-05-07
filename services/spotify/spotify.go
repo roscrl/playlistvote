@@ -68,11 +68,6 @@ func (s *Spotify) Playlist(ctx context.Context, playlistId string) (*Playlist, e
 	req.URL.RawQuery = q.Encode()
 
 	resp, err := http.DefaultClient.Do(req)
-	select {
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	default:
-	}
 	if err != nil {
 		return nil, err
 	}
@@ -127,11 +122,6 @@ func (s *Spotify) PlaylistMetadata(ctx context.Context, playlistId string) (*Pla
 	req.URL.RawQuery = q.Encode()
 
 	resp, err := http.DefaultClient.Do(req)
-	select {
-	case <-ctx.Done():
-		return nil, ctx.Err()
-	default:
-	}
 	if err != nil {
 		return nil, err
 	}

@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"sort"
 	"sync"
+	"time"
 
 	"app/db/sqlc"
 	"app/services/spotify"
@@ -37,6 +38,7 @@ func (s *Server) handleHome() http.HandlerFunc {
 		for _, skeletonPlaylist := range skeletonPlaylists {
 			go func(skeletonPlaylist sqlc.Playlist) {
 				defer wg.Done()
+				now := time.Now()
 
 				playlist, err := s.spotify.PlaylistMetadata(req.Context(), skeletonPlaylist.ID)
 				if err != nil {
@@ -58,6 +60,7 @@ func (s *Server) handleHome() http.HandlerFunc {
 				mtx.Lock()
 				defer mtx.Unlock()
 				playlists = append(playlists, *playlist)
+				log.Printf("fetched playlist %s in %v", playlist.ID, time.Since(now))
 			}(skeletonPlaylist)
 		}
 
