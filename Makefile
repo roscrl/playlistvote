@@ -6,19 +6,13 @@ run:
 	go run . --config ./config/.dev
 
 run-mock:
-	make reset-mock-db
 	go run . --config ./config/.dev.mock
 
 hotreload:
 	air -c ./config/.air.toml & make tailwind-watch
 
 hotreload-mock:
-	make reset-mock-db
 	air -c ./config/.air.mock.toml & make tailwind-watch
-
-reset-mock-db:
-	rm -f ./db/playlistvote-mock.db && rm -f ./db/playlistvote-mock.db-shm && rm -f ./db/playlistvote-mock.db-wal
-	cp ./db/playlistvote-mock-corpus.db ./db/playlistvote-mock.db
 
 tailwind-watch:
 	./bin/tailwindcss -i ./views/assets/main.css -o ./views/assets/dist/main.css --watch --config ./config/tailwind.config.js
@@ -28,6 +22,9 @@ generate:
 	./bin/esbuild views/assets/dist/js/vendor/stimulus-3.2.1/stimulus.js --minify --outfile=views/assets/dist/js/vendor/stimulus-3.2.1/stimulus.min.js
 	./bin/esbuild views/assets/dist/js/vendor/turbo-7.3.0/dist/turbo.es2017-esm.js --minify --outfile=views/assets/dist/js/vendor/turbo-7.3.0/dist/turbo.es2017-esm.min.js
 	cd ./db && sqlc generate
+
+generate-mock-playlists:
+	go run scripts/generatemockplaylists.go
 
 lint:
 	golangci-lint run .
@@ -140,13 +137,13 @@ tools:
 	make tooling-tailwind
 	echo "Remember to install Zig for the built-in C cross-compiler to Linux (or any C compiler for the 'make build' target)"
 
+tooling-esbuild:
+	curl -fsSL https://esbuild.github.io/dl/v0.17.17 | sh
+	mv esbuild ./bin/
+
 tooling-tailwind:
 	# MacOS ARM specific
 	curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/download/v3.3.1/tailwindcss-macos-arm64
 	chmod +x tailwindcss-macos-arm64
 	mv tailwindcss-macos-arm64 tailwindcss
 	mv tailwindcss ./bin/
-
-tooling-esbuild:
-	curl -fsSL https://esbuild.github.io/dl/v0.17.17 | sh
-	mv esbuild ./bin/

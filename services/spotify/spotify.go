@@ -27,7 +27,8 @@ type Spotify struct {
 	PlaylistEndpoint string
 	Now              func() time.Time
 
-	token token
+	token         token
+	initTokenOnce sync.Once
 }
 
 var (
@@ -36,19 +37,21 @@ var (
 	PlaylistNoImageErr  = errors.New("playlist has no image")
 	PlaylistNotFound    = errors.New("playlist not found")
 	TooManyRequestsErr  = errors.New("too many requests")
-
-	initTokenOnce sync.Once
 )
 
 func (s *Spotify) InitTokenLifecycle() {
-	initTokenOnce.Do(func() {
+	s.initTokenOnce.Do(func() {
 		s.token = token{
 			ClientID:      s.ClientID,
 			ClientSecret:  s.ClientSecret,
 			TokenEndpoint: s.TokenEndpoint,
 			Now:           s.Now,
+			done:          make(chan struct{}),
+			firstInitDone: make(chan struct{}),
 		}
 		go s.token.startRefreshLoop()
+
+		<-s.token.firstInitDone
 	})
 }
 

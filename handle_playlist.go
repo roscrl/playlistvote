@@ -39,13 +39,11 @@ func (s *Server) handleGetPlaylist() http.HandlerFunc {
 			return
 		}
 
-		if playlist.ColorsCommonFour == nil {
-			playlist.ColorsCommonFour, err = playlist.ProminentFourCoverColors()
-			if err != nil {
-				log.Printf("failed to query common four colors for playlist %s: %v", playlistID, err)
-				s.views.RenderError(w, "")
-				return
-			}
+		playlist.ColorsCommonFour, err = playlist.ProminentFourCoverColors()
+		if err != nil {
+			log.Printf("failed to query common four colors for playlist %s: %v", playlistID, err)
+			s.views.RenderError(w, "")
+			return
 		}
 
 		upvotes, err := s.qry.GetPlaylistUpvotes(req.Context(), playlistID)

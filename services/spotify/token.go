@@ -16,11 +16,12 @@ type token struct {
 	TokenEndpoint string
 	Now           func() time.Time
 
-	accessToken string
-	softExpiry  time.Time
-	hardExpiry  time.Time
-	mutex       sync.Mutex
-	done        chan struct{}
+	accessToken   string
+	softExpiry    time.Time
+	hardExpiry    time.Time
+	mutex         sync.Mutex
+	done          chan struct{}
+	firstInitDone chan struct{}
 }
 
 func (t *token) AccessToken() string {
@@ -30,6 +31,7 @@ func (t *token) AccessToken() string {
 }
 
 func (t *token) startRefreshLoop() {
+	firstInit := true
 	for {
 		select {
 		case <-time.After(t.timeToRefresh()):
@@ -38,6 +40,10 @@ func (t *token) startRefreshLoop() {
 				log.Printf("refreshing token: %v", err)
 				time.Sleep(5 * time.Second)
 				continue
+			}
+			if firstInit {
+				close(t.firstInitDone)
+				firstInit = false
 			}
 		case <-t.done:
 			return

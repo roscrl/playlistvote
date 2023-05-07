@@ -7,6 +7,10 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
+const (
+	PlaylistsTable = "playlists"
+)
+
 func New(dbFilePath string) *sql.DB {
 	db, err := sql.Open("sqlite3", dbFilePath)
 	if err != nil {

@@ -32,17 +32,22 @@ func ProdEmbeddedConfig() *Server {
 	return cfg
 }
 
-func DevConfig(mock bool) *Server {
-	var cfgPath string
-	if mock {
-		cfgPath = ".dev.mock"
-	} else {
-		cfgPath = ".dev"
-	}
+func DevConfig() *Server {
+	cfgPath := ".dev"
 
 	cfg, err := LoadConfig(os.DirFS("./config"), cfgPath)
 	if err != nil {
 		log.Fatal("error loading dev server config file:", err)
+	}
+	return cfg
+}
+
+func MockConfig() *Server {
+	cfgPath := ".dev.mock"
+
+	cfg, err := LoadConfig(os.DirFS("./config"), cfgPath)
+	if err != nil {
+		log.Fatal("error loading mock server config file:", err)
 	}
 	return cfg
 }

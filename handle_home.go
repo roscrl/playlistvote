@@ -46,18 +46,14 @@ func (s *Server) handleHome() http.HandlerFunc {
 				}
 				playlist.Upvotes = skeletonPlaylist.Upvotes
 
-				if playlist.ColorsCommonFour == nil {
-					playlist.ColorsCommonFour, err = playlist.ProminentFourCoverColors()
-					if err != nil {
-						err := fmt.Errorf("fetching playlist %s prominent colors: %w", playlist.ID, err)
-						errors <- err
-						return
-					}
+				playlist.ColorsCommonFour, err = playlist.ProminentFourCoverColors()
+				if err != nil {
+					err := fmt.Errorf("fetching playlist %s prominent colors: %w", playlist.ID, err)
+					errors <- err
+					return
 				}
 
-				if playlist.ArtistsCommonFour == nil {
-					playlist.ArtistsCommonFour = playlist.MostCommonFourArtists()
-				}
+				playlist.ArtistsCommonFour = playlist.MostCommonFourArtists()
 
 				mtx.Lock()
 				defer mtx.Unlock()
