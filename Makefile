@@ -111,6 +111,14 @@ deploy: upload
 	ssh $(USER)@$(VPS_IP) "if [ -d $(APP_FOLDER)/app ]; then mv $(APP_FOLDER)/app $(APP_FOLDER)/archive/app_$$(date +"%Y%m%d%H%M%S"); fi"
 	ssh $(USER)@$(VPS_IP) "mv $(APP_FOLDER)/new/app $(APP_FOLDER)/app"
 	ssh $(USER)@$(VPS_IP) "systemctl restart $(SERVICE_NAME)"
+	make purge-cache-prod
+
+make purge-cache-prod:
+	curl -X POST https://api.cloudflare.com/client/v4/zones/3849d0e239cfff8040f0dceaf0071e4a/purge_cache \
+		-H "X-Auth-Email: $(CLOUDFLARE_EMAIL)" \
+		-H "X-Auth-Key: $(CLOUDFLARE_KEY)" \
+		-H "Content-Type: application/json" \
+		--data '{"purge_everything":true}'
 
 logs-prod:
 	ssh $(USER)@$(VPS_IP) "journalctl -u $(SERVICE_NAME) -f"
