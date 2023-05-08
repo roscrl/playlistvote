@@ -65,7 +65,7 @@
                     " data-track data-preview-url="{{.Track.PreviewURL}}" data-album-image="{{.Track.SmallestAlbumImageURL}}" data-album-uri="{{ .Track.Album.URI | safeURL }}" data-track-uri="{{ .Track.URI | safeURL }}">
                         <div class="flex grow-0 w-full overflow-hidden">
                             <a href="{{ .Track.Album.URI | safeURL }}" class="z-10 shrink-0">
-                                <img src="{{.Track.SmallestAlbumImageURL}}" class="h-[40px] w-[40px] rounded-[4px]" loading="lazy"/>
+                                <img src="{{.Track.SmallestAlbumImageURL}}" class="h-[40px] w-[40px] rounded-[4px]" loading="eager"/>
                             </a>
 
                             <div class="ml-[6px] flex flex-col self-center overflow-hidden leading-tight">
