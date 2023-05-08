@@ -70,6 +70,9 @@ func (s *Server) handleHome() http.HandlerFunc {
 		}
 
 		sort.Slice(playlists, func(i, j int) bool {
+			if playlists[i].Upvotes == playlists[j].Upvotes {
+				return playlists[i].Name < playlists[j].Name
+			}
 			return playlists[i].Upvotes > playlists[j].Upvotes
 		})
 
