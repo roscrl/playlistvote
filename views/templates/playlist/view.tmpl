@@ -75,7 +75,7 @@
                                     </a>
                                 </div>
 
-                                <div class="flex block text-xs overflow-hidden leading-tight lg:max-w-[210px] text-ellipsis">
+                                <div class="flex block text-xs overflow-hidden leading-tight text-ellipsis">
                                     {{$artists := .Track.Artists}}
                                     {{ range $index, $element := .Track.Artists}}
                                         <a onclick="event.stopPropagation()" href="{{ $element.URI | safeURL }}" class="flex z-10 hover:underline block overflow-hidden" data-artists="{{ $element.Name }}">
@@ -104,11 +104,11 @@
         <div class="flex w-full justify-between items-center">
             <div class="flex items-center min-w-0">
                 <a class="shrink-0" data-playerbar-target="currentlyPlayingTrackAlbumUri" href="{{ .first_track_with_preview_url.Album.URI | safeURL }}">
-                    <img data-playerbar-target="currentlyPlayingTrackAlbumImage" src="{{ .first_track_with_preview_url.SmallestAlbumImageURL }}" class="h-[50px] p-[2px] rounded-[5px]" loading="eager">
+                    <img data-playerbar-target="currentlyPlayingTrackAlbumImage" src="{{ .first_track_with_preview_url.SmallestAlbumImageURL }}" class="w-[50px] h-[50px] p-[2px] rounded-[5px]" loading="eager">
                 </a>
                 <div class="ml-2 text-md flex-col truncate overflow-hidden">
-                    <div class="inline-flex">
-                        <a data-playerbar-target="currentlyPlayingTrack" href="{{ .first_track_with_preview_url.URI | safeURL }}" class="text-md hover:underline block truncate leading-tight">
+                    <div>
+                        <a data-playerbar-target="currentlyPlayingTrack" href="{{ .first_track_with_preview_url.URI | safeURL }}" class="hover:underline z-10 text-md text-ellipsis whitespace-nowrap overflow-hidden shrink block truncate">
                             {{.first_track_with_preview_url.Name}}
                         </a>
                     </div>
@@ -125,7 +125,7 @@
                 </div>
             </div>
             <div class="flex shrink-0">
-                <audio data-playerbar-target="audio" src="{{.first_track_with_preview_url.PreviewURL}}" preload="none" loop></audio>
+                <audio data-playerbar-target="audio" src="{{.first_track_with_preview_url.PreviewURL}}" preload="auto" loop></audio>
                 <a href="{{ .playlist.URI | safeURL }}" id="open-playlist-in-spotify" class="flex mr-1 text-xs items-center gap-[4px] mr-2 ml-2">
                     <svg width="23" height="23" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"

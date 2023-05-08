@@ -72,7 +72,11 @@ func (s *Server) handleHome() http.HandlerFunc {
 			return playlists[i].Upvotes > playlists[j].Upvotes
 		})
 
-		if len(playlists) > 5 {
+		if len(playlists) > 26 {
+			for i := 0; i < 5; i++ {
+				playlists[i].EagerLoadImage = true
+			}
+		} else if len(playlists) > 5 {
 			for i := 0; i < 5; i++ {
 				playlists[i].EagerLoadImage = true
 			}
