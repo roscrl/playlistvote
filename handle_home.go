@@ -1,14 +1,15 @@
 package main
 
 import (
-	"app/db/sqlc"
-	"app/services/spotify"
 	"fmt"
 	"html/template"
 	"log"
 	"net/http"
 	"sort"
 	"sync"
+
+	"app/db/sqlc"
+	"app/services/spotify"
 
 	"github.com/newrelic/go-agent/v3/newrelic"
 )
@@ -72,12 +73,15 @@ func (s *Server) handleHome() http.HandlerFunc {
 			return playlists[i].Upvotes > playlists[j].Upvotes
 		})
 
-		if len(playlists) > 26 {
-			for i := 0; i < 5; i++ {
-				playlists[i].EagerLoadImage = true
+		{
+			loopEnd := 0
+			if len(playlists) > 26 {
+				loopEnd = 26
+			} else if len(playlists) > 5 {
+				loopEnd = 5
 			}
-		} else if len(playlists) > 5 {
-			for i := 0; i < 5; i++ {
+
+			for i := 0; i < loopEnd; i++ {
 				playlists[i].EagerLoadImage = true
 			}
 		}
