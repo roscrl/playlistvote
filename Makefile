@@ -58,7 +58,8 @@ build-quick: test
 VPS_IP=5.161.84.223
 APP_FOLDER=~/playlistvote
 SERVICE_NAME=playlistvote.service
-LOCAL_SQLITE_DB_PATH=./db/playlistvote.db
+DB_NAME=playlistvote
+LOCAL_SQLITE_DB_PATH=./db/$(DB_NAME).db
 USER=root
 
 ssh:
@@ -85,14 +86,18 @@ caddy-reload:
 	scp -r ./config/Caddyfile $(USER)@$(VPS_IP):/etc/caddy/Caddyfile
 	ssh $(USER)@$(VPS_IP) "systemctl reload caddy"
 
+db-copy-prod:
+	rsync -avz --ignore-existing $(USER)@$(VPS_IP):$(APP_FOLDER)/db/ $(LOCAL_SQLITE_DB_PATH).prod
+
 db-copy-over:
 	rsync -avz --ignore-existing $(LOCAL_SQLITE_DB_PATH) $(USER)@$(VPS_IP):$(APP_FOLDER)/db/
 
 db-copy-over-force:
+	ssh $(USER)@$(VPS_IP) "mkdir -p $(APP_FOLDER)/db/archive"
+	ssh $(USER)@$(VPS_IP) "if [ -f $(APP_FOLDER)/db/$(DB_NAME).db ];     then mv $(APP_FOLDER)/db/$(DB_NAME).db     $(APP_FOLDER)/db/archive/$(DB_NAME)_$$(date +"%Y%m%d%H%M%S").db;     fi"
+	ssh $(USER)@$(VPS_IP) "if [ -f $(APP_FOLDER)/db/$(DB_NAME).db-shm ]; then mv $(APP_FOLDER)/db/$(DB_NAME).db-shm $(APP_FOLDER)/db/archive/$(DB_NAME)_$$(date +"%Y%m%d%H%M%S").db-shm; fi"
+	ssh $(USER)@$(VPS_IP) "if [ -f $(APP_FOLDER)/db/$(DB_NAME).db-wal ]; then mv $(APP_FOLDER)/db/$(DB_NAME).db-wal $(APP_FOLDER)/db/archive/$(DB_NAME)_$$(date +"%Y%m%d%H%M%S").db-wal; fi"
 	rsync -avz $(LOCAL_SQLITE_DB_PATH) $(USER)@$(VPS_IP):$(APP_FOLDER)/db/
-
-db-copy-prod:
-	rsync -avz --ignore-existing $(USER)@$(VPS_IP):$(APP_FOLDER)/db/ $(LOCAL_SQLITE_DB_PATH).prod
 
 app-service-reload:
 	scp -r ./config/$(SERVICE_NAME) $(USER)@$(VPS_IP):/lib/systemd/system/$(SERVICE_NAME)
@@ -105,7 +110,7 @@ upload: build-amd64
 
 deploy: upload
 	ssh $(USER)@$(VPS_IP) "mkdir -p $(APP_FOLDER)/archive"
-	ssh $(USER)@$(VPS_IP) "if [ -d $(APP_FOLDER)/app ]; then mv $(APP_FOLDER)/app $(APP_FOLDER)/archive/app_$$(date +"%Y%m%d%H%M%S"); fi"
+	ssh $(USER)@$(VPS_IP) "if [ -f $(APP_FOLDER)/app ]; then mv $(APP_FOLDER)/app $(APP_FOLDER)/archive/app_$$(date +"%Y%m%d%H%M%S"); fi"
 	ssh $(USER)@$(VPS_IP) "mv $(APP_FOLDER)/new/app $(APP_FOLDER)/app"
 	ssh $(USER)@$(VPS_IP) "systemctl restart $(SERVICE_NAME)"
 	make purge-cache-prod
