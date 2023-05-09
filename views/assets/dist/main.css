@@ -630,12 +630,12 @@ video {
   margin-bottom: 0.125rem;
 }
 
-.mb-1 {
-  margin-bottom: 0.25rem;
-}
-
 .mb-\[1px\] {
   margin-bottom: 1px;
+}
+
+.mb-\[58px\] {
+  margin-bottom: 58px;
 }
 
 .mb-\[60px\] {
@@ -1240,12 +1240,12 @@ video {
     margin-bottom: 100px;
   }
 
-  .lg\:mb-\[21px\] {
-    margin-bottom: 21px;
-  }
-
   .lg\:mb-\[30px\] {
     margin-bottom: 30px;
+  }
+
+  .lg\:mb-\[94px\] {
+    margin-bottom: 94px;
   }
 
   .lg\:mt-6 {

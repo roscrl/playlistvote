@@ -86,6 +86,7 @@ func (p *Playlist) MostCommonFourArtists() []string {
 	}
 	sort.Slice(sortedArtistsSet, sortByValueDesc)
 
+	// TODO this panics for 4GZ6uRcHKj0bSMt7GfL6RA https://open.spotify.com/playlist/4GZ6uRcHKj0bSMt7GfL6RA
 	topCount := 4
 	mostCommonArtists := make([]string, topCount)
 	for i := 0; i < topCount; i++ {
