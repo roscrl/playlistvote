@@ -737,6 +737,10 @@ video {
   display: grid;
 }
 
+.hidden {
+  display: none;
+}
+
 .h-3 {
   height: 0.75rem;
 }

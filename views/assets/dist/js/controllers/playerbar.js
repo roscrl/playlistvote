@@ -8,11 +8,38 @@ export default class extends Controller {
         "currentlyPlayingTrackAlbumImage",
         "currentlyPlayingTrack",
         "currentlyPlayingTrackName",
-        "currentlyPlayingTrackArtists"
+        "currentlyPlayingTrackArtists",
+        "currentlyPlayingSpotifyPlaylistUri"
     ]
 
     connect() {
-        this.audioIsPlaying = false
+        if (!this.audioTarget) return
+
+        if (!this.audioTarget.src) {
+            const track = document.querySelector("[data-track]:not([disabled])")
+            if (track) {
+                this.audioTarget.src = track.dataset.previewUrl
+                this.currentlyPlayingTrackAlbumUriTarget.href = track.dataset.albumUri
+                this.currentlyPlayingTrackAlbumImageTarget.src = track.dataset.albumImage
+                this.currentlyPlayingTrackTarget.href = track.dataset.trackUri
+                this.currentlyPlayingTrackTarget.innerText = track.querySelector("[data-name]").dataset.name
+
+                const artists = track.querySelectorAll("[data-artists]")
+                this.currentlyPlayingTrackArtistsTarget.innerHTML = ""
+                artists.forEach(artist => {
+                    this.currentlyPlayingTrackArtistsTarget.innerHTML += artist.outerHTML
+                })
+
+                this.currentlyPlayingSpotifyPlaylistUriTarget.href = track.dataset.playlistUri
+
+                this.element.classList.remove("hidden")
+            }
+        }
+
+        if (this.audioIsPlaying == undefined) {
+            this.audioIsPlaying = false
+        }
+
         this.boundHandleSpacebar = this.handleSpacebar.bind(this)
         document.addEventListener("keydown", this.boundHandleSpacebar)
 
@@ -67,6 +94,9 @@ export default class extends Controller {
                     this.currentlyPlayingTrackArtistsTarget.innerHTML += artist.outerHTML
                 })
             }
+
+            const playlistUri = track.dataset.playlistUri
+            if (playlistUri) this.currentlyPlayingSpotifyPlaylistUriTarget.href = playlistUri
         }
 
         this.audioTarget.play()

@@ -14,6 +14,7 @@ type route struct {
 }
 
 const (
+	AssetBaseRoute      = "/assets"
 	AssetRoute          = "/assets/(.*)"
 	HomeRoute           = "/"
 	PlaylistBaseRoute   = "/playlist"
@@ -30,7 +31,7 @@ func (s *Server) routes() http.Handler {
 	}
 
 	routes := []route{
-		newRoute("GET", AssetRoute, http.StripPrefix("/assets/", s.handleAssets()).ServeHTTP),
+		newRoute("GET", AssetRoute, http.StripPrefix(AssetBaseRoute+"/", s.handleAssets()).ServeHTTP),
 		newRoute("GET", HomeRoute, s.handleHome()),
 		newRoute("POST", PlaylistCreateRoute, s.handlePostPlaylist()),
 		newRoute("GET", PlaylistViewRoute, s.handleGetPlaylist()),
