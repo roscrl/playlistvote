@@ -78,8 +78,8 @@ func (s *Server) handleHome() http.HandlerFunc {
 
 		{
 			loopEnd := 0
-			if len(playlists) > 26 {
-				loopEnd = 26
+			if len(playlists) > 27 {
+				loopEnd = 27
 			} else if len(playlists) > 5 {
 				loopEnd = 5
 			}
