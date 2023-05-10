@@ -17,28 +17,25 @@ export default class extends Controller {
 
         if (!this.audioTarget.src) {
             const track = document.querySelector("[data-track]:not([disabled])")
-            if (track) {
-                this.audioTarget.src = track.dataset.previewUrl
-                this.currentlyPlayingTrackAlbumUriTarget.href = track.dataset.albumUri
-                this.currentlyPlayingTrackAlbumImageTarget.src = track.dataset.albumImage
-                this.currentlyPlayingTrackTarget.href = track.dataset.trackUri
-                this.currentlyPlayingTrackTarget.innerText = track.querySelector("[data-name]").dataset.name
+            if (!track) return
 
-                const artists = track.querySelectorAll("[data-artists]")
-                this.currentlyPlayingTrackArtistsTarget.innerHTML = ""
-                artists.forEach(artist => {
-                    this.currentlyPlayingTrackArtistsTarget.innerHTML += artist.outerHTML
-                })
+            this.audioTarget.src = track.dataset.previewUrl
+            this.currentlyPlayingTrackAlbumUriTarget.href = track.dataset.albumUri
+            this.currentlyPlayingTrackAlbumImageTarget.src = track.dataset.albumImage
+            this.currentlyPlayingTrackTarget.href = track.dataset.trackUri
+            this.currentlyPlayingTrackTarget.innerText = track.querySelector("[data-name]").dataset.name
 
-                this.currentlyPlayingSpotifyPlaylistUriTarget.href = track.dataset.playlistUri
+            const artists = track.querySelectorAll("[data-artist]")
+            this.currentlyPlayingTrackArtistsTarget.innerHTML = ""
+            artists.forEach(artist => {
+                this.currentlyPlayingTrackArtistsTarget.innerHTML += artist.outerHTML
+            })
 
-                this.element.classList.remove("hidden")
-            }
+            this.currentlyPlayingSpotifyPlaylistUriTarget.href = track.dataset.playlistUri
+            this.element.classList.remove("hidden")
         }
 
-        if (this.audioIsPlaying == undefined) {
-            this.audioIsPlaying = false
-        }
+        if (this.audioIsPlaying == undefined) this.audioIsPlaying = false
 
         this.boundHandleSpacebar = this.handleSpacebar.bind(this)
         document.addEventListener("keydown", this.boundHandleSpacebar)
@@ -54,10 +51,10 @@ export default class extends Controller {
     }
 
     handleSpacebar(event) {
-        if (event.code === "Space") {
-            event.preventDefault()
-            this.togglePlay()
-        }
+        if (event.code !== "Space") return
+
+        event.preventDefault()
+        this.togglePlay()
     }
 
     togglePlay() {
@@ -72,31 +69,24 @@ export default class extends Controller {
         if (event) {
             const track = event.currentTarget
 
-            const srcTrack = track.dataset.previewUrl
-            if (srcTrack) this.audioTarget.src = srcTrack
+            this.audioTarget.src = track.dataset.previewUrl
+            this.currentlyPlayingTrackAlbumUriTarget.href = track.dataset.albumUri
+            this.currentlyPlayingTrackAlbumImageTarget.src = track.dataset.albumImage
+            this.currentlyPlayingTrackTarget.href = track.dataset.trackUri
+            this.currentlyPlayingTrackTarget.innerText = track.querySelector("[data-name]").dataset.name
 
-            const albumUri = track.dataset.albumUri
-            if (albumUri) this.currentlyPlayingTrackAlbumUriTarget.href = albumUri
+            const artists = track.querySelectorAll("[data-artist]")
+            this.currentlyPlayingTrackArtistsTarget.innerHTML = ""
+            artists.forEach(artist => {
+                const artistElementCopy = artist.cloneNode(true)
+                const innerArtistSpan = artistElementCopy.querySelector(".artist-name")
 
-            const albumImage = track.dataset.albumImage
-            if (albumImage) this.currentlyPlayingTrackAlbumImageTarget.src = albumImage
+                innerArtistSpan.outerHTML = `<a href="${artist.dataset.artistUri}" class="${innerArtistSpan.classList.value} hover:underline">${artist.dataset.artist}</a>`
 
-            const trackUri = track.dataset.trackUri
-            if (trackUri) this.currentlyPlayingTrackTarget.href = trackUri
+                this.currentlyPlayingTrackArtistsTarget.innerHTML += artistElementCopy.outerHTML
+            })
 
-            const name = track.querySelector("[data-name]").dataset.name
-            if (name) this.currentlyPlayingTrackTarget.innerText = name
-
-            const artists = track.querySelectorAll("[data-artists]")
-            if (artists) {
-                this.currentlyPlayingTrackArtistsTarget.innerHTML = ""
-                artists.forEach(artist => {
-                    this.currentlyPlayingTrackArtistsTarget.innerHTML += artist.outerHTML
-                })
-            }
-
-            const playlistUri = track.dataset.playlistUri
-            if (playlistUri) this.currentlyPlayingSpotifyPlaylistUriTarget.href = playlistUri
+            this.currentlyPlayingSpotifyPlaylistUriTarget.href = track.dataset.playlistUri
         }
 
         this.audioTarget.play()

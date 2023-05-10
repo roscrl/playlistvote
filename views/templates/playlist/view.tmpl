@@ -49,45 +49,73 @@
             </div>
         </div>
 
-        <div class="flex w-full lg:justify-center md:mx-auto mt-2 lg:mt-6 xl:w-3/4">
-            <div class="grid w-full grid-cols-1 md:mx-2 md:grid-cols-3 xl:grid-cols-4 xl:grid-cols-5 gap-[1px]">
+        <div class="flex w-full lg:justify-center md:mx-auto mt-2 lg:mx-2 lg:mt-6">
+            <div class="grid w-full grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-[1px] lg:w-[85%] xl:w-[80%]">
                 {{ $playlistURI := .playlist.URI }}
                 {{ range .playlist.Tracks.Items }}
-                    <button {{if not .Track.PreviewURL}}disabled{{end}} class="w-full flex justify-between z-0 relative
-                    p-1 px-3 lg:px-1
-                    rounded-sm lg:rounded-[6px]
-                    lg:self-start
-                    text-left items-center
-                    {{if .Track.PreviewURL}}
-                        active:bg-gray-100 lg:active:bg-gray-200 lg:hover:bg-gray-100
-                    {{else}}
-                        opacity-50 cursor-not-allowed
-                    {{end}}
-                    " data-track data-preview-url="{{.Track.PreviewURL}}" data-album-image="{{.Track.SmallestAlbumImageURL}}" data-album-uri="{{ .Track.Album.URI | safeURL }}" data-track-uri="{{ .Track.URI | safeURL }}" data-playlist-uri="{{ $playlistURI | safeURL }}">
-                        <div class="flex grow-0 w-full overflow-hidden">
-                            <a onclick="event.stopPropagation()" href="{{ .Track.Album.URI | safeURL }}" class="z-10 shrink-0">
-                                <img src="{{.Track.SmallestAlbumImageURL}}" class="h-[40px] w-[40px] rounded-[4px] bg-gray-200" loading="eager"/>
-                            </a>
+                    <div class="relative">
+                        <button {{if not .Track.PreviewURL}}disabled{{end}} class="w-full flex justify-between z-0 relative
+                            p-1 px-3 pr-[54px] lg:px-1 lg:pr-[54px]
+                            rounded-sm lg:rounded-[6px]
+                            lg:self-start
+                            text-left items-center
 
-                            <div class="ml-[6px] flex flex-col self-center overflow-hidden leading-tight">
-                                <div class="inline-flex">
-                                    <a onclick="event.stopPropagation()" href="{{ .Track.URI | safeURL }}" class="hover:underline z-10 text-md text-ellipsis whitespace-nowrap overflow-hidden shrink block" data-name="{{.Track.Name}}">
+                            {{if .Track.PreviewURL}}
+                                active:bg-gray-100 xl:active:bg-gray-200 xl:hover:bg-gray-100
+                            {{else}}
+                                opacity-50
+                            {{end}}
+                            " data-track data-preview-url="{{.Track.PreviewURL}}" data-album-image="{{.Track.SmallestAlbumImageURL}}" data-album-uri="{{ .Track.Album.URI | safeURL }}" data-track-uri="{{ .Track.URI | safeURL }}" data-playlist-uri="{{ $playlistURI | safeURL }}">
+                            <div class="flex grow-0 w-full overflow-hidden">
+                                <img src="{{.Track.SmallestAlbumImageURL}}" class="shrink-0 h-[40px] w-[40px] rounded-[4px] bg-gray-200" loading="eager"/>
+
+                                <div class="ml-[6px] flex flex-col self-center overflow-hidden leading-tight">
+                                    <div class="inline-flex">
+                                    <span class="z-10 text-md text-ellipsis whitespace-nowrap overflow-hidden shrink block" data-name="{{.Track.Name}}">
                                         {{ .Track.Name }}
-                                    </a>
-                                </div>
+                                    </span>
+                                    </div>
 
-                                <div class="flex block text-xs overflow-hidden leading-tight text-ellipsis">
-                                    {{$artists := .Track.Artists}}
-                                    {{ range $index, $element := .Track.Artists}}
-                                        <a onclick="event.stopPropagation()" href="{{ $element.URI | safeURL }}" class="flex z-10 hover:underline block overflow-hidden" data-artists="{{ $element.Name }}">
-                                            {{if $index}}<span class="mr-1 hover:underline-none">,</span>{{end}}
-                                            <span class="hover:underline truncate text-ellipsis overflow-hidden">{{ $element.Name }}</span>
-                                        </a>
-                                    {{end}}
+                                    <div class="flex block text-xs overflow-hidden leading-tight text-ellipsis">
+                                        {{$artists := .Track.Artists}}
+                                        {{ range $index, $element := .Track.Artists}}
+                                            <div class="flex block overflow-hidden" data-artist="{{ $element.Name }}" data-artist-uri="{{ $element.URI | safeURL }}">
+                                                {{if $index}}<span class="mr-1 hover:underline-none">,</span>{{end}}
+                                                <span class="artist-name truncate text-ellipsis overflow-hidden">{{ $element.Name }}</span>
+                                            </div>
+                                        {{end}}
+                                    </div>
                                 </div>
                             </div>
+                        </button>
+
+                        <div data-controller="modal">
+                            <button data-action="modal#open" class="absolute top-1/2 h-[48px] transform -translate-y-1/2 px-[16px] sm:px-[8px] md:px[10px] xl:px-[10px] right-0 z-20 rounded-md active:bg-gray-200 xl:hover:bg-gray-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="1"></circle>
+                                    <circle cx="19" cy="12" r="1"></circle>
+                                    <circle cx="5" cy="12" r="1"></circle>
+                                </svg>
+                            </button>
+
+                            <dialog data-modal-target="modal" class="p-0 backdrop:bg-gray-600 backdrop:bg-opacity-50 open:backdrop:animate-fade-in open:animate-fade-in rounded-[6px] w-[320px] overflow-hidden">
+                                <img class="w-[320px] h-[320px] bg-gray-200" src="{{ .Track.LargestAlbumImageURL }}"/>
+                                <div class="flex flex-col items-center justify-center justify-center leading-tight">
+                                    {{ if eq .Track.Name .Track.Album.Name }}
+                                        <a href="{{ .Track.URI | safeURL }}" class="py-2 block w-full text-center overflow-hidden px-[10px] active:bg-gray-100 xl:active:bg-gray-200 xl:hover:bg-gray-100">{{ .Track.Name }}</a>
+                                    {{else}}
+                                        <a href="{{ .Track.URI | safeURL }}" class="py-2 block w-full text-center overflow-hidden px-[10px] border-b  active:bg-gray-100 xl:active:bg-gray-200 xl:hover:bg-gray-100">{{ .Track.Name }}</a>
+                                        <a href="{{ .Track.Album.URI | safeURL }}" class="py-2 block w-full text-center overflow-hidden px-[10px] active:bg-gray-100 xl:active:bg-gray-200 xl:hover:bg-gray-100">{{ .Track.Album.Name }}</a>
+                                    {{end}}
+                                    <div class="flex flex-wrap justify-between w-full divide-x">
+                                        {{ range $index, $element := .Track.Artists}}
+                                            <a href="{{ $element.URI | safeURL }}" class="flex items-center justify-center py-2 px-[10px] grow block text-center w-1/2 line-clamp-1 border-t active:bg-gray-100 xl:active:bg-gray-200 xl:hover:bg-gray-100">{{ $element.Name }}</a>
+                                        {{end}}
+                                    </div>
+                            </dialog>
                         </div>
-                    </button>
+                    </div>
+
                 {{ end }}
             </div>
         </div>

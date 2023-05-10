@@ -35,6 +35,14 @@ func (t *Track) SmallestAlbumImageURL() string {
 	return t.Album.Images[len(t.Album.Images)-1].URL
 }
 
+func (t *Track) LargestAlbumImageURL() string {
+	if len(t.Album.Images) == 0 {
+		return ""
+	}
+
+	return t.Album.Images[0].URL
+}
+
 func (t *Track) ArtistsCommaSeparated() string {
 	var artists []string
 	for _, artist := range t.Artists {

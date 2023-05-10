@@ -9,12 +9,10 @@
     >
         <a href="playlist/{{ stripSpotifyURI .URI }}" class="absolute z-0 top-0 left-0 w-full h-full z-10" data-turbo-frame="_top"></a>
         <div class="flex gap-[5px]">
-            <a href="{{ .URI | safeURL }}" class="z-10 shrink-0 w-[112px] h-[112px] rounded-[6px] relative">
-                <img src="{{.MiddleOrLargestImageURL}}"
-                     class="w-[112px] h-[112px] rounded-[6px] object-cover"
-                     alt="{{.Name}} playlist image"
-                     loading="{{ if .EagerLoadImage}}eager{{else}}lazy{{end}}">
-            </a>
+            <img src="{{.MiddleOrLargestImageURL}}"
+                 class="w-[112px] h-[112px] rounded-[6px] object-cover shrink-0 w-[112px] h-[112px] rounded-[6px] relative"
+                 alt="{{.Name}} playlist image"
+                 loading="{{ if .EagerLoadImage}}eager{{else}}lazy{{end}}">
 
             <div class="w-full text-white flex flex-col overflow-hidden">
                 <div class="text-lg flex justify-between items-center">
