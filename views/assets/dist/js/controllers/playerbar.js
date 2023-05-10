@@ -28,7 +28,12 @@ export default class extends Controller {
             const artists = track.querySelectorAll("[data-artist]")
             this.currentlyPlayingTrackArtistsTarget.innerHTML = ""
             artists.forEach(artist => {
-                this.currentlyPlayingTrackArtistsTarget.innerHTML += artist.outerHTML
+                const artistElementCopy = artist.cloneNode(true)
+                const innerArtistSpan = artistElementCopy.querySelector(".artist-name")
+
+                innerArtistSpan.outerHTML = `<a href="${artist.dataset.artistUri}" class="${innerArtistSpan.classList.value} hover:underline">${artist.dataset.artist}</a>`
+
+                this.currentlyPlayingTrackArtistsTarget.innerHTML += artistElementCopy.outerHTML
             })
 
             this.currentlyPlayingSpotifyPlaylistUriTarget.href = track.dataset.playlistUri
