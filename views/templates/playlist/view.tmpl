@@ -99,7 +99,7 @@
                             </button>
 
                             <dialog data-modal-target="modal" class="p-0 backdrop:bg-gray-600 backdrop:bg-opacity-50 open:backdrop:animate-fade-in open:animate-fade-in rounded-[6px] w-[320px] overflow-hidden">
-                                <img class="w-[320px] h-[320px] bg-gray-200" src="{{ .Track.LargestAlbumImageURL }}"/>
+                                <img class="w-[320px] h-[320px] bg-gray-200" src="{{ .Track.LargestAlbumImageURL }}" loading="lazy"/>
                                 <div class="flex flex-col items-center justify-center justify-center leading-tight">
                                     {{ if eq .Track.Name .Track.Album.Name }}
                                         <a href="{{ .Track.URI | safeURL }}" class="py-2 block w-full text-center overflow-hidden px-[10px] active:bg-gray-100 xl:active:bg-gray-200 xl:hover:bg-gray-100">{{ .Track.Name }}</a>
