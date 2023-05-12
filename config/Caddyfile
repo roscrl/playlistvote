@@ -1,16 +1,1 @@
-playlistvote.com {
-    reverse_proxy localhost:3000
-    encode gzip
-
-    log {
-        output file /var/log/caddy/playlistvote.com.access.log {
-            roll_size 1GB
-            roll_keep 5
-            roll_keep_for 720h
-        }
-    }
-
-    request_body {
-      max_size 5KB
-    }
-}
+import *.caddy

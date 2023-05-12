@@ -54,7 +54,7 @@ func (s *Server) handleGetPlaylist() http.HandlerFunc {
 		}
 		playlist.Upvotes = upvotes
 
-		w.Header().Set("Cache-Control", "public, max-age=5")
+		w.Header().Set("Cache-Control", "public, max-age=3600")
 		s.views.Render(w, "playlist/view.tmpl", map[string]any{
 			"playlist": playlist,
 		})

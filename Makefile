@@ -56,11 +56,16 @@ build-quick: test
 #########################
 
 VPS_IP=5.161.84.223
-APP_FOLDER=~/playlistvote
-SERVICE_NAME=playlistvote.service
-DB_NAME=playlistvote
-LOCAL_SQLITE_DB_PATH=./db/$(DB_NAME).db
 USER=root
+
+APP_NAME=playlistvote
+APP_FOLDER=~/$(APP_NAME)
+
+APP_CADDY_PATH=$(APP_NAME).caddy
+SERVICE_NAME=$(APP_NAME).service
+
+DB_NAME=$(APP_NAME)
+LOCAL_SQLITE_DB_PATH=./db/$(DB_NAME).db
 
 ssh:
 	ssh $(USER)@$(VPS_IP)
@@ -68,6 +73,7 @@ ssh:
 vps-new:
 	ssh $(USER)@$(VPS_IP) "mkdir -p $(APP_FOLDER)"
 	make vps-dependencies
+	make caddy-root-config
 	make caddy-reload
 	make caddy-service-reload
 	make db-copy-over
@@ -77,13 +83,16 @@ vps-new:
 vps-dependencies:
 	ssh $(USER)@$(VPS_IP) "sudo apt-get update && sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list && sudo apt update && sudo apt install caddy"
 
+caddy-root-config:
+	scp -r ./config/Caddyfile $(USER)@$(VPS_IP):/etc/caddy/Caddyfile
+
 caddy-service-reload:
 	scp -r ./config/caddy.service $(USER)@$(VPS_IP):/lib/systemd/system/caddy.service
 	ssh $(USER)@$(VPS_IP) "systemctl daemon-reload"
 	ssh $(USER)@$(VPS_IP) "systemctl restart caddy"
 
 caddy-reload:
-	scp -r ./config/Caddyfile $(USER)@$(VPS_IP):/etc/caddy/Caddyfile
+	scp -r ./config/$(APP_CADDY_PATH) $(USER)@$(VPS_IP):/etc/caddy/$(APP_CADDY_PATH)
 	ssh $(USER)@$(VPS_IP) "systemctl reload caddy"
 
 db-copy-prod:

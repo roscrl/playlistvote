@@ -19,24 +19,7 @@ export default class extends Controller {
             const track = document.querySelector("[data-track]:not([disabled])")
             if (!track) return
 
-            this.audioTarget.src = track.dataset.previewUrl
-            this.currentlyPlayingTrackAlbumUriTarget.href = track.dataset.albumUri
-            this.currentlyPlayingTrackAlbumImageTarget.src = track.dataset.albumImage
-            this.currentlyPlayingTrackTarget.href = track.dataset.trackUri
-            this.currentlyPlayingTrackTarget.innerText = track.querySelector("[data-name]").dataset.name
-
-            const artists = track.querySelectorAll("[data-artist]")
-            this.currentlyPlayingTrackArtistsTarget.innerHTML = ""
-            artists.forEach(artist => {
-                const artistElementCopy = artist.cloneNode(true)
-                const innerArtistSpan = artistElementCopy.querySelector(".artist-name")
-
-                innerArtistSpan.outerHTML = `<a href="${artist.dataset.artistUri}" class="${innerArtistSpan.classList.value} hover:underline">${artist.dataset.artist}</a>`
-
-                this.currentlyPlayingTrackArtistsTarget.innerHTML += artistElementCopy.outerHTML
-            })
-
-            this.currentlyPlayingSpotifyPlaylistUriTarget.href = track.dataset.playlistUri
+            this.setState(track)
             this.element.classList.remove("hidden")
         }
 
@@ -55,6 +38,33 @@ export default class extends Controller {
         window.addEventListener("beforeunload", this.boundPause)
     }
 
+    /**
+     * @param {HTMLElement} track
+     */
+    setState(track) {
+        this.audioTarget.src = track.dataset.previewUrl
+        this.currentlyPlayingTrackAlbumUriTarget.href = track.dataset.albumUri
+        this.currentlyPlayingTrackAlbumImageTarget.src = track.dataset.albumImage
+        this.currentlyPlayingTrackTarget.href = track.dataset.trackUri
+        this.currentlyPlayingTrackTarget.innerText = track.querySelector("[data-name]").dataset.name
+
+        const artists = track.querySelectorAll("[data-artist]")
+        this.currentlyPlayingTrackArtistsTarget.innerHTML = ""
+        artists.forEach(artist => {
+            const artistElementCopy = artist.cloneNode(true)
+            const innerArtistSpan = artistElementCopy.querySelector(".artist-name")
+
+            innerArtistSpan.outerHTML = `<a href="${artist.dataset.artistUri}" class="${innerArtistSpan.classList.value} hover:underline">${artist.dataset.artist}</a>`
+
+            this.currentlyPlayingTrackArtistsTarget.innerHTML += artistElementCopy.outerHTML
+        })
+
+        this.currentlyPlayingSpotifyPlaylistUriTarget.href = track.dataset.playlistUri
+    }
+
+    /**
+     * @param {Event} event
+     */
     handleSpacebar(event) {
         if (event.code !== "Space") return
 
@@ -70,28 +80,13 @@ export default class extends Controller {
         }
     }
 
+    /**
+     * @param {Event} event
+     */
     play(event) {
         if (event) {
             const track = event.currentTarget
-
-            this.audioTarget.src = track.dataset.previewUrl
-            this.currentlyPlayingTrackAlbumUriTarget.href = track.dataset.albumUri
-            this.currentlyPlayingTrackAlbumImageTarget.src = track.dataset.albumImage
-            this.currentlyPlayingTrackTarget.href = track.dataset.trackUri
-            this.currentlyPlayingTrackTarget.innerText = track.querySelector("[data-name]").dataset.name
-
-            const artists = track.querySelectorAll("[data-artist]")
-            this.currentlyPlayingTrackArtistsTarget.innerHTML = ""
-            artists.forEach(artist => {
-                const artistElementCopy = artist.cloneNode(true)
-                const innerArtistSpan = artistElementCopy.querySelector(".artist-name")
-
-                innerArtistSpan.outerHTML = `<a href="${artist.dataset.artistUri}" class="${innerArtistSpan.classList.value} hover:underline">${artist.dataset.artist}</a>`
-
-                this.currentlyPlayingTrackArtistsTarget.innerHTML += artistElementCopy.outerHTML
-            })
-
-            this.currentlyPlayingSpotifyPlaylistUriTarget.href = track.dataset.playlistUri
+            this.setState(track)
         }
 
         this.audioTarget.play()
