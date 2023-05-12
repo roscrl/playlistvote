@@ -2,6 +2,7 @@ package spotify
 
 import (
 	"fmt"
+	"golang.org/x/exp/slices"
 	"image"
 	"net/http"
 	"sort"
@@ -46,6 +47,26 @@ type Playlist struct {
 	URI string `json:"uri"`
 }
 
+func (p *Playlist) valid() error {
+	if len(p.Tracks.Items) == 0 {
+		return PlaylistEmptyErr
+	}
+
+	if len(p.Images) == 0 {
+		return PlaylistNoImageErr
+	}
+
+	if len(p.Tracks.Items) < 4 {
+		return PlaylistTooSmallTracksErr
+	}
+
+	if !p.HasFourOrMoreArtists() {
+		return PlaylistTooSmallArtistsErr
+	}
+
+	return nil
+}
+
 func (p *Playlist) LargestImageURL() string {
 	// Assuming Spotify API Images JSON field ordering does not change,
 	// The first image is the largest from the Spotify API which is either a large 640x640 2x2 mosaic image or a user uploaded image
@@ -61,6 +82,22 @@ func (p *Playlist) MiddleOrLargestImageURL() string {
 
 func (p *Playlist) SmallestImageURL() string {
 	return p.Images[len(p.Images)-1].URL
+}
+
+func (p *Playlist) HasFourOrMoreArtists() bool {
+	var uniqueArtists []string
+
+	for _, item := range p.Tracks.Items {
+		for _, artist := range item.Track.Artists {
+			if !slices.Contains(uniqueArtists, artist.Name) {
+				uniqueArtists = append(uniqueArtists, artist.Name)
+				if len(uniqueArtists) >= 4 {
+					return true
+				}
+			}
+		}
+	}
+	return false
 }
 
 func (p *Playlist) MostCommonFourArtists() []string {
@@ -86,7 +123,6 @@ func (p *Playlist) MostCommonFourArtists() []string {
 	}
 	sort.Slice(sortedArtistsSet, sortByValueDesc)
 
-	// TODO this panics for 4GZ6uRcHKj0bSMt7GfL6RA https://open.spotify.com/playlist/4GZ6uRcHKj0bSMt7GfL6RA
 	topCount := 4
 	mostCommonArtists := make([]string, topCount)
 	for i := 0; i < topCount; i++ {

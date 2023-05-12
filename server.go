@@ -32,7 +32,7 @@ func NewServer(cfg *config.Server) *Server {
 	srv := &Server{}
 
 	srv.cfg = cfg
-	srv.log = slog.New(slog.NewTextHandler(os.Stdout))
+	srv.log = slog.New(slog.NewTextHandler(os.Stdout, nil))
 	srv.db = db.New(cfg.SqliteDBPath)
 	srv.qry = sqlc.New(srv.db)
 	srv.views = views.New(srv.cfg.Env)

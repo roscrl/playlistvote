@@ -8,7 +8,7 @@ require (
 	github.com/matryer/is v1.4.0
 	github.com/mattn/go-sqlite3 v1.14.16
 	github.com/newrelic/go-agent/v3 v3.20.4
-	golang.org/x/exp v0.0.0-20230321023759-10a507213a29
+	golang.org/x/exp v0.0.0-20230510235704-dd950f8aeaea
 	golang.org/x/sync v0.0.0-20190423024810-112230192c58
 )
 

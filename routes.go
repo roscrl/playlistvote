@@ -62,7 +62,7 @@ func (s *Server) routes() http.Handler {
 		http.NotFound(w, r)
 	})
 
-	return requestDurationMiddleware(routerEntry)
+	return recoveryMiddleware(requestDurationMiddleware(routerEntry))
 }
 
 func getField(r *http.Request, index int) string {

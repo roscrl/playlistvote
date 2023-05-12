@@ -32,11 +32,12 @@ type Spotify struct {
 }
 
 var (
-	PlaylistEmptyErr    = errors.New("playlist is empty")
-	PlaylistTooSmallErr = errors.New("playlist has too little tracks")
-	PlaylistNoImageErr  = errors.New("playlist has no image")
-	PlaylistNotFound    = errors.New("playlist not found")
-	TooManyRequestsErr  = errors.New("too many requests")
+	PlaylistEmptyErr           = errors.New("playlist is empty")
+	PlaylistTooSmallTracksErr  = errors.New("playlist has too little tracks")
+	PlaylistTooSmallArtistsErr = errors.New("playlist has too little artists")
+	PlaylistNoImageErr         = errors.New("playlist has no image")
+	PlaylistNotFound           = errors.New("playlist not found")
+	TooManyRequestsErr         = errors.New("too many requests")
 )
 
 func (s *Spotify) InitTokenLifecycle() {
@@ -94,16 +95,8 @@ func (s *Spotify) Playlist(ctx context.Context, playlistId string) (*Playlist, e
 		return nil, err
 	}
 
-	if len(playlist.Tracks.Items) == 0 {
-		return nil, PlaylistEmptyErr
-	}
-
-	if len(playlist.Images) == 0 {
-		return nil, PlaylistNoImageErr
-	}
-
-	if len(playlist.Tracks.Items) < 4 {
-		return nil, PlaylistTooSmallErr
+	if err := playlist.valid(); err != nil {
+		return nil, err
 	}
 
 	return &playlist, nil
@@ -148,16 +141,8 @@ func (s *Spotify) PlaylistMetadata(ctx context.Context, playlistId string) (*Pla
 		return nil, err
 	}
 
-	if len(playlist.Tracks.Items) == 0 {
-		return nil, PlaylistEmptyErr
-	}
-
-	if len(playlist.Images) == 0 {
-		return nil, PlaylistNoImageErr
-	}
-
-	if len(playlist.Tracks.Items) < 4 {
-		return nil, PlaylistTooSmallErr
+	if err := playlist.valid(); err != nil {
+		return nil, err
 	}
 
 	return &playlist, nil

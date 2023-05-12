@@ -144,7 +144,7 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 				s.views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 					"playlist_id":    playlistID,
 					"playlist_input": playlistLinkOrID,
-					"error":          "Oops, something went wrong handling your playlist, try again later!",
+					"error":          "Oops, something went wrong handling your playlist, try again later! Make sure you have at least 4 tracks with 4 different artists in your playlist!",
 				})
 				return
 			}
