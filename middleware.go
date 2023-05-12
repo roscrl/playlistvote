@@ -1,7 +1,7 @@
 package main
 
 import (
-	"errors"
+	"fmt"
 	"log"
 	"net/http"
 	"strings"
@@ -31,15 +31,15 @@ func recoveryMiddleware(next http.Handler) http.Handler {
 				var err error
 				switch t := recovery.(type) {
 				case string:
-					err = errors.New(t)
+					err = fmt.Errorf(t)
 				case error:
 					err = t
 				default:
-					err = errors.New("unknown error")
+					err = fmt.Errorf("unknown panic: %v", t)
 				}
 				log.Printf("panic: %s", err)
 				noticeError(r, err)
-				http.Error(w, err.Error(), http.StatusInternalServerError)
+				http.Error(w, "internal server error", http.StatusInternalServerError)
 			}
 		}()
 		next.ServeHTTP(w, r)

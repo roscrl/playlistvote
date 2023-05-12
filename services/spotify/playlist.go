@@ -2,11 +2,12 @@ package spotify
 
 import (
 	"fmt"
-	"golang.org/x/exp/slices"
 	"image"
 	"net/http"
 	"sort"
 	"strings"
+
+	"golang.org/x/exp/slices"
 
 	"app/services/spotify/sampler"
 )
