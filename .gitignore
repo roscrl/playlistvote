@@ -6,12 +6,7 @@ tmp/
 
 config/.dev
 config/.prod
+config/private.pem
 
-# db/playlistvote.db
 db/playlistvote.db-shm
 db/playlistvote.db-wal
-
-browsertests/node_modules/
-browsertests/test-results/
-browsertests/playwright-report/
-browsertests/playwright/.cache/

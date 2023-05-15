@@ -11,6 +11,10 @@ import (
 	"strings"
 )
 
+const (
+	DevPlaywrightConfigPath = "config/.dev.playwright.mock"
+)
+
 //go:embed .prod
 var prodConfigFile embed.FS
 

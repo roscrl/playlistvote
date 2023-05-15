@@ -40,7 +40,7 @@ var (
 	TooManyRequestsErr         = errors.New("too many requests")
 )
 
-func (s *Spotify) InitTokenLifecycle() {
+func (s *Spotify) StartTokenLifecycle() {
 	s.initTokenOnce.Do(func() {
 		s.token = token{
 			ClientID:      s.ClientID,
@@ -54,6 +54,10 @@ func (s *Spotify) InitTokenLifecycle() {
 
 		<-s.token.firstInitDone
 	})
+}
+
+func (s *Spotify) StopTokenLifecycle() {
+	s.token.stopRefreshLoop()
 }
 
 func (s *Spotify) Playlist(ctx context.Context, playlistId string) (*Playlist, error) {

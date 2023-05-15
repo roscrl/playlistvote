@@ -57,7 +57,7 @@ func NewServer() *SpotifyServer {
 				log.Fatal(err)
 			}
 
-			w.Write(randomPlaylistBytes)
+			_, _ = w.Write(randomPlaylistBytes)
 			return
 		}
 
@@ -69,7 +69,7 @@ func NewServer() *SpotifyServer {
 			if err != nil {
 				log.Fatal(err)
 			}
-			w.Write(f)
+			_, _ = w.Write(f)
 		case "/cover":
 			w.WriteHeader(http.StatusOK)
 
@@ -86,10 +86,10 @@ func NewServer() *SpotifyServer {
 				log.Fatal(err)
 			}
 
-			w.Write(f)
+			_, _ = w.Write(f)
 		default:
 			w.WriteHeader(http.StatusNotFound)
-			w.Write([]byte(`{"error": "Not Found"}`))
+			_, _ = w.Write([]byte(`{"error": "Not Found"}`))
 		}
 	})
 
@@ -112,7 +112,7 @@ func GenerateMockPlaylistsFile(spotifyClientID string, spotifyClientSecret strin
 
 		Now: time.Now,
 	}
-	spotifyClient.InitTokenLifecycle()
+	spotifyClient.StartTokenLifecycle()
 
 	idsFile, err := os.ReadFile(IdsPath)
 	if err != nil {

@@ -29,7 +29,7 @@ func mockedServices(srv *Server) {
 
 		Now: time.Now,
 	}
-	srv.spotify.InitTokenLifecycle()
+	srv.spotify.StartTokenLifecycle()
 }
 
 func realServices(srv *Server) {
@@ -42,5 +42,5 @@ func realServices(srv *Server) {
 
 		Now: time.Now,
 	}
-	srv.spotify.InitTokenLifecycle()
+	srv.spotify.StartTokenLifecycle()
 }

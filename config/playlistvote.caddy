@@ -1,4 +1,5 @@
 playlistvote.com {
+    tls /etc/ssl/certs/playlistvote.pem /etc/ssl/private/playlistvote.pem
     reverse_proxy localhost:3000
     encode gzip
 

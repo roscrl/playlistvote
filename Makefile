@@ -2,17 +2,17 @@
 ##  Local Development  ##
 #########################
 
-run:
-	go run . --config ./config/.dev
-
 run-mock:
 	go run . --config ./config/.dev.mock
 
-hotreload:
-	air -c ./config/.air.toml & make tailwind-watch
-
 hotreload-mock:
 	air -c ./config/.air.mock.toml & make tailwind-watch
+
+run:
+	go run . --config ./config/.dev
+
+hotreload:
+	air -c ./config/.air.toml & make tailwind-watch
 
 tailwind-watch:
 	./bin/tailwindcss -i ./views/assets/main.css -o ./views/assets/dist/main.css --watch --config ./config/tailwind.config.js
@@ -27,7 +27,7 @@ generate-mock-playlists:
 	go run scripts/generatemockplaylists.go
 
 lint:
-	golangci-lint run .
+	golangci-lint run --config config/.golangci.yml
 
 format:
 	gofumpt -l -w .
@@ -52,10 +52,9 @@ build-quick: test
 	go build -o bin/app .
 
 #########################
-##### Remote server #####
+#####      VPS      #####
 #########################
 
-VPS_IP=5.161.84.223
 USER=root
 
 APP_NAME=playlistvote
@@ -67,6 +66,8 @@ SERVICE_NAME=$(APP_NAME).service
 DB_NAME=$(APP_NAME)
 LOCAL_SQLITE_DB_PATH=./db/$(DB_NAME).db
 
+CLOUDFLARE_ZONE_ID=3849d0e239cfff8040f0dceaf0071e4a
+
 ssh:
 	ssh $(USER)@$(VPS_IP)
 
@@ -74,14 +75,15 @@ vps-new:
 	ssh $(USER)@$(VPS_IP) "mkdir -p $(APP_FOLDER)"
 	make vps-dependencies
 	make caddy-root-config
-	make caddy-reload
+	make caddy-cert
 	make caddy-service-reload
+	make caddy-reload
 	make db-copy-over
 	make app-service-reload
 	make deploy
 
 vps-dependencies:
-	ssh $(USER)@$(VPS_IP) "sudo apt-get update && sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list && sudo apt update && sudo apt install caddy"
+	ssh $(USER)@$(VPS_IP) "sudo apt-get update && sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg && curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list && sudo apt -y update && sudo apt -y install caddy && sudo apt -y install lnav"
 
 caddy-root-config:
 	scp -r ./config/Caddyfile $(USER)@$(VPS_IP):/etc/caddy/Caddyfile
@@ -90,6 +92,11 @@ caddy-service-reload:
 	scp -r ./config/caddy.service $(USER)@$(VPS_IP):/lib/systemd/system/caddy.service
 	ssh $(USER)@$(VPS_IP) "systemctl daemon-reload"
 	ssh $(USER)@$(VPS_IP) "systemctl restart caddy"
+
+caddy-cert:
+	scp -r ./config/public.pem $(USER)@$(VPS_IP):/etc/ssl/certs/$(APP_NAME).pem
+	ssh $(USER)@$(VPS_IP) "mkdir -p /etc/ssl/private"
+	scp -r ./config/private.pem $(USER)@$(VPS_IP):/etc/ssl/private/$(APP_NAME).pem
 
 caddy-reload:
 	scp -r ./config/$(APP_CADDY_PATH) $(USER)@$(VPS_IP):/etc/caddy/$(APP_CADDY_PATH)
@@ -125,13 +132,16 @@ deploy: upload
 	make purge-cache-prod
 
 make purge-cache-prod:
-	curl -X POST https://api.cloudflare.com/client/v4/zones/3849d0e239cfff8040f0dceaf0071e4a/purge_cache \
+	curl -X POST https://api.cloudflare.com/client/v4/zones/$(CLOUDFLARE_ZONE_ID)/purge_cache \
 		-H "X-Auth-Email: $(CLOUDFLARE_EMAIL)" \
 		-H "X-Auth-Key: $(CLOUDFLARE_KEY)" \
 		-H "Content-Type: application/json" \
 		--data '{"purge_everything":true}'
 
 logs-prod:
+	echo "make ssh then run 'journalctl -u $(SERVICE_NAME) | lnav'"
+
+logs-prod-tail:
 	ssh $(USER)@$(VPS_IP) "journalctl -u $(SERVICE_NAME) -f"
 
 logs-caddy-prod:
@@ -146,17 +156,19 @@ tools:
 	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.52.2
 	go install mvdan.cc/gofumpt@v0.5.0
 	go install github.com/cosmtrek/air@v1.43.0
+	go install github.com/playwright-community/playwright-go/cmd/playwright
+	playwright install --with-deps
 	mkdir -p ./bin/
 	make tooling-esbuild
 	make tooling-tailwind
-	echo "Remember to install Zig for the built-in C cross-compiler to Linux (or any C compiler for the 'make build' target)"
+	echo "Remember to install Zig for the built-in C cross-compiler to Linux (or any C compiler for the 'make build' targets)"
 
 tooling-esbuild:
 	curl -fsSL https://esbuild.github.io/dl/v0.17.17 | sh
 	mv esbuild ./bin/
 
+# MacOS ARM specific
 tooling-tailwind:
-	# MacOS ARM specific
 	curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/download/v3.3.1/tailwindcss-macos-arm64
 	chmod +x tailwindcss-macos-arm64
 	mv tailwindcss-macos-arm64 tailwindcss

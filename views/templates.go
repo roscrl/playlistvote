@@ -100,7 +100,7 @@ func (v *Views) Render(w io.Writer, name string, data any) {
 	err := tmpl.ExecuteTemplate(w, name, data)
 	if err != nil {
 		log.Printf("failed to render template %s: %v, defined templates %v", name, err, tmpl.DefinedTemplates())
-		tmpl.ExecuteTemplate(w, "error.tmpl", err)
+		_ = tmpl.ExecuteTemplate(w, "error.tmpl", err)
 	}
 }
 

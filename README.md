@@ -38,9 +38,7 @@ Server side rendered Go templates with `html/template`
 
 `fsnotify` for watching Go template changes in dev mode without recompiling
 
-#### Browser Tests TODO
-
-`node/npm` (requires [.node](browsertests/.node-version))
+#### Browser Tests
 
 `make test-browser`
 
@@ -48,17 +46,33 @@ Server side rendered Go templates with `html/template`
 
 ## Deploy
 
-The application is deployed on a [VPS](https://specbranch.com/posts/one-big-server/)
+This application is deployed on a [VPS](https://specbranch.com/posts/one-big-server/)
 
 #### VPS Setup
 
-- Set `VPS_IP` variable in the Makefile
+- Ensure `config/private.pem` exists (cloudflare origin certificate private key)
+- Ensure `config/.prod` exists (app config)
+- Set `VPS_IP` environment variable
+- Set `CLOUDFLARE_EMAIL` environment variable
+- Set `CLOUDFLARE_KEY` environment variable
 - Run `make vps-new`
 
 ### Cloudflare
 
-- Set SSL Full
+- Set SSL `Full (strict)`
 - Add an A record in the DNS settings pointing to VPS IP
+- Create Origin Certificate and place in `config/public.pem` & `config/private.pem`
+- Enable Rate Limiting
+  - `(http.request.uri.path contains "/")` 50 requests per 10s
+- Enable [Bot Fight Mode](https://developers.cloudflare.com/bots/get-started/free/)
+- Enable Page Rules Caching to respect `Cache-Control` headers returned
+    - playlistvote.com/* Cache Level: Cache Everything
+- Always Use HTTPS, Enable Brotli
+
+### Hetzner
+
+- Set firewall to allow only [Cloudflare IPs](https://www.cloudflare.com/en-gb/ips/) on port 443
+- Set firewall to allow only personal IP on port 22
 
 ## Miscellaneous
 

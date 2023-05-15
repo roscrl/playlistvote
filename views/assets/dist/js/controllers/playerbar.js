@@ -23,7 +23,7 @@ export default class extends Controller {
             this.element.classList.remove("hidden")
         }
 
-        if (this.audioIsPlaying == undefined) this.audioIsPlaying = false
+        if (this.audioIsPlaying === undefined) this.audioIsPlaying = false
 
         this.boundHandleSpacebar = this.handleSpacebar.bind(this)
         document.addEventListener("keydown", this.boundHandleSpacebar)

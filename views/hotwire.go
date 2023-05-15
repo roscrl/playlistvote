@@ -10,8 +10,5 @@ const (
 )
 
 func TurboStreamRequest(req *http.Request) bool {
-	if strings.Contains(req.Header.Get("Accept"), TurboStreamMIME) {
-		return true
-	}
-	return false
+	return strings.Contains(req.Header.Get("Accept"), TurboStreamMIME)
 }

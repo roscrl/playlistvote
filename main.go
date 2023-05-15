@@ -2,7 +2,9 @@ package main
 
 import (
 	"flag"
-	"log"
+	"os"
+	"os/signal"
+	"syscall"
 
 	"golang.org/x/exp/slog"
 
@@ -24,17 +26,12 @@ func main() {
 	srv := NewServer(cfg)
 	slog.SetDefault(srv.log)
 
-	log.Printf("running in %v", cfg.Env)
-	log.Printf("using db %v", cfg.SqliteDBPath)
+	stop := make(chan os.Signal, 1)
+	signal.Notify(stop, syscall.SIGINT, syscall.SIGTERM)
 
-	err := srv.Start()
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer func() {
-		err = srv.Stop()
-		if err != nil {
-			log.Fatal(err)
-		}
-	}()
+	srv.Start()
+
+	<-stop
+
+	srv.Stop()
 }
