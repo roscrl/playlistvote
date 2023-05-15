@@ -38,11 +38,7 @@ Server side rendered Go templates with `html/template`
 
 `fsnotify` for watching Go template changes in dev mode without recompiling
 
-#### Browser Tests
-
-`make test-browser`
-
-`playwright` for browser automation
+`playwright` for browser tests
 
 ## Deploy
 
