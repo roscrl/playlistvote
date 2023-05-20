@@ -53,15 +53,14 @@
             <div class="grid w-full grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-[1px] lg:w-[85%] xl:w-[80%]">
                 {{ $playlistURI := .playlist.URI }}
                 {{ range .playlist.Tracks.Items }}
-                    <div class="relative">
+                    <div class="relative group">
                         <button {{if not .Track.PreviewURL}}disabled{{end}} class="w-full flex justify-between z-0 relative
                             p-1 px-3 pr-[54px] lg:px-1 lg:pr-[54px]
                             rounded-sm lg:rounded-[6px]
                             lg:self-start
                             text-left items-center
-
                             {{if .Track.PreviewURL}}
-                                active:bg-gray-100 xl:active:bg-gray-200 xl:hover:bg-gray-100
+                                xl:group-hover:bg-gray-50 active:bg-gray-100 xl:active:!bg-gray-200 xl:hover:!bg-gray-100
                             {{else}}
                                 opacity-50
                             {{end}}
@@ -90,7 +89,7 @@
                         </button>
 
                         <div data-controller="modal">
-                            <button data-action="modal#open" class="absolute top-1/2 h-[48px] transform -translate-y-1/2 px-[16px] sm:px-[8px] md:px[10px] xl:px-[10px] right-0 z-20 rounded-md active:bg-gray-200 xl:hover:bg-gray-100">
+                            <button data-action="modal#open" class="absolute top-1/2 h-[48px] transform -translate-y-1/2 px-[16px] sm:px-[8px] md:px[10px] xl:px-[10px] right-0 z-20 rounded-r-md xl:group-hover:bg-gray-50 active:bg-gray-200 xl:active:!bg-gray-200 xl:hover:!bg-gray-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="12" cy="12" r="1"></circle>
                                     <circle cx="19" cy="12" r="1"></circle>
