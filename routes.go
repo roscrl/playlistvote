@@ -1,10 +1,8 @@
 package main
 
 import (
-	"context"
 	"net/http"
 	"regexp"
-	"strings"
 )
 
 type route struct {
@@ -14,13 +12,26 @@ type route struct {
 }
 
 const (
-	AssetBaseRoute      = "/assets"
-	AssetRoute          = "/assets/(.*)"
+	AssetBaseRoute = "/assets"
+	AssetRoute     = "/assets/(.*)"
+
 	HomeRoute           = "/"
 	PlaylistBaseRoute   = "/playlist"
 	PlaylistCreateRoute = "/playlist"
 	PlaylistViewRoute   = "/playlist/(.*)"
 	PlaylistUpvoteRoute = "/playlist/(.*)/upvote"
+
+	ProfileBaseRoute      = "/debug/pprof"
+	ProfileAllocsRoute    = "/debug/allocs"
+	ProfileBlockRoute     = "/debug/block"
+	ProfileCmdlineRoute   = "/debug/cmdline"
+	ProfileGoroutineRoute = "/debug/goroutine"
+	ProfileHeapRoute      = "/debug/heap"
+	ProfileMutexRoute     = "/debug/mutex"
+	ProfileProfileRoute   = "/debug/profile"
+	ProfileThreadcreate   = "/debug/threadcreate"
+	ProfileSymbolRoute    = "/debug/symbol"
+	ProfileTraceRoute     = "/debug/trace"
 )
 
 type ctxKey struct{}
@@ -33,35 +44,33 @@ func (s *Server) routes() http.Handler {
 	routes := []route{
 		newRoute("GET", AssetRoute, http.StripPrefix(AssetBaseRoute+"/", s.handleAssets()).ServeHTTP),
 		newRoute("GET", HomeRoute, s.handleHome()),
+
 		newRoute("POST", PlaylistCreateRoute, s.handlePostPlaylist()),
 		newRoute("GET", PlaylistViewRoute, s.handleGetPlaylist()),
 		newRoute("POST", PlaylistUpvoteRoute, s.handleUpVote()),
 	}
 
+	pprofRoutes := map[string]http.HandlerFunc{
+		ProfileBaseRoute:      s.handleIndex(),
+		ProfileAllocsRoute:    s.handleAllocs(),
+		ProfileBlockRoute:     s.handleBlock(),
+		ProfileCmdlineRoute:   s.handleCmdline(),
+		ProfileGoroutineRoute: s.handleGoroutine(),
+		ProfileHeapRoute:      s.handleHeap(),
+		ProfileMutexRoute:     s.handleMutex(),
+		ProfileProfileRoute:   s.handleProfile(),
+		ProfileThreadcreate:   s.handleThreadcreate(),
+		ProfileSymbolRoute:    s.handleSymbol(),
+		ProfileTraceRoute:     s.handleTrace(),
+	}
+
+	for path, handler := range pprofRoutes {
+		routes = append(routes, newRoute("GET", path, basicAuthAdminRouteMiddleware(handler, s.cfg.BasicDebugAuthUsername, s.cfg.BasicDebugAuthPassword)))
+	}
+
 	instrumentRoutes(routes, s.apm)
 
-	routerEntry := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		var allow []string
-		for _, route := range routes {
-			matches := route.regex.FindStringSubmatch(r.URL.Path)
-			if len(matches) > 0 {
-				if r.Method != route.method {
-					allow = append(allow, route.method)
-					continue
-				}
-				ctx := context.WithValue(r.Context(), ctxKey{}, matches[1:])
-				route.handler(w, r.WithContext(ctx))
-				return
-			}
-		}
-		if len(allow) > 0 {
-			w.Header().Set("Allow", strings.Join(allow, ", "))
-			http.Error(w, "405 method not allowed", http.StatusMethodNotAllowed)
-			return
-		}
-		http.NotFound(w, r)
-	})
-
+	routerEntry := s.handleRoutes(routes)
 	return recoveryMiddleware(requestDurationMiddleware(routerEntry))
 }
 

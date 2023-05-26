@@ -19,13 +19,15 @@ const (
 var prodConfigFile embed.FS
 
 type Server struct {
-	Env                 Environment
-	Port                string
-	SqliteDBPath        string
-	Mocking             bool
-	SpotifyClientID     string
-	SpotifyClientSecret string
-	NewRelicLicense     string
+	Env                    Environment
+	Port                   string
+	SqliteDBPath           string
+	Mocking                bool
+	SpotifyClientID        string
+	SpotifyClientSecret    string
+	NewRelicLicense        string
+	BasicDebugAuthUsername string
+	BasicDebugAuthPassword string
 }
 
 func ProdEmbeddedConfig() *Server {
@@ -112,6 +114,10 @@ func LoadConfig(fsys fs.FS, filePath string) (*Server, error) {
 			config.SpotifyClientSecret = value
 		case "NEW_RELIC_LICENSE":
 			config.NewRelicLicense = value
+		case "BASIC_DEBUG_AUTH_USERNAME":
+			config.BasicDebugAuthUsername = value
+		case "BASIC_DEBUG_AUTH_PASSWORD":
+			config.BasicDebugAuthPassword = value
 		default:
 			return nil, fmt.Errorf("unknown key in config dotfile file: %s", key)
 		}
