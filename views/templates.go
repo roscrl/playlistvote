@@ -12,10 +12,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"app/services/spotify"
-
 	"app/config"
-
+	"app/domain/spotify"
 	"github.com/fsnotify/fsnotify"
 )
 
@@ -38,18 +36,21 @@ type Views struct {
 
 func New(env config.Environment) *Views {
 	funcMap := template.FuncMap{
-		"formatNumberInK": func(n int64) string {
-			if n >= 1000 {
-				quotient := n / 1000
+		"formatNumberInK": func(num int64) string {
+			const K = 1000
+			if num >= K {
+				quotient := num / K
+
 				return fmt.Sprintf("%dk", quotient)
 			}
-			return fmt.Sprintf("%d", n)
+
+			return fmt.Sprintf("%d", num)
 		},
 		"safeURL": func(s string) template.URL {
-			return template.URL(s)
+			return template.URL(s) //nolint:gosec
 		},
 		"rawHTML": func(s string) template.HTML {
-			return template.HTML(s)
+			return template.HTML(s) //nolint:gosec
 		},
 		"stripSpotifyURI": func(s string) string {
 			return strings.TrimPrefix(s, spotify.URIPlaylistPrefix)
@@ -58,10 +59,7 @@ func New(env config.Environment) *Views {
 	views := &Views{env: env, funcMap: funcMap}
 
 	if env == config.DEV {
-		templates, err := findAndParseTemplates(os.DirFS(TemplatesPath), funcMap)
-		if err != nil {
-			log.Fatal(err)
-		}
+		templates := findAndParseTemplates(os.DirFS(TemplatesPath), funcMap)
 
 		views.templates = templates
 		watchDevTemplates(views)
@@ -71,15 +69,13 @@ func New(env config.Environment) *Views {
 			log.Fatal(err)
 		}
 
-		templates, err := findAndParseTemplates(tmplFS, funcMap)
-		if err != nil {
-			log.Fatal(err)
-		}
+		templates := findAndParseTemplates(tmplFS, funcMap)
 
 		views.templates = templates
 	}
 
 	log.Println(views.templates.DefinedTemplates())
+
 	return views
 }
 
@@ -112,9 +108,10 @@ func (v *Views) RenderError(w io.Writer, msg string) {
 	}
 }
 
-func findAndParseTemplates(FS fs.FS, funcMap template.FuncMap) (*template.Template, error) {
+func findAndParseTemplates(filesys fs.FS, funcMap template.FuncMap) *template.Template {
 	rootTemplate := template.New("")
-	root, err := FS.Open(".")
+
+	root, err := filesys.Open(".")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -132,7 +129,7 @@ func findAndParseTemplates(FS fs.FS, funcMap template.FuncMap) (*template.Templa
 
 			strippedTemplateDirTemplatePath := strings.TrimPrefix(path, TemplateDirSlash)
 
-			templateContent, err := fs.ReadFile(FS, strippedTemplateDirTemplatePath)
+			templateContent, err := fs.ReadFile(filesys, strippedTemplateDirTemplatePath)
 			if err != nil {
 				return err
 			}
@@ -150,7 +147,7 @@ func findAndParseTemplates(FS fs.FS, funcMap template.FuncMap) (*template.Templa
 		log.Fatal(err)
 	}
 
-	return rootTemplate, nil
+	return rootTemplate
 }
 
 func watchDevTemplates(views *Views) {
@@ -173,6 +170,7 @@ func watchDevTemplates(views *Views) {
 			if info.IsDir() {
 				return watcher.Add(subpath)
 			}
+
 			return nil
 		})
 	}
@@ -183,6 +181,7 @@ func watchDevTemplates(views *Views) {
 	}
 
 	log.Println("watching templates")
+
 	go func() {
 		for {
 			select {
@@ -199,17 +198,18 @@ func watchDevTemplates(views *Views) {
 					if !strings.HasSuffix(event.Name, ".tmpl") {
 						continue
 					}
+
 					log.Printf("%s changed %s, reloading~", event.Name, event.Op)
-					templates, err := findAndParseTemplates(os.DirFS(TemplatesPath), views.funcMap)
-					if err != nil {
-						log.Fatal(err)
-					}
+
+					templates := findAndParseTemplates(os.DirFS(TemplatesPath), views.funcMap)
+
 					views.templates = templates // not thread safe but only used for dev
 				}
 			case err, ok := <-watcher.Errors:
 				if !ok {
 					return
 				}
+
 				log.Fatal(err)
 			}
 		}

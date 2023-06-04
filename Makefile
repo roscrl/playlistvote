@@ -23,17 +23,21 @@ generate:
 	./bin/esbuild views/assets/dist/js/vendor/turbo-7.3.0/dist/turbo.es2017-esm.js --minify --outfile=views/assets/dist/js/vendor/turbo-7.3.0/dist/turbo.es2017-esm.min.js
 	cd ./db && sqlc generate
 
-generate-mock-playlists:
-	go run scripts/generatemockplaylists.go
-
 lint:
 	golangci-lint run --config config/.golangci.yml
 
 format:
-	gofumpt -l -w .
+	gofumpt -l -w . && gci write -s standard -s default ./..
 
 test:
 	go test -v ./...
+
+#########################
+#####    Scripts    #####
+#########################
+
+generate-mock-playlists:
+	go run scripts/generatemockplaylists.go
 
 #########################
 #####    Builds     #####
@@ -131,7 +135,7 @@ deploy: upload
 	ssh $(USER)@$(VPS_IP) "systemctl restart $(SERVICE_NAME)"
 	make purge-cache-prod
 
-make purge-cache-prod:
+purge-cache-prod:
 	curl -X POST https://api.cloudflare.com/client/v4/zones/$(CLOUDFLARE_ZONE_ID)/purge_cache \
 		-H "X-Auth-Email: $(CLOUDFLARE_EMAIL)" \
 		-H "X-Auth-Key: $(CLOUDFLARE_KEY)" \
@@ -152,9 +156,10 @@ logs-caddy-prod:
 #########################
 
 tools:
-	go install github.com/kyleconroy/sqlc/cmd/sqlc@v1.17.2
-	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.52.2
+	go install github.com/kyleconroy/sqlc/cmd/sqlc@v1.18.0
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.53.2
 	go install mvdan.cc/gofumpt@v0.5.0
+	go install github.com/daixiang0/gci@v0.10.1
 	go install github.com/cosmtrek/air@v1.43.0
 	go install github.com/playwright-community/playwright-go/cmd/playwright
 	playwright install --with-deps

@@ -1,11 +1,11 @@
 package main
 
 import (
+	"context"
 	"time"
 
-	spotifymock "app/services/spotify/mock"
-
-	"app/services/spotify"
+	"app/domain/spotify"
+	spotifymock "app/domain/spotify/mock"
 )
 
 func setupServices(srv *Server) {
@@ -17,23 +17,26 @@ func setupServices(srv *Server) {
 }
 
 func mockedServices(srv *Server) {
-	srv.log.Info("mocking services")
-	ms := spotifymock.NewServer()
+	srv.log.Info("mocking domain")
+
+	mockServer := spotifymock.NewServer()
 
 	srv.spotify = &spotify.Spotify{
+		Client:       srv.client,
 		ClientID:     srv.cfg.SpotifyClientID,
 		ClientSecret: srv.cfg.SpotifyClientSecret,
 
-		TokenEndpoint:    ms.TokenEndpoint,
-		PlaylistEndpoint: ms.PlaylistEndpoint,
+		TokenEndpoint:    mockServer.TokenEndpoint,
+		PlaylistEndpoint: mockServer.PlaylistEndpoint,
 
 		Now: time.Now,
 	}
-	srv.spotify.StartTokenLifecycle()
+	srv.spotify.StartTokenLifecycle(context.Background())
 }
 
 func realServices(srv *Server) {
 	srv.spotify = &spotify.Spotify{
+		Client:       srv.client,
 		ClientID:     srv.cfg.SpotifyClientID,
 		ClientSecret: srv.cfg.SpotifyClientSecret,
 
@@ -42,5 +45,5 @@ func realServices(srv *Server) {
 
 		Now: time.Now,
 	}
-	srv.spotify.StartTokenLifecycle()
+	srv.spotify.StartTokenLifecycle(context.Background())
 }

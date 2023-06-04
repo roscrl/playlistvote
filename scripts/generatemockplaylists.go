@@ -1,3 +1,4 @@
+//nolint:gosec
 package main
 
 import (
@@ -8,7 +9,7 @@ import (
 	"app/config"
 	"app/db"
 	"app/db/sqlc"
-	"app/services/spotify/mock"
+	"app/domain/spotify/mock"
 )
 
 func main() {

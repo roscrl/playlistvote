@@ -24,7 +24,7 @@ func (s *Server) handleAssets() http.HandlerFunc {
 		}
 
 		return http.FileServer(http.FS(subFS)).ServeHTTP
-	} else {
-		return http.FileServer(http.Dir("./" + assetsPath + "/")).ServeHTTP
 	}
+
+	return http.FileServer(http.Dir("./" + assetsPath + "/")).ServeHTTP
 }

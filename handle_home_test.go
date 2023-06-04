@@ -6,7 +6,6 @@ import (
 	"testing"
 
 	"app/config"
-
 	"github.com/matryer/is"
 )
 

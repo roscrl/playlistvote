@@ -1,22 +1,31 @@
 package spotify
 
 import (
+	"context"
 	"fmt"
 	"image"
 	"net/http"
 	"sort"
 	"strings"
 
+	"app/domain/spotify/sampler"
 	"golang.org/x/exp/slices"
-
-	"app/services/spotify/sampler"
 )
 
-type Playlist struct {
+const (
+	MinPlaylistTracks  = 4
+	MinPlaylistArtists = 4
+)
+
+type PlaylistMetadata struct {
 	Upvotes           int64
 	ColorsCommonFour  []string
 	ArtistsCommonFour []string
 	EagerLoadImage    bool
+}
+
+type Playlist struct {
+	PlaylistMetadata
 
 	Description  string `json:"description"`
 	ID           string `json:"id"`
@@ -50,19 +59,19 @@ type Playlist struct {
 
 func (p *Playlist) valid() error {
 	if len(p.Tracks.Items) == 0 {
-		return PlaylistEmptyErr
+		return ErrPlaylistEmpty
 	}
 
 	if len(p.Images) == 0 {
-		return PlaylistNoImageErr
+		return ErrPlaylistNoImage
 	}
 
-	if len(p.Tracks.Items) < 4 {
-		return PlaylistTooSmallTracksErr
+	if len(p.Tracks.Items) < MinPlaylistTracks {
+		return ErrPlaylistTooSmallTracks
 	}
 
-	if !p.HasFourOrMoreArtists() {
-		return PlaylistTooSmallArtistsErr
+	if !p.HasEnoughArtists() {
+		return ErrPlaylistTooSmallArtists
 	}
 
 	return nil
@@ -78,6 +87,7 @@ func (p *Playlist) MiddleOrLargestImageURL() string {
 	if len(p.Images) > 1 {
 		return p.Images[1].URL
 	}
+
 	return p.Images[0].URL
 }
 
@@ -85,24 +95,26 @@ func (p *Playlist) SmallestImageURL() string {
 	return p.Images[len(p.Images)-1].URL
 }
 
-func (p *Playlist) HasFourOrMoreArtists() bool {
+func (p *Playlist) HasEnoughArtists() bool {
 	var uniqueArtists []string
 
 	for _, item := range p.Tracks.Items {
 		for _, artist := range item.Track.Artists {
 			if !slices.Contains(uniqueArtists, artist.Name) {
 				uniqueArtists = append(uniqueArtists, artist.Name)
-				if len(uniqueArtists) >= 4 {
+				if len(uniqueArtists) >= MinPlaylistArtists {
 					return true
 				}
 			}
 		}
 	}
+
 	return false
 }
 
 func (p *Playlist) MostCommonFourArtists() []string {
 	artistCount := make(map[string]int)
+
 	for _, item := range p.Tracks.Items {
 		for _, artist := range item.Track.Artists {
 			artistCount[artist.Name]++
@@ -114,7 +126,7 @@ func (p *Playlist) MostCommonFourArtists() []string {
 		Value int
 	}
 
-	var sortedArtistsSet []kv
+	sortedArtistsSet := make([]kv, 0, len(artistCount))
 	for k, v := range artistCount {
 		sortedArtistsSet = append(sortedArtistsSet, kv{k, v})
 	}
@@ -125,6 +137,7 @@ func (p *Playlist) MostCommonFourArtists() []string {
 	sort.Slice(sortedArtistsSet, sortByValueDesc)
 
 	topCount := 4
+
 	mostCommonArtists := make([]string, topCount)
 	for i := 0; i < topCount; i++ {
 		mostCommonArtists[i] = sortedArtistsSet[i].Key
@@ -133,12 +146,17 @@ func (p *Playlist) MostCommonFourArtists() []string {
 	return mostCommonArtists
 }
 
-func (p *Playlist) ProminentFourCoverColors() ([]string, error) {
+func (p *Playlist) MostProminentFourCoverColors(ctx context.Context, client *http.Client) ([]string, error) {
 	smallestImageURL := p.SmallestImageURL()
 
-	resp, err := http.Get(smallestImageURL)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, smallestImageURL, nil)
 	if err != nil {
-		return nil, fmt.Errorf("error fetching image: %v", err)
+		return nil, err
+	}
+
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error fetching image: %w", err)
 	}
 	defer resp.Body.Close()
 
@@ -148,7 +166,7 @@ func (p *Playlist) ProminentFourCoverColors() ([]string, error) {
 
 	img, _, err := image.Decode(resp.Body)
 	if err != nil {
-		return nil, fmt.Errorf("error decoding image: %v", err)
+		return nil, fmt.Errorf("error decoding image: %w", err)
 	}
 
 	var fourHexColors []string

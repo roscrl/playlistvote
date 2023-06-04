@@ -1,19 +1,21 @@
+//nolint:gomnd
 package main
 
 import (
 	"database/sql"
+	"errors"
 	"fmt"
 	"log"
 	"net"
 	"net/http"
 	"os"
+	"time"
 
 	"app/config"
 	"app/db"
 	"app/db/sqlc"
-	"app/services/spotify"
+	"app/domain/spotify"
 	"app/views"
-
 	"github.com/newrelic/go-agent/v3/newrelic"
 	"golang.org/x/exp/slog"
 )
@@ -25,12 +27,15 @@ type Server struct {
 	qry   *sqlc.Queries
 	views *views.Views
 
+	client  *http.Client
 	spotify *spotify.Spotify
 
 	apm      *newrelic.Application
 	router   http.Handler
 	listener net.Listener
 	port     string
+
+	httpServer *http.Server
 }
 
 func NewServer(cfg *config.Server) *Server {
@@ -42,10 +47,21 @@ func NewServer(cfg *config.Server) *Server {
 	srv.qry = sqlc.New(srv.db)
 	srv.views = views.New(srv.cfg.Env)
 
+	srv.client = &http.Client{
+		Timeout: 10 * time.Second,
+	}
+
 	setupServices(srv)
 
 	srv.apm = newAPM(srv.cfg.Env.String(), srv.cfg.NewRelicLicense)
 	srv.router = srv.routes()
+
+	srv.httpServer = &http.Server{
+		Handler:      srv.router,
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		IdleTimeout:  15 * time.Second,
+	}
 
 	return srv
 }
@@ -58,13 +74,15 @@ func (s *Server) Start() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	s.listener = listener
 	s.port = fmt.Sprintf("%v", listener.Addr().(*net.TCPAddr).Port)
 
 	go func() {
-		err := http.Serve(listener, s.router)
+		err := s.httpServer.Serve(s.listener)
 		if err != nil {
-			if opErr, ok := err.(*net.OpError); ok && opErr.Op == "accept" {
+			var opErr *net.OpError
+			if errors.As(err, &opErr) && opErr.Op == "accept" {
 				log.Println("server shut down")
 			} else {
 				log.Fatal(err)

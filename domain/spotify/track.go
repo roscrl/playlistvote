@@ -3,7 +3,7 @@ package spotify
 import "strings"
 
 type Track struct {
-	Artists []ArtistWithUri `json:"artists"`
+	Artists []ArtistWithURI `json:"artists"`
 	Album   struct {
 		ExternalUrls struct {
 			Spotify string `json:"spotify"`
@@ -22,7 +22,7 @@ type Track struct {
 	URI        string `json:"uri"`
 }
 
-type ArtistWithUri struct {
+type ArtistWithURI struct {
 	Name string `json:"name"`
 	URI  string `json:"uri"`
 }
@@ -44,9 +44,10 @@ func (t *Track) LargestAlbumImageURL() string {
 }
 
 func (t *Track) ArtistsCommaSeparated() string {
-	var artists []string
+	artists := make([]string, 0, len(t.Artists))
 	for _, artist := range t.Artists {
 		artists = append(artists, artist.Name)
 	}
+
 	return strings.Join(artists, ", ")
 }

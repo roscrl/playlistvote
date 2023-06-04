@@ -1,3 +1,4 @@
+//nolint:gosec,gomnd
 package mock
 
 import (
@@ -11,14 +12,14 @@ import (
 	"strings"
 	"time"
 
-	"app/services/spotify"
+	"app/domain/spotify"
 )
 
 const (
-	IdsPath       = "services/spotify/mock/ids.json"
-	CoversPath    = "services/spotify/mock/covers"
-	PlaylistsPath = "services/spotify/mock/playlists.json"
-	TokenPath     = "services/spotify/mock/token.json"
+	IdsPath       = "domain/spotify/mock/ids.json"
+	CoversPath    = "domain/spotify/mock/covers"
+	PlaylistsPath = "domain/spotify/mock/playlists.json"
+	TokenPath     = "domain/spotify/mock/token.json"
 )
 
 type SpotifyServer struct {
@@ -39,8 +40,8 @@ func NewServer() *SpotifyServer {
 		log.Fatal(err)
 	}
 
-	ts := httptest.NewUnstartedServer(nil)
-	ts.Config.Handler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	testServer := httptest.NewUnstartedServer(nil)
+	testServer.Config.Handler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 
 		if strings.HasPrefix(r.URL.Path, "/playlist") {
@@ -49,7 +50,7 @@ func NewServer() *SpotifyServer {
 			randomIndex := rand.Intn(len(playlists))
 			randomPlaylist := playlists[randomIndex]
 			for i := range randomPlaylist.Images {
-				randomPlaylist.Images[i].URL = ts.URL + "/cover"
+				randomPlaylist.Images[i].URL = testServer.URL + "/cover"
 			}
 
 			randomPlaylistBytes, err := json.Marshal(randomPlaylist)
@@ -58,6 +59,7 @@ func NewServer() *SpotifyServer {
 			}
 
 			_, _ = w.Write(randomPlaylistBytes)
+
 			return
 		}
 
@@ -93,17 +95,18 @@ func NewServer() *SpotifyServer {
 		}
 	})
 
-	ts.Start() // leaks but in mock mode it's fine
+	testServer.Start() // leaks but in mock mode it's fine
 
 	return &SpotifyServer{
-		Server:           ts,
-		TokenEndpoint:    ts.URL + "/token",
-		PlaylistEndpoint: ts.URL + "/playlist",
+		Server:           testServer,
+		TokenEndpoint:    testServer.URL + "/token",
+		PlaylistEndpoint: testServer.URL + "/playlist",
 	}
 }
 
 func GenerateMockPlaylistsFile(spotifyClientID string, spotifyClientSecret string) *[]spotify.Playlist {
 	spotifyClient := &spotify.Spotify{
+		Client:       &http.Client{Timeout: 5 * time.Second},
 		ClientID:     spotifyClientID,
 		ClientSecret: spotifyClientSecret,
 
@@ -112,7 +115,7 @@ func GenerateMockPlaylistsFile(spotifyClientID string, spotifyClientSecret strin
 
 		Now: time.Now,
 	}
-	spotifyClient.StartTokenLifecycle()
+	spotifyClient.StartTokenLifecycle(context.Background())
 
 	idsFile, err := os.ReadFile(IdsPath)
 	if err != nil {
@@ -126,12 +129,14 @@ func GenerateMockPlaylistsFile(spotifyClientID string, spotifyClientSecret strin
 		log.Fatal(err)
 	}
 
-	var playlists []spotify.Playlist
+	playlists := make([]spotify.Playlist, 0, len(ids.Ids))
+
 	for _, id := range ids.Ids {
 		playlist, err := spotifyClient.Playlist(context.Background(), id)
 		if err != nil {
 			log.Fatal(err)
 		}
+
 		playlists = append(playlists, *playlist)
 	}
 
@@ -140,7 +145,7 @@ func GenerateMockPlaylistsFile(spotifyClientID string, spotifyClientSecret strin
 		log.Fatal(err)
 	}
 
-	if err := os.WriteFile(PlaylistsPath, playlistsBytes, 0o644); err != nil {
+	if err := os.WriteFile(PlaylistsPath, playlistsBytes, 0o600); err != nil {
 		log.Fatal(err)
 	}
 

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"testing"
 
 	"app/config"
@@ -38,9 +39,23 @@ func TestAll(t *testing.T) {
 	err = playButton.Click()
 	is.NoErr(err)
 
+	player, err := page.Locator("#audio-player")
+	is.NoErr(err)
+
+	log.Printf("player: %v", player)
+	evaluate, err := page.Evaluate("console.log('abc')", nil)
+	if err != nil {
+		return
+	}
+	// evaluate, err := player.Evaluate("console.log('abc')", nil)
+	// is.NoErr(err)
+
+	log.Printf("evaluate: %v", evaluate)
+
 	// TODO check audio is playing
 	// TODO check playerbar persists across page navigations
 	// TODO fuzzy check that there is at least 4 buttons in the playlist
 	// TODO check on clicking a song dots menu that the modal appears
+	// TODO check double entering of playlist fails
 	// TODO disable go test caching
 }

@@ -16,6 +16,7 @@ func newAPM(environment, license string) *newrelic.Application {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	return app
 }
 

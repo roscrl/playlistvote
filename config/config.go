@@ -35,6 +35,7 @@ func ProdEmbeddedConfig() *Server {
 	if err != nil {
 		log.Fatal("failed to load embedded server config file:", err)
 	}
+
 	return cfg
 }
 
@@ -45,6 +46,7 @@ func DevConfig() *Server {
 	if err != nil {
 		log.Fatal("error loading dev server config file:", err)
 	}
+
 	return cfg
 }
 
@@ -55,6 +57,7 @@ func MockConfig() *Server {
 	if err != nil {
 		log.Fatal("error loading mock server config file:", err)
 	}
+
 	return cfg
 }
 
@@ -63,10 +66,12 @@ func CustomConfig(cfgPath string) *Server {
 	if err != nil {
 		log.Fatal("error resolving server config path:", err)
 	}
+
 	cfg, err := LoadConfig(os.DirFS(filepath.Dir(absPath)), filepath.Base(absPath))
 	if err != nil {
 		log.Fatal("error loading server config file:", err)
 	}
+
 	return cfg
 }
 
@@ -78,8 +83,8 @@ func LoadConfig(fsys fs.FS, filePath string) (*Server, error) {
 	defer file.Close()
 
 	var config Server
-	scanner := bufio.NewScanner(file)
 
+	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := scanner.Text()
 		if strings.HasPrefix(line, "#") || strings.TrimSpace(line) == "" {
@@ -87,8 +92,8 @@ func LoadConfig(fsys fs.FS, filePath string) (*Server, error) {
 			continue
 		}
 
-		parts := strings.SplitN(line, "=", 2)
-		if len(parts) != 2 {
+		parts := strings.SplitN(line, "=", 2) //nolint:gomnd
+		if len(parts) != 2 {                  //nolint:gomnd
 			return nil, fmt.Errorf("invalid line in .env file: %s", line)
 		}
 
@@ -101,6 +106,7 @@ func LoadConfig(fsys fs.FS, filePath string) (*Server, error) {
 			if err != nil {
 				return nil, fmt.Errorf("unknown environment in config dotfile file: %s = %s", key, value)
 			}
+
 			config.Env = env
 		case "PORT":
 			config.Port = value

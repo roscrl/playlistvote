@@ -18,6 +18,7 @@ const (
 	HomeRoute           = "/"
 	PlaylistBaseRoute   = "/playlist"
 	PlaylistCreateRoute = "/playlist"
+	PlaylistTopRoute    = "/playlist/top(.*)"
 	PlaylistViewRoute   = "/playlist/(.*)"
 	PlaylistUpvoteRoute = "/playlist/(.*)/upvote"
 
@@ -42,12 +43,13 @@ func (s *Server) routes() http.Handler {
 	}
 
 	routes := []route{
-		newRoute("GET", AssetRoute, http.StripPrefix(AssetBaseRoute+"/", s.handleAssets()).ServeHTTP),
-		newRoute("GET", HomeRoute, s.handleHome()),
+		newRoute(http.MethodGet, AssetRoute, http.StripPrefix(AssetBaseRoute+"/", s.handleAssets()).ServeHTTP),
+		newRoute(http.MethodGet, HomeRoute, s.handleHome()),
 
-		newRoute("POST", PlaylistCreateRoute, s.handlePostPlaylist()),
-		newRoute("GET", PlaylistViewRoute, s.handleGetPlaylist()),
-		newRoute("POST", PlaylistUpvoteRoute, s.handleUpVote()),
+		newRoute(http.MethodPost, PlaylistCreateRoute, s.handlePostPlaylist()),
+		newRoute(http.MethodGet, PlaylistTopRoute, s.handleTopPlaylistsAfterCursor()),
+		newRoute(http.MethodGet, PlaylistViewRoute, s.handleGetPlaylist()),
+		newRoute(http.MethodPost, PlaylistUpvoteRoute, s.handleUpVote()),
 	}
 
 	pprofRoutes := map[string]http.HandlerFunc{
@@ -65,16 +67,18 @@ func (s *Server) routes() http.Handler {
 	}
 
 	for path, handler := range pprofRoutes {
-		routes = append(routes, newRoute("GET", path, basicAuthAdminRouteMiddleware(handler, s.cfg.BasicDebugAuthUsername, s.cfg.BasicDebugAuthPassword)))
+		routes = append(routes, newRoute(http.MethodGet, path, basicAuthAdminRouteMiddleware(handler, s.cfg.BasicDebugAuthUsername, s.cfg.BasicDebugAuthPassword)))
 	}
 
 	instrumentRoutes(routes, s.apm)
 
-	routerEntry := s.handleRoutes(routes)
+	routerEntry := s.handleRouting(routes)
+
 	return recoveryMiddleware(requestDurationMiddleware(routerEntry))
 }
 
 func getField(r *http.Request, index int) string {
 	fields := r.Context().Value(ctxKey{}).([]string)
+
 	return fields[index]
 }

@@ -6,13 +6,13 @@ import (
 	"os/signal"
 	"syscall"
 
-	"golang.org/x/exp/slog"
-
 	"app/config"
+	"golang.org/x/exp/slog"
 )
 
 func main() {
 	var configPath string
+
 	flag.StringVar(&configPath, "config", "USE_EMBEDDED_PROD_CONFIG", "file path to server config file otherwise use the embedded prod config")
 	flag.Parse()
 

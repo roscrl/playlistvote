@@ -14,8 +14,8 @@ func ProminentFourColorsMosaic(img image.Image) []string {
 	height := img.Bounds().Dy()
 
 	// Split the input image into four quadrants.
-	quadWidth := width / 2
-	quadHeight := height / 2
+	quadWidth := width / 2   //nolint:gomnd
+	quadHeight := height / 2 //nolint:gomnd
 
 	quad1 := img.(interface {
 		SubImage(r image.Rectangle) image.Image
@@ -33,24 +33,31 @@ func ProminentFourColorsMosaic(img image.Image) []string {
 		SubImage(r image.Rectangle) image.Image
 	}).SubImage(image.Rect(quadWidth, quadHeight, width, height))
 
-	var quad1Color, quad2Color, quad3Color, quad4Color []prominentcolor.ColorItem
-	var wg sync.WaitGroup
-	wg.Add(4)
+	var (
+		quad1Color, quad2Color, quad3Color, quad4Color []prominentcolor.ColorItem
+		wg                                             sync.WaitGroup
+	)
+
+	wg.Add(4) //nolint:gomnd
 
 	go func() {
 		defer wg.Done()
+
 		quad1Color = getProminentColors(1, quad1)
 	}()
 	go func() {
 		defer wg.Done()
+
 		quad2Color = getProminentColors(1, quad2)
 	}()
 	go func() {
 		defer wg.Done()
+
 		quad3Color = getProminentColors(1, quad3)
 	}()
 	go func() {
 		defer wg.Done()
+
 		quad4Color = getProminentColors(1, quad4)
 	}()
 
@@ -66,7 +73,7 @@ func ProminentFourColorsMosaic(img image.Image) []string {
 
 // ProminentFourColors returns the four most prominent hex colors in a user uploaded playlist sampler.
 func ProminentFourColors(img image.Image) []string {
-	colors := getProminentColors(4, img)
+	colors := getProminentColors(4, img) //nolint:gomnd
 
 	color1Hex := rgbToHex(colors[0].Color.R, colors[0].Color.G, colors[0].Color.B)
 	color2Hex := rgbToHex(colors[1].Color.R, colors[1].Color.G, colors[1].Color.B)
@@ -79,10 +86,12 @@ func ProminentFourColors(img image.Image) []string {
 func getProminentColors(numColors int, img image.Image) []prominentcolor.ColorItem {
 	ignoreColors := []prominentcolor.ColorBackgroundMask{prominentcolor.MaskWhite} // ignore white
 	colors, _ := prominentcolor.KmeansWithAll(numColors, img, prominentcolor.ArgumentNoCropping, prominentcolor.DefaultSize, ignoreColors)
+
 	return colors
 }
 
 func rgbToHex(r, g, b uint32) string {
 	hex := fmt.Sprintf("#%02x%02x%02x", r, g, b)
+
 	return hex
 }

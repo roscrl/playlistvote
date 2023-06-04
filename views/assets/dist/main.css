@@ -1190,6 +1190,10 @@ video {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
+html {
+  overflow-y: scroll
+}
+
 #playlist_link_or_id::-moz-placeholder {
   padding-right: 39px
 }

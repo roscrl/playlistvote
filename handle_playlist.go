@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"app/db/sqlc"
-	"app/services/spotify"
+	"app/domain/spotify"
 	"app/views"
 )
 
@@ -22,12 +22,14 @@ func (s *Server) handleGetPlaylist() http.HandlerFunc {
 			if err != nil {
 				log.Printf("failed to check if playlist %s exists: %v", playlistID, err)
 				s.views.RenderError(w, "")
+
 				return
 			}
 
 			if playlistExists == 0 {
 				log.Printf("playlist %s does not exist", playlistID)
 				s.views.RenderError(w, "playlist does not exist on our side. add it on the home page")
+
 				return
 			}
 		}
@@ -36,13 +38,15 @@ func (s *Server) handleGetPlaylist() http.HandlerFunc {
 		if err != nil {
 			log.Printf("failed to get playlist %s: %v", playlistID, err)
 			s.views.RenderError(w, "")
+
 			return
 		}
 
-		playlist.ColorsCommonFour, err = playlist.ProminentFourCoverColors()
+		playlist.ColorsCommonFour, err = playlist.MostProminentFourCoverColors(req.Context(), s.client)
 		if err != nil {
 			log.Printf("failed to query common four colors for playlist %s: %v", playlistID, err)
 			s.views.RenderError(w, "")
+
 			return
 		}
 
@@ -50,8 +54,10 @@ func (s *Server) handleGetPlaylist() http.HandlerFunc {
 		if err != nil {
 			log.Printf("failed to query for playlist %s upvotes: %v", playlistID, err)
 			s.views.RenderError(w, "")
+
 			return
 		}
+
 		playlist.Upvotes = upvotes
 
 		w.Header().Set("Cache-Control", "public, max-age=3600")
@@ -65,6 +71,7 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		if !views.TurboStreamRequest(req) {
 			http.Redirect(w, req, HomeRoute, http.StatusSeeOther)
+
 			return
 		}
 
@@ -73,6 +80,7 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 			s.views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 				"error": "Failed to parse form",
 			})
+
 			return
 		}
 
@@ -84,6 +92,7 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 				"playlist_input": playlistLinkOrID,
 				"error":          "Looks like you copied a album link, try again with a playlist link",
 			})
+
 			return
 		}
 
@@ -100,44 +109,52 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 					"playlist_input": playlistLinkOrID,
 					"error":          "Oops, something went wrong on checking if playlist already exists",
 				})
+
 				return
 			}
 
 			if playlistExists == 1 {
 				log.Printf("playlist %s already exists", playlistID)
 				http.Redirect(w, req, PlaylistBaseRoute+"/"+playlistID, http.StatusSeeOther)
+
 				return
 			}
 		}
 
 		log.Printf("fetching new playlist %s", playlistID)
-		seg := startSegment(req, "SpotifyGetPlaylist")
+
+		seg := startSegment(req, "SpotifyPlaylistGet")
 		playlist, err := s.spotify.Playlist(req.Context(), playlistID)
+
 		seg.End()
+
 		if err != nil {
-			if errors.Is(err, spotify.PlaylistNotFound) {
+			if errors.Is(err, spotify.ErrPlaylistNotFound) {
 				log.Printf("playlist %s is empty", playlistID)
 				s.views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 					"playlist_id":    playlistID,
 					"playlist_input": playlistLinkOrID,
 					"error":          playlistID + " not found in Spotify, double check the link and try again",
 				})
+
 				return
-			} else if errors.Is(err, spotify.PlaylistEmptyErr) {
+			} else if errors.Is(err, spotify.ErrPlaylistEmpty) {
 				log.Printf("playlist %s is empty", playlistID)
 				s.views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 					"playlist_id":    playlistID,
 					"playlist_input": playlistLinkOrID,
 					"error":          playlistID + " is an empty playlist! Add some songs and try again",
 				})
+
 				return
-			} else if errors.Is(err, spotify.TooManyRequestsErr) {
+			} else if errors.Is(err, spotify.ErrTooManyRequests) {
 				log.Printf("too many requests for playlist %s", playlistID)
 				s.views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 					"playlist_id":    playlistID,
 					"playlist_input": playlistLinkOrID,
 					"error":          "Too many requests for the Spotify API, ping @spotify on Twitter (kindly!) so they increase the rate limit for Playlist Vote!",
 				})
+
 				return
 			} else {
 				log.Printf("failed to fetch playlist %s playlist: %v", playlistID, err)
@@ -146,17 +163,20 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 					"playlist_input": playlistLinkOrID,
 					"error":          "Oops, something went wrong handling your playlist, try again later! Make sure you have at least 4 tracks with 4 different artists in your playlist!",
 				})
+
 				return
 			}
 		}
 
-		seg = startSegment(req, "DBAddPlaylist")
+		seg = startSegment(req, "DBPlaylistAdd")
 		_, err = s.qry.AddPlaylist(req.Context(), sqlc.AddPlaylistParams{
 			ID:      playlistID,
 			Upvotes: 1,
 			AddedAt: time.Now().Unix(),
 		})
+
 		seg.End()
+
 		if err != nil {
 			log.Printf("failed to add playlist %s playlist: %v", playlistID, err)
 			s.views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
@@ -164,13 +184,15 @@ func (s *Server) handlePostPlaylist() http.HandlerFunc {
 				"playlist_input": playlistLinkOrID,
 				"error":          "Oops, something went wrong inserting your playlist to our database, try again later!",
 			})
+
 			return
 		}
 
-		playlist.ColorsCommonFour, err = playlist.ProminentFourCoverColors()
+		playlist.ColorsCommonFour, err = playlist.MostProminentFourCoverColors(req.Context(), s.client)
 		if err != nil {
 			log.Printf("failed to query common four colors for playlist %s: %v", playlistID, err)
 			s.views.RenderError(w, "")
+
 			return
 		}
 
