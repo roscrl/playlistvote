@@ -40,9 +40,9 @@ func TestSpotifyToken(t *testing.T) {
 		PlaylistEndpoint: ts.URL + "/playlist",
 
 		Now: time.Now,
-	} // nocheckin
+	}
 
-	s.StartTokenLifecycle(context.Background()) // nocheckin
+	s.StartTokenLifecycle(context.Background())
 
 	is.Equal(tokenCallEndpointCount, 1)
 }

@@ -22,5 +22,5 @@ func TestHandlePlaylist(t *testing.T) {
 	is.Equal(w.Result().StatusCode, http.StatusOK)
 
 	// server.handleHome()(w, req) // unit test like (no middlewares)
-	// is.Equal(w.Result().StatusCode, http.StatusOK) nocheckin
+	// is.Equal(w.Result().StatusCode, http.StatusOK)
 }
