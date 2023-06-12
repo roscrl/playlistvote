@@ -106,6 +106,13 @@ func (s *Server) handlePlaylistsPaginationTop() http.HandlerFunc {
 			return
 		}
 
+		if len(nextTopSkeletonPlaylists) == 0 {
+			log.Printf("no more playlists to fetch")
+			w.WriteHeader(http.StatusNoContent)
+
+			return
+		}
+
 		log.Printf("next top playlists returned: %d", len(nextTopSkeletonPlaylists))
 
 		var skeletonPlaylists []SkeletonPlaylist
@@ -119,13 +126,6 @@ func (s *Server) handlePlaylistsPaginationTop() http.HandlerFunc {
 		playlists := fetchPlaylistsFromSkeletonPlaylists(req.Context(), s.Client, skeletonPlaylists, s.Spotify)
 
 		w.Header().Set("Cache-Control", "public, max-age=5")
-
-		if len(playlists) == 0 {
-			log.Printf("no more playlists to fetch")
-			w.WriteHeader(http.StatusNoContent)
-
-			return
-		}
 
 		s.Views.Render(w, "playlist/_top.stream.tmpl", map[string]any{
 			"playlists": playlists,

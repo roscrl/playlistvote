@@ -39,15 +39,6 @@ type GetNewPlaylistsRow struct {
 
 // ! Manually added to db/sqlc/query.sql.manual.go due to not working in sqlc
 // ! name: GetNextTopPlaylists :many
-// SELECT id, upvotes
-// FROM (SELECT id, upvotes
-//
-//	FROM playlists
-//	WHERE upvotes <= ?1
-//	  AND NOT (upvotes = ?1 AND id >= ?)
-//	ORDER BY upvotes DESC, id ASC)
-//
-// LIMIT ?;
 func (q *Queries) GetNewPlaylists(ctx context.Context, limit int64) ([]GetNewPlaylistsRow, error) {
 	rows, err := q.db.QueryContext(ctx, getNewPlaylists, limit)
 	if err != nil {
@@ -87,7 +78,7 @@ func (q *Queries) GetPlaylistUpvotes(ctx context.Context, id string) (int64, err
 const getTopPlaylists = `-- name: GetTopPlaylists :many
 SELECT id, upvotes
 FROM playlists
-ORDER BY upvotes DESC, id ASC
+ORDER BY upvotes DESC, id DESC
 LIMIT ?
 `
 
@@ -130,15 +121,6 @@ RETURNING upvotes
 // ! TODO
 // ! Manually added to db/sqlc/query.sql.manual.go due to not working in sqlc
 // ! name: GetNextNewPlaylists :many
-// SELECT id, upvotes
-// FROM (SELECT id, upvotes
-//
-//	FROM playlists
-//	WHERE added_at <= ?
-//	  AND NOT (added_at = ? AND id >= ?)
-//	ORDER BY upvotes DESC, id DESC)
-//
-// LIMIT ?;
 func (q *Queries) IncrementPlaylistUpvotes(ctx context.Context, id string) (int64, error) {
 	row := q.db.QueryRowContext(ctx, incrementPlaylistUpvotes, id)
 	var upvotes int64

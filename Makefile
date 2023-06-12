@@ -73,6 +73,8 @@ SERVICE_NAME=$(APP_NAME).service
 
 DB_NAME=$(APP_NAME)
 LOCAL_SQLITE_DB_PATH=./core/db/$(DB_NAME).db
+LOCAL_SQLITE_SHM_DB_PATH=./core/db/$(DB_NAME).db-shm
+LOCAL_SQLITE_WAL_DB_PATH=./core/db/$(DB_NAME).db-wal
 
 CLOUDFLARE_ZONE_ID=3849d0e239cfff8040f0dceaf0071e4a
 
@@ -122,6 +124,8 @@ db-copy-over-force:
 	ssh $(USER)@$(VPS_IP) "if [ -f $(APP_FOLDER)/db/$(DB_NAME).db-shm ]; then mv $(APP_FOLDER)/db/$(DB_NAME).db-shm $(APP_FOLDER)/db/archive/$(DB_NAME)_$$(date +"%Y%m%d%H%M%S").db-shm; fi"
 	ssh $(USER)@$(VPS_IP) "if [ -f $(APP_FOLDER)/db/$(DB_NAME).db-wal ]; then mv $(APP_FOLDER)/db/$(DB_NAME).db-wal $(APP_FOLDER)/db/archive/$(DB_NAME)_$$(date +"%Y%m%d%H%M%S").db-wal; fi"
 	rsync -avz $(LOCAL_SQLITE_DB_PATH) $(USER)@$(VPS_IP):$(APP_FOLDER)/db/
+	rsync -avz $(LOCAL_SQLITE_SHM_DB_PATH) $(USER)@$(VPS_IP):$(APP_FOLDER)/db/
+	rsync -avz $(LOCAL_SQLITE_WAL_DB_PATH) $(USER)@$(VPS_IP):$(APP_FOLDER)/db/
 
 app-service-reload:
 	scp -r ./config/$(SERVICE_NAME) $(USER)@$(VPS_IP):/lib/systemd/system/$(SERVICE_NAME)

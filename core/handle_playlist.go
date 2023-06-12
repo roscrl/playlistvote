@@ -191,7 +191,7 @@ func (s *Server) handlePlaylistCreate() http.HandlerFunc {
 			s.Views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 				"playlist_id":    playlistID,
 				"playlist_input": playlistLinkOrID,
-				"error":          "Oops, something went wrong inserting your playlist to our database, try again later!",
+				"error":          "Oops, something went wrong inserting your playlist to the database, try again later!",
 			})
 
 			return
