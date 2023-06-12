@@ -26,7 +26,7 @@ Server side rendered Go templates with `html/template`
 
 `go-sqlite3` as database driver (requires `zig cc` to compile x86 from ARM)
 
-`sqlc` for generating Go code from [SQL queries](app/db/query.sql)
+`sqlc` for generating Go code from [SQL queries](core/db/query.sql)
 
 `prominentcolor` for extracting prominent colors from playlist images
 
