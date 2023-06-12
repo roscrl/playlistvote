@@ -92,6 +92,8 @@ func (s *Server) handlePlaylistsPaginationTop() http.HandlerFunc {
 			return
 		}
 
+		log.Printf("fetching next top playlists after given playlist id: %s, upvotes: %d", playlistID, upvotes)
+
 		nextTopSkeletonPlaylists, err := s.Qry.NextTopPlaylists(req.Context(), sqlc.NextTopPlaylistsParams{
 			ID:      playlistID,
 			Upvotes: upvotes,
@@ -125,7 +127,6 @@ func (s *Server) handlePlaylistsPaginationTop() http.HandlerFunc {
 			return
 		}
 
-		log.Printf("next top playlists returned: %d", len(playlists))
 		s.Views.Render(w, "playlist/_top.stream.tmpl", map[string]any{
 			"playlists": playlists,
 		})
@@ -189,7 +190,7 @@ func fetchPlaylistsFromSkeletonPlaylists(ctx context.Context, client *http.Clien
 
 	sort.Slice(playlists, func(i, j int) bool {
 		if playlists[i].Upvotes == playlists[j].Upvotes {
-			return playlists[i].Name < playlists[j].Name
+			return playlists[i].ID > playlists[j].ID
 		}
 
 		return playlists[i].Upvotes > playlists[j].Upvotes
