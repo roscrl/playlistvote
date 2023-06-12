@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-const PathConfigDevPlaywright = "config/.dev.playwright.mock"
+const PathConfigDevBrowser = "config/.dev.browser.mock"
 
 //go:embed .prod
 var prodConfigFile embed.FS

@@ -10,7 +10,7 @@ import (
 )
 
 func TestUser(t *testing.T) {
-	is, s := is.New(t), core.NewServer(config.CustomConfig(config.PathConfigDevPlaywright))
+	is, s := is.New(t), core.NewServer(config.CustomConfig(config.PathConfigDevBrowser))
 
 	s.Start()
 	defer s.Stop()

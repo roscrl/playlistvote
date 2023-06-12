@@ -30,7 +30,7 @@ var PathConfigDevPlaywright = ""
 
 func init() {
 	_, filename, _, _ := runtime.Caller(0)
-	PathConfigDevPlaywright = filepath.Dir(filename) + "/.dev.playwright.mock"
+	PathConfigDevPlaywright = filepath.Dir(filename) + "/.dev.browser.mock"
 }
 
 //go:embed templates/*.tmpl templates/**/*.tmpl
