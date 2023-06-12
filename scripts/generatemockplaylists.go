@@ -4,12 +4,11 @@ package main
 import (
 	"context"
 	"log"
-	"time"
 
 	"app/config"
-	"app/db"
-	"app/db/sqlc"
-	"app/domain/spotify/mock"
+	"app/core/db"
+	"app/core/db/sqlc"
+	"app/core/spotify/mock"
 )
 
 func main() {
@@ -29,7 +28,6 @@ func main() {
 		_, err := qry.AddPlaylist(context.Background(), sqlc.AddPlaylistParams{
 			ID:      playlist.ID,
 			Upvotes: 1,
-			AddedAt: time.Now().Unix(),
 		})
 		if err != nil {
 			log.Fatal(err)

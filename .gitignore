@@ -8,5 +8,8 @@ config/.dev
 config/.prod
 config/private.pem
 
-db/playlistvote.db-shm
-db/playlistvote.db-wal
+core/db/playlistvote.db-shm
+core/db/playlistvote.db-wal
+
+core/db/playlistvote-mock.db-shm
+core/db/playlistvote-mock.db-wal

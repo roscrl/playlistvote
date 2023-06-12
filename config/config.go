@@ -11,9 +11,7 @@ import (
 	"strings"
 )
 
-const (
-	DevPlaywrightConfigPath = "config/.dev.playwright.mock"
-)
+const PathConfigDevPlaywright = "config/.dev.playwright.mock"
 
 //go:embed .prod
 var prodConfigFile embed.FS
@@ -33,7 +31,7 @@ type Server struct {
 func ProdEmbeddedConfig() *Server {
 	cfg, err := LoadConfig(prodConfigFile, ".prod")
 	if err != nil {
-		log.Fatal("failed to load embedded server config file:", err)
+		log.Fatalf("failed to load embedded server config file: %v", err)
 	}
 
 	return cfg
@@ -44,7 +42,7 @@ func DevConfig() *Server {
 
 	cfg, err := LoadConfig(os.DirFS("./config"), cfgPath)
 	if err != nil {
-		log.Fatal("error loading dev server config file:", err)
+		log.Fatalf("error loading dev server config file: %v", err)
 	}
 
 	return cfg
@@ -55,7 +53,7 @@ func MockConfig() *Server {
 
 	cfg, err := LoadConfig(os.DirFS("./config"), cfgPath)
 	if err != nil {
-		log.Fatal("error loading mock server config file:", err)
+		log.Fatalf("error loading mock server config file: %v", err)
 	}
 
 	return cfg
@@ -64,12 +62,12 @@ func MockConfig() *Server {
 func CustomConfig(cfgPath string) *Server {
 	absPath, err := filepath.Abs(cfgPath)
 	if err != nil {
-		log.Fatal("error resolving server config path:", err)
+		log.Fatalf("error resolving server config path: %v", err)
 	}
 
 	cfg, err := LoadConfig(os.DirFS(filepath.Dir(absPath)), filepath.Base(absPath))
 	if err != nil {
-		log.Fatal("error loading server config file:", err)
+		log.Fatalf("error loading custom server config file: %v", err)
 	}
 
 	return cfg

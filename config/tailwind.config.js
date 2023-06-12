@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./views/**/*.tmpl"],
+  content: ["./core/views/**/*.tmpl"],
   theme: {
     extend: {
       keyframes: {

@@ -1,0 +1,7 @@
+<turbo-stream action="append" target="playlist_list">
+    <template>
+        {{ range .playlists }}
+            {{ template "playlist_card" .}}
+        {{ end }}
+    </template>
+</turbo-stream>

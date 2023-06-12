@@ -15,13 +15,13 @@ hotreload:
 	air -c ./config/.air.toml & make tailwind-watch
 
 tailwind-watch:
-	./bin/tailwindcss -i ./views/assets/main.css -o ./views/assets/dist/main.css --watch --config ./config/tailwind.config.js
+	./bin/tailwindcss -i ./core/views/assets/main.css -o ./core/views/assets/dist/main.css --watch --config ./config/tailwind.config.js
 
 generate:
-	./bin/tailwindcss -i ./views/assets/main.css -o ./views/assets/dist/main.css --config ./config/tailwind.config.js
-	./bin/esbuild views/assets/dist/js/vendor/stimulus-3.2.1/stimulus.js --minify --outfile=views/assets/dist/js/vendor/stimulus-3.2.1/stimulus.min.js
-	./bin/esbuild views/assets/dist/js/vendor/turbo-7.3.0/dist/turbo.es2017-esm.js --minify --outfile=views/assets/dist/js/vendor/turbo-7.3.0/dist/turbo.es2017-esm.min.js
-	cd ./db && sqlc generate
+	./bin/tailwindcss -i ./core/views/assets/main.css -o ./core/views/assets/dist/main.css --config ./config/tailwind.config.js
+	./bin/esbuild core/views/assets/dist/js/vendor/stimulus-3.2.1/stimulus.js --minify --outfile=core/views/assets/dist/js/vendor/stimulus-3.2.1/stimulus.min.js
+	./bin/esbuild core/views/assets/dist/js/vendor/turbo-7.3.0/dist/turbo.es2017-esm.js --minify --outfile=core/views/assets/dist/js/vendor/turbo-7.3.0/dist/turbo.es2017-esm.min.js
+	cd ./core/db && sqlc generate
 
 lint:
 	golangci-lint run --config config/.golangci.yml
@@ -29,8 +29,12 @@ lint:
 format:
 	gofumpt -l -w . && gci write -s standard -s default ./..
 
+.PHONY: test
 test:
 	go test -v ./...
+
+test-browser-slow:
+	go test -v ./... -rod=show,slow=1s,trace
 
 #########################
 #####    Scripts    #####
@@ -43,16 +47,16 @@ generate-mock-playlists:
 #####    Builds     #####
 #########################
 
-build: generate lint format test
+build: generate format lint test
 	go build -o bin/app .
 
-build-amd64: generate lint format test
+build-amd64: generate format lint test
 	CC="zig cc -target x86_64-linux-musl" CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build -o bin/app .
 
-build-arm64: generate lint format test
+build-arm64: generate format lint test
 	CC="zig cc -target aarch64-linux-musl" CGO_ENABLED=1 GOOS=linux GOARCH=arm64 go build -o bin/app .
 
-build-quick: test
+build-quick:
 	go build -o bin/app .
 
 #########################
@@ -68,7 +72,7 @@ APP_CADDY_PATH=$(APP_NAME).caddy
 SERVICE_NAME=$(APP_NAME).service
 
 DB_NAME=$(APP_NAME)
-LOCAL_SQLITE_DB_PATH=./db/$(DB_NAME).db
+LOCAL_SQLITE_DB_PATH=./core/db/$(DB_NAME).db
 
 CLOUDFLARE_ZONE_ID=3849d0e239cfff8040f0dceaf0071e4a
 
@@ -174,7 +178,7 @@ tooling-esbuild:
 
 # MacOS ARM specific
 tooling-tailwind:
-	curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/download/v3.3.1/tailwindcss-macos-arm64
+	curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/download/v3.3.2/tailwindcss-macos-arm64
 	chmod +x tailwindcss-macos-arm64
 	mv tailwindcss-macos-arm64 tailwindcss
 	mv tailwindcss ./bin/

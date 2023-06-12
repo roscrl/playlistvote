@@ -7,6 +7,7 @@ import (
 	"syscall"
 
 	"app/config"
+	"app/core"
 	"golang.org/x/exp/slog"
 )
 
@@ -23,8 +24,8 @@ func main() {
 		cfg = config.CustomConfig(configPath)
 	}
 
-	srv := NewServer(cfg)
-	slog.SetDefault(srv.log)
+	srv := core.NewServer(cfg)
+	slog.SetDefault(srv.Log)
 
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, syscall.SIGINT, syscall.SIGTERM)
