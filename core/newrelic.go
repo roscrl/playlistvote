@@ -21,8 +21,8 @@ func newAPM(environment, license string) *newrelic.Application {
 	return app
 }
 
-func startSegment(req *http.Request, name string) *newrelic.Segment {
-	return newrelic.FromContext(req.Context()).StartSegment(name)
+func startSegment(r *http.Request, name string) *newrelic.Segment {
+	return newrelic.FromContext(r.Context()).StartSegment(name)
 }
 
 func noticeError(ctx context.Context, err error) {

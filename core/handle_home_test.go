@@ -16,12 +16,12 @@ func TestHandleTopPlaylistsHome(t *testing.T) {
 	is, server := is.New(t), NewServer(config.MockConfig())
 
 	w := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodGet, "/", nil)
+	r := httptest.NewRequest(http.MethodGet, "/", nil)
 
-	server.ServeHTTP(w, req) // integration test like (middlewares included)
+	server.ServeHTTP(w, r) // integration test like (middlewares included)
 	is.Equal(w.Result().StatusCode, http.StatusOK)
 
-	server.handleHome()(w, req) // unit test like (no middlewares)
+	server.handleHome()(w, r) // unit test like (no middlewares)
 	is.Equal(w.Result().StatusCode, http.StatusOK)
 }
 

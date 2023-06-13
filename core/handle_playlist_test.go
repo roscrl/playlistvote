@@ -14,9 +14,9 @@ func TestHandlePlaylist(t *testing.T) {
 	is, server := is.New(t), NewServer(config.MockConfig())
 
 	w := httptest.NewRecorder()
-	req := httptest.NewRequest(http.MethodGet, "/playlist/top?after=6C6IZB8oY1VgSSjerp9edG", nil)
-	req.Header.Set("Accept", views.TurboStreamMIME)
+	r := httptest.NewRequest(http.MethodGet, "/playlist/top?after=6C6IZB8oY1VgSSjerp9edG", nil)
+	r.Header.Set("Accept", views.TurboStreamMIME)
 
-	server.ServeHTTP(w, req)
+	server.ServeHTTP(w, r)
 	is.Equal(w.Result().StatusCode, http.StatusOK)
 }

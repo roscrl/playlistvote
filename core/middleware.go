@@ -1,29 +1,18 @@
 package core
 
 import (
+	"context"
+	"crypto/rand"
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 	"time"
+
+	"app/core/rlog"
+	"golang.org/x/exp/slog"
 )
-
-func requestDurationMiddleware(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if strings.HasPrefix(r.URL.Path, RouteAssetBase) {
-			next.ServeHTTP(w, r)
-
-			return
-		}
-
-		start := time.Now()
-
-		next.ServeHTTP(w, r)
-
-		elapsed := time.Since(start)
-		log.Printf("%s %s took %s", r.Method, r.URL.Path, elapsed)
-	})
-}
 
 func recoveryMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -44,6 +33,55 @@ func recoveryMiddleware(next http.Handler) http.Handler {
 			}
 		}()
 		next.ServeHTTP(w, r)
+	})
+}
+
+func requestLogger(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		ctx := r.Context()
+
+		textHandler := slog.NewTextHandler(os.Stdout, nil)
+		requestContextHandler := rlog.ContextRequestHandler{Handler: textHandler}
+
+		logger := slog.New(requestContextHandler)
+
+		ctx = context.WithValue(ctx, rlog.ContextKeyRequestLogger{}, logger)
+
+		next.ServeHTTP(w, r.WithContext(ctx))
+	})
+}
+
+func requestID(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		ctx := r.Context()
+
+		bytes := make([]byte, 8) //nolint:gomnd // 8 bytes = 64 bits = 16 hex characters
+		if _, err := rand.Read(bytes); err != nil {
+			bytes = []byte("00000000")
+		}
+
+		requestID := fmt.Sprintf("%X", bytes)
+
+		ctx = context.WithValue(ctx, rlog.ContextKeyRequestID{}, requestID)
+
+		next.ServeHTTP(w, r.WithContext(ctx))
+	})
+}
+
+func requestDurationMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if strings.HasPrefix(r.URL.Path, RouteAssetBase) {
+			next.ServeHTTP(w, r)
+
+			return
+		}
+
+		start := time.Now()
+
+		next.ServeHTTP(w, r)
+
+		elapsed := time.Since(start)
+		log.Printf("%s %s took %s", r.Method, r.URL.Path, elapsed)
 	})
 }
 

@@ -37,7 +37,7 @@ const (
 	RouteProfileTrace        = "/debug/trace"
 )
 
-type ctxKey struct{}
+type contextKeyFields struct{}
 
 func (s *Server) routes() http.Handler {
 	newRoute := func(method, pattern string, handler http.HandlerFunc) route {
@@ -78,11 +78,11 @@ func (s *Server) routes() http.Handler {
 
 	routerEntry := s.routing(routes)
 
-	return recoveryMiddleware(requestID(requestDurationMiddleware(routerEntry)))
+	return recoveryMiddleware(requestLogger(requestID(requestDurationMiddleware(routerEntry))))
 }
 
 func getField(r *http.Request, index int) string {
-	fields := r.Context().Value(ctxKey{}).([]string)
+	fields := r.Context().Value(contextKeyFields{}).([]string)
 
 	return fields[index]
 }

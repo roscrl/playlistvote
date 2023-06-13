@@ -1,8 +1,8 @@
 package core
 
 import (
+	"app/core/rlog"
 	"errors"
-	"log"
 	"net/http"
 	"strings"
 
@@ -12,38 +12,40 @@ import (
 )
 
 func (s *Server) handlePlaylistView() http.HandlerFunc {
-	return func(w http.ResponseWriter, req *http.Request) {
-		playlistURI := getField(req, 0)
+	return func(w http.ResponseWriter, r *http.Request) {
+		log := rlog.L(r.Context())
+
+		playlistURI := getField(r, 0)
 		playlistID := strings.TrimPrefix(playlistURI, spotify.URIPlaylistPrefix)
 
 		{
-			playlistExists, err := s.Qry.PlaylistExists(req.Context(), playlistID)
+			playlistExists, err := s.Qry.PlaylistExists(r.Context(), playlistID)
 			if err != nil {
-				log.Printf("failed to check if playlist %s exists: %v", playlistID, err)
+				log.InfoCtx(r.Context(), "failed to check if playlist exists", "playlist_id", playlistID, "err", err)
 				s.Views.RenderStandardError(w)
 
 				return
 			}
 
 			if playlistExists == 0 {
-				log.Printf("playlist %s does not exist", playlistID)
+				log.InfoCtx(r.Context(), "playlist does not exist", "playlist_id", playlistID)
 				s.Views.RenderError(w, "playlist does not exist on our side. add it on the home page")
 
 				return
 			}
 		}
 
-		playlistAPIResponse, err := s.Spotify.Playlist(req.Context(), playlistID)
+		playlistAPIResponse, err := s.Spotify.Playlist(r.Context(), playlistID)
 		if err != nil {
-			log.Printf("failed to get playlist %s: %v", playlistID, err)
+			log.InfoCtx(r.Context(), "failed to get playlist", "playlist_id", playlistID, "err", err)
 			s.Views.RenderStandardError(w)
 
 			return
 		}
 
-		upvotes, err := s.Qry.GetPlaylistUpvotes(req.Context(), playlistID)
+		upvotes, err := s.Qry.GetPlaylistUpvotes(r.Context(), playlistID)
 		if err != nil {
-			log.Printf("failed to query for playlist %s upvotes: %v", playlistID, err)
+			log.InfoCtx(r.Context(), "failed to query for playlist upvotes", "playlist_id", playlistID, "err", err)
 			s.Views.RenderError(w, "")
 
 			return
@@ -51,13 +53,13 @@ func (s *Server) handlePlaylistView() http.HandlerFunc {
 
 		playlist, err := playlistAPIResponse.ToPlaylist()
 		if err != nil {
-			log.Printf("transforming playlist %s to playlist: %v", playlistID, err)
+			log.InfoCtx(r.Context(), "failed to transform playlist api response to playlist", "playlist_id", playlistID, "err", err)
 			s.Views.RenderStandardError(w)
 
 			return
 		}
 
-		err = playlist.AttachMetadata(req.Context(), s.Client, upvotes)
+		err = playlist.AttachMetadata(r.Context(), s.Client, upvotes)
 		if err != nil {
 			return
 		}
@@ -70,15 +72,17 @@ func (s *Server) handlePlaylistView() http.HandlerFunc {
 }
 
 func (s *Server) handlePlaylistCreate() http.HandlerFunc {
-	return func(w http.ResponseWriter, req *http.Request) {
-		if !views.TurboStreamRequest(req) {
-			http.Redirect(w, req, RouteHome, http.StatusSeeOther)
+	return func(w http.ResponseWriter, r *http.Request) {
+		log := rlog.L(r.Context())
+
+		if !views.TurboStreamRequest(r) {
+			http.Redirect(w, r, RouteHome, http.StatusSeeOther)
 
 			return
 		}
 
-		if err := req.ParseForm(); err != nil {
-			log.Printf("failed to parse form: %v", err)
+		if err := r.ParseForm(); err != nil {
+			log.InfoCtx(r.Context(), "failed to parse form", "err", err)
 			s.Views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 				"error": "Failed to parse form",
 			})
@@ -86,8 +90,9 @@ func (s *Server) handlePlaylistCreate() http.HandlerFunc {
 			return
 		}
 
-		log.Printf("given playlist link or id: %s", req.Form.Get("playlist_link_or_id"))
-		playlistLinkOrID := req.Form.Get("playlist_link_or_id")
+		playlistLinkOrID := r.Form.Get("playlist_link_or_id")
+
+		log.InfoCtx(r.Context(), "given playlist link or id", "playlist_link_or_id", playlistLinkOrID)
 
 		if strings.HasPrefix(playlistLinkOrID, spotify.AlbumCopiedPrefix) {
 			s.Views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
@@ -100,12 +105,12 @@ func (s *Server) handlePlaylistCreate() http.HandlerFunc {
 
 		playlistID := strings.TrimPrefix(playlistLinkOrID, spotify.UserCopiedPlaylistPrefix)
 		playlistID = strings.Split(playlistID, "?")[0]
-		log.Printf("parsed playlist id: %s", playlistID)
+		log.InfoCtx(r.Context(), "parsed playlist id", "playlist_id", playlistID)
 
 		{
-			playlistExists, err := s.Qry.PlaylistExists(req.Context(), playlistID)
+			playlistExists, err := s.Qry.PlaylistExists(r.Context(), playlistID)
 			if err != nil {
-				log.Printf("failed to check if playlist %s exists: %v", playlistID, err)
+				log.InfoCtx(r.Context(), "failed to check if playlist exists", "playlist_id", playlistID, "err", err)
 				s.Views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 					"playlist_id":    playlistID,
 					"playlist_input": playlistLinkOrID,
@@ -116,37 +121,37 @@ func (s *Server) handlePlaylistCreate() http.HandlerFunc {
 			}
 
 			if playlistExists == 1 {
-				log.Printf("playlist %s already exists", playlistID)
-				http.Redirect(w, req, RoutePlaylistBase+"/"+playlistID, http.StatusSeeOther)
+				log.InfoCtx(r.Context(), "playlist already exists", "playlist_id", playlistID)
+				http.Redirect(w, r, RoutePlaylistBase+"/"+playlistID, http.StatusSeeOther)
 
 				return
 			}
 		}
 
-		log.Printf("fetching new playlist %s", playlistID)
+		log.InfoCtx(r.Context(), "playlist does not exist, fetching from spotify", "playlist_id", playlistID)
 
-		seg := startSegment(req, "SpotifyPlaylistGet")
-		playlistAPIResponse, err := s.Spotify.Playlist(req.Context(), playlistID)
+		seg := startSegment(r, "SpotifyPlaylistGet")
+		playlistAPIResponse, err := s.Spotify.Playlist(r.Context(), playlistID)
 
 		seg.End()
 
 		if err != nil {
 			if errors.Is(err, spotify.ErrPlaylistNotFound) {
-				log.Printf("playlist %s is empty", playlistID)
+				log.InfoCtx(r.Context(), "playlist not found", "playlist_id", playlistID)
 				s.Views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 					"playlist_id":    playlistID,
 					"playlist_input": playlistLinkOrID,
 					"error":          playlistID + " not found in Spotify, double check the link and try again",
 				})
 			} else if errors.Is(err, spotify.ErrTooManyRequests) {
-				log.Printf("too many requests for playlist %s", playlistID)
+				log.InfoCtx(r.Context(), "too many requests for spotify", "playlist_id", playlistID)
 				s.Views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 					"playlist_id":    playlistID,
 					"playlist_input": playlistLinkOrID,
 					"error":          "Too many requests for the Spotify API, ping @spotify on Twitter (kindly!) so they increase the rate limit for PlaylistAPIResponse Vote!",
 				})
 			} else {
-				log.Printf("failed to fetch playlist %s playlist: %v", playlistID, err)
+				log.InfoCtx(r.Context(), "failed to fetch playlist from spotify", "playlist_id", playlistID, "err", err)
 				s.Views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 					"playlist_id":    playlistID,
 					"playlist_input": playlistLinkOrID,
@@ -160,14 +165,14 @@ func (s *Server) handlePlaylistCreate() http.HandlerFunc {
 		playlist, err := playlistAPIResponse.ToPlaylist()
 		if err != nil {
 			if errors.Is(err, spotify.ErrPlaylistEmpty) {
-				log.Printf("playlist %s is empty", playlistID)
+				log.InfoCtx(r.Context(), "playlist is empty", "playlist_id", playlistID)
 				s.Views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 					"playlist_id":    playlistID,
 					"playlist_input": playlistLinkOrID,
 					"error":          playlistID + " is an empty playlist! Add some songs and try again",
 				})
 			} else {
-				log.Printf("failed to fetch playlist %s playlist: %v", playlistID, err)
+				log.InfoCtx(r.Context(), "failed to convert playlist", "playlist_id", playlistID, "err", err)
 				s.Views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 					"playlist_id":    playlistID,
 					"playlist_input": playlistLinkOrID,
@@ -178,8 +183,8 @@ func (s *Server) handlePlaylistCreate() http.HandlerFunc {
 			return
 		}
 
-		seg = startSegment(req, "DBPlaylistAdd")
-		_, err = s.Qry.AddPlaylist(req.Context(), sqlc.AddPlaylistParams{
+		seg = startSegment(r, "DBPlaylistAdd")
+		_, err = s.Qry.AddPlaylist(r.Context(), sqlc.AddPlaylistParams{
 			ID:      playlistID,
 			Upvotes: 1,
 		})
@@ -187,7 +192,7 @@ func (s *Server) handlePlaylistCreate() http.HandlerFunc {
 		seg.End()
 
 		if err != nil {
-			log.Printf("failed to add playlist %s playlist: %v", playlistID, err)
+			log.InfoCtx(r.Context(), "failed to add playlist", "playlist_id", playlistID, "err", err)
 			s.Views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 				"playlist_id":    playlistID,
 				"playlist_input": playlistLinkOrID,
@@ -197,15 +202,15 @@ func (s *Server) handlePlaylistCreate() http.HandlerFunc {
 			return
 		}
 
-		err = playlist.AttachMetadata(req.Context(), s.Client, 1)
+		err = playlist.AttachMetadata(r.Context(), s.Client, 1)
 		if err != nil {
-			log.Printf("failed to attach metadata to playlist %s: %v", playlistID, err)
+			log.InfoCtx(r.Context(), "failed to attach metadata to playlist", "playlist_id", playlistID, "err", err)
 			s.Views.RenderStandardError(w)
 
 			return
 		}
 
-		log.Printf("added new playlist %s to db", playlistID)
+		log.InfoCtx(r.Context(), "added new playlist to db", "playlist_id", playlistID)
 		s.Views.Stream(w, "playlist/_new.stream.tmpl", map[string]any{
 			"playlist": playlist,
 		})

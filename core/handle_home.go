@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"html/template"
-	"log"
 	"net/http"
 	"sort"
 	"strconv"
@@ -13,6 +12,7 @@ import (
 
 	"app/core/db/sqlc"
 	"app/core/domain"
+	"app/core/rlog"
 	"app/core/spotify"
 	"app/core/views"
 	"github.com/newrelic/go-agent/v3/newrelic"
@@ -26,12 +26,14 @@ type SkeletonPlaylist struct {
 func (s *Server) handleHome() http.HandlerFunc {
 	const playlistFetchLimit = 30
 
-	return func(w http.ResponseWriter, req *http.Request) {
-		log.Printf("getting top %v skeleton playlists", playlistFetchLimit)
+	return func(w http.ResponseWriter, r *http.Request) {
+		log := rlog.L(r.Context())
 
-		topSkeletonPlaylists, err := s.Qry.GetTopPlaylists(req.Context(), playlistFetchLimit)
+		log.InfoCtx(r.Context(), "fetching top skeleton playlists", "amount", playlistFetchLimit)
+
+		topSkeletonPlaylists, err := s.Qry.GetTopPlaylists(r.Context(), playlistFetchLimit)
 		if err != nil {
-			log.Printf("failed to query for top %v playlists: %v", playlistFetchLimit, err)
+			log.ErrorCtx(r.Context(), "failed to query for top playlists", "amount", playlistFetchLimit, "err", err)
 			s.Views.RenderStandardError(w)
 
 			return
@@ -45,30 +47,32 @@ func (s *Server) handleHome() http.HandlerFunc {
 			})
 		}
 
-		playlists := fetchPlaylistsFromSkeletonPlaylists(req.Context(), s.Client, skeletonPlaylists, s.Spotify)
+		playlists := fetchPlaylistsFromSkeletonPlaylists(r.Context(), s.Client, skeletonPlaylists, s.Spotify)
 
 		w.Header().Set("Cache-Control", "public, max-age=5")
 		s.Views.Render(w, "index.tmpl", map[string]any{
-			"new_relic_head": template.HTML(newrelic.FromContext(req.Context()).BrowserTimingHeader().WithTags()), //nolint: gosec
+			"new_relic_head": template.HTML(newrelic.FromContext(r.Context()).BrowserTimingHeader().WithTags()), //nolint: gosec
 			"playlists":      playlists,
 		})
 	}
 }
 
 func (s *Server) handlePlaylistsPaginationTop() http.HandlerFunc {
-	const fetchLimit = 12
+	const playlistFetchLimit = 12
 
-	return func(w http.ResponseWriter, req *http.Request) {
-		if !views.TurboStreamRequest(req) {
-			http.Redirect(w, req, RouteHome, http.StatusSeeOther)
+	return func(w http.ResponseWriter, r *http.Request) {
+		log := rlog.L(r.Context())
+
+		if !views.TurboStreamRequest(r) {
+			http.Redirect(w, r, RouteHome, http.StatusSeeOther)
 
 			return
 		}
 
 		// query is in form of `top?after=playlist_id-upvotes`
-		after := req.URL.Query().Get("after")
+		after := r.URL.Query().Get("after")
 		if after == "" {
-			log.Printf("invalid after query param: %s", after)
+			log.InfoCtx(r.Context(), "missing after query param")
 			s.Views.RenderStandardError(w)
 
 			return
@@ -76,7 +80,7 @@ func (s *Server) handlePlaylistsPaginationTop() http.HandlerFunc {
 
 		playlistIDAndUpvoteCount := strings.Split(after, "-")
 		if len(playlistIDAndUpvoteCount) != 2 { //nolint: gomnd
-			log.Printf("invalid after query param: %s", after)
+			log.InfoCtx(r.Context(), "missing after query param", "after", after)
 			s.Views.RenderStandardError(w)
 
 			return
@@ -86,34 +90,34 @@ func (s *Server) handlePlaylistsPaginationTop() http.HandlerFunc {
 
 		upvotes, err := strconv.ParseInt(playlistIDAndUpvoteCount[1], 10, 64)
 		if err != nil {
-			log.Printf("invalid after query param: %s", after)
+			log.InfoCtx(r.Context(), "invalid after query param", "after", after, "playlist_id", playlistID, "err", err)
 			s.Views.RenderStandardError(w)
 
 			return
 		}
 
-		log.Printf("fetching next top playlists after given playlist id: %s, upvotes: %d", playlistID, upvotes)
+		log.InfoCtx(r.Context(), "fetching top playlists after given playlist id", "playlist_id", playlistID, "upvotes", upvotes)
 
-		nextTopSkeletonPlaylists, err := s.Qry.NextTopPlaylists(req.Context(), sqlc.NextTopPlaylistsParams{
+		nextTopSkeletonPlaylists, err := s.Qry.NextTopPlaylists(r.Context(), sqlc.NextTopPlaylistsParams{
 			ID:      playlistID,
 			Upvotes: upvotes,
-			Limit:   fetchLimit,
+			Limit:   playlistFetchLimit,
 		})
 		if err != nil {
-			log.Printf("failed to query for next top playlists: %v", err)
+			log.InfoCtx(r.Context(), "failed to query for next top playlists", "playlist_id", playlistID, "upvotes", upvotes, "err", err)
 			s.Views.RenderStandardError(w)
 
 			return
 		}
 
 		if len(nextTopSkeletonPlaylists) == 0 {
-			log.Printf("no more playlists to fetch")
+			log.InfoCtx(r.Context(), "no more playlists to fetch", "playlist_id", playlistID, "upvotes", upvotes)
 			w.WriteHeader(http.StatusNoContent)
 
 			return
 		}
 
-		log.Printf("next top playlists returned: %d", len(nextTopSkeletonPlaylists))
+		log.InfoCtx(r.Context(), "next top playlists returned", "amount", len(nextTopSkeletonPlaylists))
 
 		var skeletonPlaylists []SkeletonPlaylist
 		for _, playlist := range nextTopSkeletonPlaylists {
@@ -123,7 +127,7 @@ func (s *Server) handlePlaylistsPaginationTop() http.HandlerFunc {
 			})
 		}
 
-		playlists := fetchPlaylistsFromSkeletonPlaylists(req.Context(), s.Client, skeletonPlaylists, s.Spotify)
+		playlists := fetchPlaylistsFromSkeletonPlaylists(r.Context(), s.Client, skeletonPlaylists, s.Spotify)
 
 		w.Header().Set("Cache-Control", "public, max-age=5")
 
@@ -134,6 +138,8 @@ func (s *Server) handlePlaylistsPaginationTop() http.HandlerFunc {
 }
 
 func fetchPlaylistsFromSkeletonPlaylists(ctx context.Context, client *http.Client, skeletonPlaylists []SkeletonPlaylist, spotifyClient *spotify.Client) []*domain.Playlist {
+	log := rlog.L(ctx)
+
 	var (
 		playlists []*domain.Playlist
 		mtx       sync.Mutex
@@ -184,7 +190,7 @@ func fetchPlaylistsFromSkeletonPlaylists(ctx context.Context, client *http.Clien
 
 	for err := range errors {
 		// TODO handle fetch failures due to deleted playlists
-		log.Printf("error fetching playlist: %v", err)
+		log.ErrorCtx(ctx, "failed to fetch playlist", "err", err)
 		noticeError(ctx, err)
 	}
 

@@ -8,12 +8,12 @@ import (
 	"log"
 	"net"
 	"net/http"
-	"os"
 	"time"
 
 	"app/config"
 	"app/core/db"
 	"app/core/db/sqlc"
+	"app/core/rlog"
 	"app/core/spotify"
 	"app/core/views"
 	"github.com/newrelic/go-agent/v3/newrelic"
@@ -42,7 +42,7 @@ func NewServer(cfg *config.Server) *Server {
 	srv := &Server{}
 
 	srv.Cfg = cfg
-	srv.Log = slog.New(slog.NewTextHandler(os.Stdout, nil))
+	srv.Log = rlog.DefaultLogger()
 	srv.DB = db.New(cfg.SqliteDBPath)
 	srv.Qry = sqlc.New(srv.DB)
 	srv.Views = views.New(srv.Cfg.Env)
@@ -93,8 +93,8 @@ func (s *Server) Start() {
 	log.Printf("ready to handle requests at :%v", s.Port)
 }
 
-func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	s.Router.ServeHTTP(w, req)
+func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	s.Router.ServeHTTP(w, r)
 }
 
 func (s *Server) Stop() {

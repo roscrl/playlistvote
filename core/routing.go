@@ -7,20 +7,20 @@ import (
 )
 
 func (s *Server) routing(routes []route) http.HandlerFunc {
-	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		var allow []string
 
 		for _, route := range routes {
-			matches := route.regex.FindStringSubmatch(req.URL.Path)
+			matches := route.regex.FindStringSubmatch(r.URL.Path)
 			if len(matches) > 0 {
-				if req.Method != route.method {
+				if r.Method != route.method {
 					allow = append(allow, route.method)
 
 					continue
 				}
 
-				ctx := context.WithValue(req.Context(), ctxKey{}, matches[1:])
-				route.handler(w, req.WithContext(ctx))
+				ctx := context.WithValue(r.Context(), contextKeyFields{}, matches[1:])
+				route.handler(w, r.WithContext(ctx))
 
 				return
 			}
@@ -33,6 +33,6 @@ func (s *Server) routing(routes []route) http.HandlerFunc {
 			return
 		}
 
-		http.NotFound(w, req)
+		http.NotFound(w, r)
 	})
 }

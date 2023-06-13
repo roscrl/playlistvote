@@ -9,6 +9,6 @@ const (
 	TurboStreamMIME = "text/vnd.turbo-stream.html"
 )
 
-func TurboStreamRequest(req *http.Request) bool {
-	return strings.Contains(req.Header.Get("Accept"), TurboStreamMIME)
+func TurboStreamRequest(r *http.Request) bool {
+	return strings.Contains(r.Header.Get("Accept"), TurboStreamMIME)
 }
