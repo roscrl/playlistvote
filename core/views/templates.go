@@ -109,11 +109,13 @@ func (v *Views) Render(w io.Writer, name string, data any) {
 	}
 }
 
-func (v *Views) RenderStandardError(w io.Writer) {
+func (v *Views) RenderStandardError(w http.ResponseWriter) {
+	w.WriteHeader(http.StatusInternalServerError)
 	v.Render(w, "error.tmpl", map[string]any{})
 }
 
-func (v *Views) RenderError(w io.Writer, msg string) {
+func (v *Views) RenderError(w http.ResponseWriter, msg string, statusCode int) {
+	w.WriteHeader(statusCode)
 	v.Render(w, "error.tmpl", map[string]any{"error": msg})
 }
 

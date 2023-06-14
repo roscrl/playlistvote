@@ -36,6 +36,12 @@ test:
 test-browser-slow:
 	go test -v ./... -rod=show,slow=1s,trace
 
+bench:
+	go test -run=^$ -bench=. ./...
+
+pprof:
+	go tool pprof -http=:8080 bin/profile.pprof
+
 #########################
 #####    Scripts    #####
 #########################

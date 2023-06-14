@@ -78,7 +78,7 @@ func (s *Server) routes() http.Handler {
 
 	routerEntry := s.routing(routes)
 
-	return recoveryMiddleware(requestLogger(requestID(requestDurationMiddleware(routerEntry))))
+	return requestLogger(requestID(recoveryMiddleware(requestDurationMiddleware(routerEntry))))
 }
 
 func getField(r *http.Request, index int) string {

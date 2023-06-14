@@ -1,12 +1,12 @@
 package core
 
 import (
-	"app/core/rlog"
 	"errors"
 	"net/http"
 	"strings"
 
 	"app/core/db/sqlc"
+	"app/core/rlog"
 	"app/core/spotify"
 	"app/core/views"
 )
@@ -29,7 +29,7 @@ func (s *Server) handlePlaylistView() http.HandlerFunc {
 
 			if playlistExists == 0 {
 				log.InfoCtx(r.Context(), "playlist does not exist", "playlist_id", playlistID)
-				s.Views.RenderError(w, "playlist does not exist on our side. add it on the home page")
+				s.Views.RenderError(w, "playlist does not exist on our side. add it on the home page", http.StatusNotFound)
 
 				return
 			}
@@ -46,7 +46,7 @@ func (s *Server) handlePlaylistView() http.HandlerFunc {
 		upvotes, err := s.Qry.GetPlaylistUpvotes(r.Context(), playlistID)
 		if err != nil {
 			log.InfoCtx(r.Context(), "failed to query for playlist upvotes", "playlist_id", playlistID, "err", err)
-			s.Views.RenderError(w, "")
+			s.Views.RenderStandardError(w)
 
 			return
 		}

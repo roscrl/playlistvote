@@ -4,7 +4,6 @@ import (
 	"context"
 	"crypto/rand"
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"strings"
@@ -13,28 +12,6 @@ import (
 	"app/core/rlog"
 	"golang.org/x/exp/slog"
 )
-
-func recoveryMiddleware(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		defer func() {
-			if recovery := recover(); recovery != nil {
-				var err error
-				switch panicType := recovery.(type) {
-				case string:
-					err = fmt.Errorf(panicType)
-				case error:
-					err = panicType
-				default:
-					err = fmt.Errorf("unknown panic: %v", panicType)
-				}
-				log.Printf("panic: %s", err)
-				noticeError(r.Context(), err)
-				http.Error(w, "internal server error", http.StatusInternalServerError)
-			}
-		}()
-		next.ServeHTTP(w, r)
-	})
-}
 
 func requestLogger(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -68,6 +45,37 @@ func requestID(next http.Handler) http.Handler {
 	})
 }
 
+func recoveryMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		defer func() {
+			if recovery := recover(); recovery != nil {
+				var err error
+				switch panicType := recovery.(type) {
+				case string:
+					err = fmt.Errorf(panicType)
+				case error:
+					err = panicType
+				default:
+					err = fmt.Errorf("unknown panic: %v", panicType)
+				}
+
+				log := rlog.L(r.Context())
+				log.ErrorCtx(r.Context(), "panic", "err", err)
+
+				noticeError(r.Context(), err)
+
+				var requestId string
+				if rid, ok := r.Context().Value(rlog.ContextKeyRequestID{}).(string); ok {
+					requestId = rid
+				}
+
+				http.Error(w, "internal server error "+requestId, http.StatusInternalServerError)
+			}
+		}()
+		next.ServeHTTP(w, r)
+	})
+}
+
 func requestDurationMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if strings.HasPrefix(r.URL.Path, RouteAssetBase) {
@@ -81,7 +89,9 @@ func requestDurationMiddleware(next http.Handler) http.Handler {
 		next.ServeHTTP(w, r)
 
 		elapsed := time.Since(start)
-		log.Printf("%s %s took %s", r.Method, r.URL.Path, elapsed)
+
+		log := rlog.L(r.Context())
+		log.InfoCtx(r.Context(), "request duration", "path", r.URL.Path, "took", elapsed)
 	})
 }
 
