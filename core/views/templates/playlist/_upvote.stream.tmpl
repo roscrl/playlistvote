@@ -1,0 +1,7 @@
+<turbo-stream action="replace" target="playlist-upvote-{{ .playlist_id }}-count">
+    <template>
+        <turbo-frame id="playlist-upvote-{{ .playlist_id }}-count">
+            <span class="text-xs self-center mr-1 group-active:text-[#ffe484]">{{ formatNumberInK .upvotes }}</span>
+        </turbo-frame>
+    </template>
+</turbo-stream>

@@ -36,7 +36,7 @@ func TestHandleTopPlaylistsAfterCursor(t *testing.T) {
 
 	w := httptest.NewRecorder()
 
-	req := httptest.NewRequest(http.MethodGet, "/playlist/top?after=6-10", nil)
+	req := httptest.NewRequest(http.MethodGet, "/playlists/top?after=6-10", nil)
 	req.Header.Set("Accept", views.TurboStreamMIME)
 
 	server.ServeHTTP(w, req)

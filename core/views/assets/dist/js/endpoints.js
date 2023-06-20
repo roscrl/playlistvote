@@ -1,5 +1,7 @@
 const Routes = {
-    PlaylistsPaginationTop: "/playlist/top?after="
+    PlaylistsPaginationTop: "/playlists/top?after=",
+    PlaylistsUpvotesSubscribe: "/playlists/subscribe/upvotes",
+    PlaylistsUpvotesStream: "/playlists/stream/upvotes"
 }
 
 export {

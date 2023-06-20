@@ -1,5 +1,7 @@
-<turbo-stream action="replace" target="playlist-upvote-{{.playlist_id}}">
+<turbo-stream action="replace" target="playlist-upvote-{{ .playlist_id }}-form">
     <template>
-        <div class="text-xs mr-2 block">{{formatNumberInK .upvotes }}</div>
+        <turbo-frame id="playlist-upvote-{{ .playlist_id }}-count">
+            <div class="text-xs mr-2 block">{{ formatNumberInK .upvotes }}</div>
+        </turbo-frame>
     </template>
 </turbo-stream>

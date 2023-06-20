@@ -3,6 +3,8 @@ package core
 import (
 	"net/http"
 	"regexp"
+
+	"app/core/middleware"
 )
 
 type route struct {
@@ -18,12 +20,15 @@ const (
 	RouteHome                   = "/"
 	RoutePlaylistBase           = "/playlist"
 	RoutePlaylistCreate         = "/playlist"
-	RoutePlaylistsPaginationTop = "/playlist/top(.*)"
-	RoutePlaylistView           = "/playlist/(.*)"
-	RoutePlaylistUpvote         = "/playlist/(.*)/upvote"
+	RoutePlaylistsPaginationTop = "/playlists/top(.*)"
 
-	RouteUp = "/up"
+	RoutePlaylistView   = "/playlist/(.*)"
+	RoutePlaylistUpvote = "/playlist/(.*)/upvote"
 
+	RoutePlaylistsUpvotesSubscribe = "/playlists/subscribe/upvotes"
+	RoutePlaylistsUpvotesStream    = "/playlists/stream/upvotes"
+
+	RouteUp                  = "/up"
 	RouteProfileBaseRoute    = "/debug/pprof"
 	RouteProfileAllocs       = "/debug/allocs"
 	RouteProfileBlock        = "/debug/block"
@@ -48,8 +53,12 @@ func (s *Server) routes() http.Handler {
 		newRoute(http.MethodGet, RouteAsset, http.StripPrefix(RouteAssetBase+"/", s.handleAssets()).ServeHTTP),
 		newRoute(http.MethodGet, RouteHome, s.handleHome()),
 
+		newRoute(http.MethodPost, RoutePlaylistsUpvotesSubscribe, s.handlePlaylistUpvotesSubscribe()),
+		newRoute(http.MethodGet, RoutePlaylistsUpvotesStream, s.handlePlaylistsUpvotesStream()),
+
 		newRoute(http.MethodPost, RoutePlaylistCreate, s.handlePlaylistCreate()),
 		newRoute(http.MethodGet, RoutePlaylistsPaginationTop, s.handlePlaylistsPaginationTop()),
+
 		newRoute(http.MethodGet, RoutePlaylistView, s.handlePlaylistView()),
 		newRoute(http.MethodPost, RoutePlaylistUpvote, s.handlePlaylistUpVote()),
 
@@ -71,14 +80,26 @@ func (s *Server) routes() http.Handler {
 	}
 
 	for path, handler := range pprofRoutes {
-		routes = append(routes, newRoute(http.MethodGet, path, basicAuthAdminRouteMiddleware(handler, s.Cfg.BasicDebugAuthUsername, s.Cfg.BasicDebugAuthPassword)))
+		routes = append(routes, newRoute(http.MethodGet, path, middleware.BasicAuthAdmin(handler, s.Cfg.BasicDebugAuthUsername, s.Cfg.BasicDebugAuthPassword)))
 	}
 
 	instrumentRoutes(routes, s.APM)
 
 	routerEntry := s.routing(routes)
 
-	return requestLogger(requestID(recoveryMiddleware(requestDurationMiddleware(routerEntry))))
+	return middleware.RequestLogger(
+		middleware.RequestPathToContext(
+			middleware.RequestID(
+				middleware.Recovery(
+					middleware.CookieSession(
+						middleware.RequestDuration(
+							routerEntry, RouteAssetBase,
+						),
+					), noticeError,
+				),
+			), RouteAssetBase,
+		),
+	)
 }
 
 func getField(r *http.Request, index int) string {

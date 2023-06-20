@@ -9,8 +9,10 @@ import (
 	"strings"
 )
 
+type PlaylistID string
+
 type Playlist struct {
-	ID          string
+	ID          PlaylistID
 	Name        string
 	URI         string
 	Description string

@@ -23,22 +23,26 @@
         "endpoints": "/assets/js/endpoints.js"
       }
     }
+
+
     </script>
 
     <script type="module">
         import * as Turbo from "@hotwired/turbo"
         import { Application } from "@hotwired/stimulus"
-        import PlayerBarController from "controllers/playerbar.js"
         import ModalController from "controllers/modal.js"
         import PaginationController from "controllers/pagination.js"
+        import PlayerBarController from "controllers/playerbar.js"
+        import UpvoteSubscriberController from "controllers/upvote_subscriber.js"
 
         document.addEventListener("DOMContentLoaded", function () {
             Turbo.start()
 
             window.Stimulus = Application.start()
-            Stimulus.register("playerbar", PlayerBarController)
             Stimulus.register("modal", ModalController)
             Stimulus.register("pagination", PaginationController)
+            Stimulus.register("playerbar", PlayerBarController)
+            Stimulus.register("upvote_subscriber", UpvoteSubscriberController)
         })
     </script>
 

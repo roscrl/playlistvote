@@ -11,9 +11,11 @@ import (
 	"time"
 
 	"app/config"
+	"app/core/broadcast"
 	"app/core/db"
 	"app/core/db/sqlc"
 	"app/core/rlog"
+	"app/core/session"
 	"app/core/spotify"
 	"app/core/views"
 	"github.com/newrelic/go-agent/v3/newrelic"
@@ -30,6 +32,9 @@ type Server struct {
 	Client  *http.Client
 	Spotify *spotify.Client
 
+	SessionStore             *session.Store
+	UpvoteBroadcasterService *broadcast.UpvoteBroadcasterService
+
 	APM      *newrelic.Application
 	Router   http.Handler
 	Listener net.Listener
@@ -42,7 +47,7 @@ func NewServer(cfg *config.Server) *Server {
 	srv := &Server{}
 
 	srv.Cfg = cfg
-	srv.Log = rlog.DefaultLogger()
+	srv.Log = rlog.NewDefaultLogger()
 	srv.DB = db.New(cfg.SqliteDBPath)
 	srv.Qry = sqlc.New(srv.DB)
 	srv.Views = views.New(srv.Cfg.Env)
@@ -57,10 +62,10 @@ func NewServer(cfg *config.Server) *Server {
 	srv.Router = srv.routes()
 
 	srv.HTTPServer = &http.Server{
-		Handler:      srv.Router,
-		ReadTimeout:  5 * time.Second,
-		WriteTimeout: 10 * time.Second,
-		IdleTimeout:  15 * time.Second,
+		Handler:     srv.Router,
+		ReadTimeout: 5 * time.Second,
+		// WriteTimeout: 10 * time.Second, TODO this is causing issues with the websocket
+		IdleTimeout: 15 * time.Second,
 	}
 
 	return srv

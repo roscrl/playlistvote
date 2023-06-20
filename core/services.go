@@ -4,52 +4,58 @@ import (
 	"context"
 	"time"
 
+	"app/core/broadcast"
+	"app/core/session"
 	"app/core/spotify"
 	spotifymock "app/core/spotify/mock"
 )
 
-func setupServices(srv *Server) {
-	if srv.Cfg.Mocking {
-		mockedServices(srv)
+func setupServices(s *Server) {
+	s.SessionStore = session.NewStore()
+	s.UpvoteBroadcasterService = broadcast.NewUpvoteBroadcasterService()
+	s.UpvoteBroadcasterService.Start(s.SessionStore)
+
+	if s.Cfg.Mocking {
+		mockedServices(s)
 	} else {
-		realServices(srv)
+		realServices(s)
 	}
 }
 
-func mockedServices(srv *Server) {
-	srv.Log.Info("mocking services")
+func mockedServices(s *Server) {
+	s.Log.Info("mocking services")
 
 	mockServer := spotifymock.NewServer()
 
-	srv.Spotify = &spotify.Client{
-		Client:       srv.Client,
-		ClientID:     srv.Cfg.SpotifyClientID,
-		ClientSecret: srv.Cfg.SpotifyClientSecret,
+	s.Spotify = &spotify.Client{
+		Client:       s.Client,
+		ClientID:     s.Cfg.SpotifyClientID,
+		ClientSecret: s.Cfg.SpotifyClientSecret,
 
 		TokenEndpoint:    mockServer.TokenEndpoint,
 		PlaylistEndpoint: mockServer.PlaylistEndpoint,
 
 		Now: time.Now,
 	}
-	srv.Spotify.StartTokenLifecycle(context.Background())
+	s.Spotify.StartTokenLifecycle(context.Background())
 
-	srv.Log.Info("services mocked")
+	s.Log.Info("services mocked")
 }
 
-func realServices(srv *Server) {
-	srv.Log.Info("initializing services")
+func realServices(s *Server) {
+	s.Log.Info("initializing services")
 
-	srv.Spotify = &spotify.Client{
-		Client:       srv.Client,
-		ClientID:     srv.Cfg.SpotifyClientID,
-		ClientSecret: srv.Cfg.SpotifyClientSecret,
+	s.Spotify = &spotify.Client{
+		Client:       s.Client,
+		ClientID:     s.Cfg.SpotifyClientID,
+		ClientSecret: s.Cfg.SpotifyClientSecret,
 
 		TokenEndpoint:    spotify.TokenEndpoint,
 		PlaylistEndpoint: spotify.PlaylistEndpoint,
 
 		Now: time.Now,
 	}
-	srv.Spotify.StartTokenLifecycle(context.Background())
+	s.Spotify.StartTokenLifecycle(context.Background())
 
-	srv.Log.Info("services initialized")
+	s.Log.Info("services initialized")
 }

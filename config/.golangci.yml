@@ -112,8 +112,10 @@ linters-settings:
     #
     # Default: []
     ignore-decls:
+      - s *Server
       - w http.ResponseWriter
       - w io.Writer
       - r *http.Request
       - db *sql.DB
       - wg sync.WaitGroup
+      - i int

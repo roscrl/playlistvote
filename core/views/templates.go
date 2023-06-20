@@ -14,7 +14,6 @@ import (
 	"strings"
 
 	"app/config"
-	"app/core/spotify"
 	"github.com/fsnotify/fsnotify"
 )
 
@@ -60,9 +59,6 @@ func New(env config.Environment) *Views {
 		},
 		"rawHTML": func(s string) template.HTML {
 			return template.HTML(s) //nolint:gosec
-		},
-		"stripSpotifyURI": func(s string) string {
-			return strings.TrimPrefix(s, spotify.URIPlaylistPrefix)
 		},
 	}
 	views := &Views{env: env, funcMap: funcMap}

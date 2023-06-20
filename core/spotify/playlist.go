@@ -91,7 +91,7 @@ func (p *PlaylistAPIResponse) ToPlaylist() (*domain.Playlist, error) {
 	}
 
 	return &domain.Playlist{
-		ID:          p.ID,
+		ID:          domain.PlaylistID(p.ID),
 		Name:        p.Name,
 		URI:         p.URI,
 		Description: p.Description,

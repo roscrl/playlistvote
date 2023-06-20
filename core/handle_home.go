@@ -39,6 +39,8 @@ func (s *Server) handleHome() http.HandlerFunc {
 			return
 		}
 
+		log.InfoCtx(r.Context(), "fetched top skeleton playlists", "amount", len(topSkeletonPlaylists))
+
 		var skeletonPlaylists []SkeletonPlaylist
 		for _, playlist := range topSkeletonPlaylists {
 			skeletonPlaylists = append(skeletonPlaylists, SkeletonPlaylist{
@@ -130,7 +132,6 @@ func (s *Server) handlePlaylistsPaginationTop() http.HandlerFunc {
 		playlists := fetchPlaylistsFromSkeletonPlaylists(r.Context(), s.Client, skeletonPlaylists, s.Spotify)
 
 		w.Header().Set("Cache-Control", "public, max-age=5")
-
 		s.Views.Render(w, "playlist/_top.stream.tmpl", map[string]any{
 			"playlists": playlists,
 		})
@@ -150,6 +151,8 @@ func fetchPlaylistsFromSkeletonPlaylists(ctx context.Context, client *http.Clien
 
 	wg.Add(countPlaylistIdsToFetch)
 	errors := make(chan error, countPlaylistIdsToFetch)
+
+	log.InfoCtx(ctx, "fetching playlists from spotify in goroutines", "amount", countPlaylistIdsToFetch)
 
 	for _, skeletonPlaylist := range skeletonPlaylists {
 		go func(skeletonPlaylist SkeletonPlaylist) {

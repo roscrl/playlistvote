@@ -2,9 +2,11 @@ package rlog
 
 import (
 	"context"
-	"golang.org/x/exp/slog"
 	"os"
 	"testing"
+
+	"app/core/contextkey"
+	"golang.org/x/exp/slog"
 )
 
 var (
@@ -29,8 +31,8 @@ func BenchmarkNewLoggerEveryRequest(b *testing.B) {
 
 		logger = slog.New(requestContextHandler)
 
-		ctx = context.WithValue(ctx, ContextKeyRequestLogger{}, logger)
-		ctx = context.WithValue(ctx, ContextKeyRequestID{}, requestID)
+		ctx = context.WithValue(ctx, contextkey.RequestLogger{}, logger)
+		ctx = context.WithValue(ctx, contextkey.RequestID{}, requestID)
 	}
 
 	resultCtx = ctx
@@ -53,9 +55,9 @@ func BenchmarkCloningWithLoggerEveryRequest(b *testing.B) {
 		ctx = context.Background()
 		requestID := "123"
 
-		logger2 := logger.With(slog.String(ContextKeyRequestIDLogKey, requestID))
+		logger2 := logger.With(slog.String(RequestIDLogKey, requestID))
 
-		ctx = context.WithValue(ctx, ContextKeyRequestLogger{}, logger2)
+		ctx = context.WithValue(ctx, contextkey.RequestLogger{}, logger2)
 	}
 
 	resultCtx = ctx

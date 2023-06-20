@@ -12,7 +12,8 @@ import (
 )
 
 const (
-	RefreshWaitTime = 5 * time.Second
+	refreshWaitTime  = 5 * time.Second
+	softExpiryBuffer = 10 * time.Second
 )
 
 type token struct {
@@ -46,7 +47,7 @@ func (t *token) startRefreshLoop(ctx context.Context) {
 			err := t.refreshToken(ctx)
 			if err != nil {
 				log.Printf("refreshing token: %v", err)
-				time.Sleep(RefreshWaitTime)
+				time.Sleep(refreshWaitTime)
 
 				continue
 			}
@@ -106,8 +107,6 @@ func (t *token) refreshToken(ctx context.Context) error {
 	t.accessToken = response.AccessToken
 
 	now := t.Now()
-
-	const softExpiryBuffer = 10 * time.Second
 
 	t.softExpiry = now.Add((time.Duration(response.ExpiresIn) * time.Second) - softExpiryBuffer)
 	t.hardExpiry = now.Add(time.Duration(response.ExpiresIn) * time.Second)
