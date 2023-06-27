@@ -24,9 +24,8 @@ export default class extends Controller {
 
         const lastPlaylistCard = document.querySelector(".playlist-card:last-child");
 
-        // if the browser url has new then we need to get the new playlists not top
         let response;
-        if (window.location.href.includes("new")) {
+        if (window.location.href.includes("new")) { // playlistvote.com/new
             const paginationId = lastPlaylistCard.getAttribute("data-pagination-id-new");
             const playlistsPaginationTopUrl = `${Routes.PlaylistsPaginationNew}${paginationId}`;
 
