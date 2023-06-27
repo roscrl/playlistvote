@@ -4,6 +4,7 @@ import (
 	"errors"
 	"net/http"
 	"strings"
+	"time"
 
 	"app/core/db/sqlc"
 	"app/core/rlog"
@@ -59,8 +60,11 @@ func (s *Server) handlePlaylistView() http.HandlerFunc {
 			return
 		}
 
-		err = playlist.AttachMetadata(r.Context(), s.Client, upvotes)
+		err = playlist.AttachMetadata(r.Context(), s.Client, upvotes, time.Time{})
 		if err != nil {
+			log.InfoCtx(r.Context(), "failed to attach metadata to playlist", "playlist_id", playlistID, "err", err)
+			s.Views.RenderStandardError(w)
+
 			return
 		}
 
@@ -131,10 +135,8 @@ func (s *Server) handlePlaylistCreate() http.HandlerFunc {
 		log.InfoCtx(r.Context(), "playlist does not exist, fetching from spotify", "playlist_id", playlistID)
 
 		seg := startSegment(r, "SpotifyPlaylistGet")
+
 		playlistAPIResponse, err := s.Spotify.Playlist(r.Context(), playlistID)
-
-		seg.End()
-
 		if err != nil {
 			if errors.Is(err, spotify.ErrPlaylistNotFound) {
 				log.InfoCtx(r.Context(), "playlist not found", "playlist_id", playlistID)
@@ -161,6 +163,8 @@ func (s *Server) handlePlaylistCreate() http.HandlerFunc {
 
 			return
 		}
+
+		seg.End()
 
 		playlist, err := playlistAPIResponse.ToPlaylist()
 		if err != nil {
@@ -202,7 +206,7 @@ func (s *Server) handlePlaylistCreate() http.HandlerFunc {
 			return
 		}
 
-		err = playlist.AttachMetadata(r.Context(), s.Client, 1)
+		err = playlist.AttachMetadata(r.Context(), s.Client, 1, time.Time{})
 		if err != nil {
 			log.InfoCtx(r.Context(), "failed to attach metadata to playlist", "playlist_id", playlistID, "err", err)
 			s.Views.RenderStandardError(w)

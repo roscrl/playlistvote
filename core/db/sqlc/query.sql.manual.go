@@ -3,8 +3,8 @@ package sqlc
 import "context"
 
 const NextTopPlaylists = `-- name: NextTopPlaylists :many
-SELECT id, upvotes
-FROM (SELECT id, upvotes
+SELECT id, upvotes, added_at
+FROM (SELECT id, upvotes, added_at
       FROM playlists
       WHERE upvotes <= ?1
         AND NOT (upvotes = ?1 AND id >= ?)
@@ -15,6 +15,7 @@ LIMIT ?;
 type NextTopPlaylistsRow struct {
 	ID      string
 	Upvotes int64
+	AddedAt int64
 }
 
 type NextTopPlaylistsParams struct {
@@ -34,7 +35,7 @@ func (q *Queries) NextTopPlaylists(ctx context.Context, arg NextTopPlaylistsPara
 
 	for rows.Next() {
 		var i NextTopPlaylistsRow
-		if err := rows.Scan(&i.ID, &i.Upvotes); err != nil {
+		if err := rows.Scan(&i.ID, &i.Upvotes, &i.AddedAt); err != nil {
 			return nil, err
 		}
 
@@ -52,52 +53,53 @@ func (q *Queries) NextTopPlaylists(ctx context.Context, arg NextTopPlaylistsPara
 	return items, nil
 }
 
-// const NextNewPlaylists = `-- name: NextNewPlaylists :many
-// SELECT id, upvotes
-// FROM (SELECT id, upvotes
-//       FROM playlists
-//       WHERE added_at <= ?
-//         AND NOT (added_at = ? AND id >= ?)
-//       ORDER BY upvotes DESC, id DESC)
-// LIMIT ?;
-// `
-//
-// type NextNewPlaylistsRow struct {
-// 	ID      string
-// 	Upvotes int64
-// }
-//
-// type NextNewPlaylistsParams struct {
-// 	ID      string
-// 	Limit   int64
-// }
-//
-// func (q *Queries) NextNewPlaylists(ctx context.Context, arg NextNewPlaylistsParams) ([]NextNewPlaylistsRow, error) {
-//nolint:dupword
-//  rows, err := q.db.QueryContext(ctx, NextNewPlaylists, arg.AddedAt, arg.AddedAt, arg.ID, arg.Limit)
-//	if err != nil {
-//		return nil, err
-//	}
-//	defer rows.Close()
-//
-//	var items []NextNewPlaylistsRow
-//
-//	for rows.Next() {
-//		var i NextNewPlaylistsRow
-//		if err := rows.Scan(&i.ID, &i.Upvotes); err != nil {
-//			return nil, err
-//		}
-//
-//		items = append(items, i)
-//	}
-//
-//	if err := rows.Close(); err != nil {
-//		return nil, err
-//	}
-//
-//	if err := rows.Err(); err != nil {
-//		return nil, err
-//	}
-//
-//	return items, nil
-//}
+const NextNewPlaylists = `-- name: NextNewPlaylists :many
+SELECT id, upvotes, added_at
+FROM (SELECT id, upvotes, added_at
+      FROM playlists
+      WHERE added_at <= ?1
+        AND NOT (added_at = ?1 AND id >= ?)
+      ORDER BY added_at DESC, id DESC)
+LIMIT ?;
+`
+
+type NextNewPlaylistsRow struct {
+	ID      string
+	Upvotes int64
+	AddedAt int64
+}
+
+type NextNewPlaylistsParams struct {
+	ID      string
+	AddedAt int64
+	Limit   int64
+}
+
+func (q *Queries) NextNewPlaylists(ctx context.Context, arg NextNewPlaylistsParams) ([]NextNewPlaylistsRow, error) {
+	rows, err := q.db.QueryContext(ctx, NextNewPlaylists, arg.AddedAt, arg.ID, arg.Limit)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var items []NextNewPlaylistsRow
+
+	for rows.Next() {
+		var i NextNewPlaylistsRow
+		if err := rows.Scan(&i.ID, &i.Upvotes, &i.AddedAt); err != nil {
+			return nil, err
+		}
+
+		items = append(items, i)
+	}
+
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+
+	return items, nil
+}

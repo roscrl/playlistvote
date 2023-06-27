@@ -23,18 +23,35 @@ export default class extends Controller {
         this.showLoadingIcon();
 
         const lastPlaylistCard = document.querySelector(".playlist-card:last-child");
-        const paginationId = lastPlaylistCard.getAttribute("data-pagination-id");
 
-        const playlistsPaginationTopUrl = `${Routes.PlaylistsPaginationTop}${paginationId}`;
+        // if the browser url has new then we need to get the new playlists not top
+        let response;
+        if (window.location.href.includes("new")) {
+            const paginationId = lastPlaylistCard.getAttribute("data-pagination-id-new");
+            const playlistsPaginationTopUrl = `${Routes.PlaylistsPaginationNew}${paginationId}`;
 
-        const request = new Request(playlistsPaginationTopUrl, {
-            method: "GET",
-            headers: {
-                "Accept": "text/vnd.turbo-stream.html"
-            }
-        });
+            const request = new Request(playlistsPaginationTopUrl, {
+                method: "GET",
+                headers: {
+                    "Accept": "text/vnd.turbo-stream.html"
+                }
+            });
 
-        const response = await fetch(request)
+            response = await fetch(request)
+        } else {
+            const paginationId = lastPlaylistCard.getAttribute("data-pagination-id-top");
+            const playlistsPaginationTopUrl = `${Routes.PlaylistsPaginationTop}${paginationId}`;
+
+            const request = new Request(playlistsPaginationTopUrl, {
+                method: "GET",
+                headers: {
+                    "Accept": "text/vnd.turbo-stream.html"
+                }
+            });
+
+            response = await fetch(request)
+        }
+
 
         if (response.status === 204) {
             this.element.remove();

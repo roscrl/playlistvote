@@ -3,6 +3,9 @@ import { connectStreamSource, disconnectStreamSource } from "@hotwired/turbo"
 import { Routes } from "endpoints";
 
 export default class extends Controller {
+    /**
+     * @type {EventSource}
+     */
     eventSource
 
     async connect() {
@@ -16,18 +19,24 @@ export default class extends Controller {
                 playlistIds.push(element.getAttribute("data-playlist-id"))
             })
 
-            await fetch(Routes.PlaylistsUpvotesSubscribe, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({playlist_ids: playlistIds})
-            })
+            try {
+                await fetch(Routes.PlaylistsUpvotesSubscribe, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({playlist_ids: playlistIds})
+                })
+            } catch (error) {
+               console.error(error)
+               this.disconnect()
+            }
         })
     }
 
     disconnect() {
         disconnectStreamSource(this.eventSource)
+        this.eventSource.close()
     }
 }
 

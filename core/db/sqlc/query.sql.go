@@ -26,29 +26,23 @@ func (q *Queries) AddPlaylist(ctx context.Context, arg AddPlaylistParams) (sql.R
 
 const getNewPlaylists = `-- name: GetNewPlaylists :many
 
-SELECT id, upvotes
+SELECT id, upvotes, added_at
 FROM playlists
-ORDER BY added_at DESC
+ORDER BY added_at DESC, id DESC
 LIMIT ?
 `
 
-type GetNewPlaylistsRow struct {
-	ID      string
-	Upvotes int64
-}
-
-// ! Manually added to db/sqlc/query.sql.manual.go due to not working in sqlc
-// ! name: GetNextTopPlaylists :many
-func (q *Queries) GetNewPlaylists(ctx context.Context, limit int64) ([]GetNewPlaylistsRow, error) {
+// ! Manually added GetNextTopPlaylists to db/sqlc/query.sql.manual.go due to not working in sqlc
+func (q *Queries) GetNewPlaylists(ctx context.Context, limit int64) ([]Playlist, error) {
 	rows, err := q.db.QueryContext(ctx, getNewPlaylists, limit)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	var items []GetNewPlaylistsRow
+	var items []Playlist
 	for rows.Next() {
-		var i GetNewPlaylistsRow
-		if err := rows.Scan(&i.ID, &i.Upvotes); err != nil {
+		var i Playlist
+		if err := rows.Scan(&i.ID, &i.Upvotes, &i.AddedAt); err != nil {
 			return nil, err
 		}
 		items = append(items, i)
@@ -76,27 +70,22 @@ func (q *Queries) GetPlaylistUpvotes(ctx context.Context, id string) (int64, err
 }
 
 const getTopPlaylists = `-- name: GetTopPlaylists :many
-SELECT id, upvotes
+SELECT id, upvotes, added_at
 FROM playlists
 ORDER BY upvotes DESC, id DESC
 LIMIT ?
 `
 
-type GetTopPlaylistsRow struct {
-	ID      string
-	Upvotes int64
-}
-
-func (q *Queries) GetTopPlaylists(ctx context.Context, limit int64) ([]GetTopPlaylistsRow, error) {
+func (q *Queries) GetTopPlaylists(ctx context.Context, limit int64) ([]Playlist, error) {
 	rows, err := q.db.QueryContext(ctx, getTopPlaylists, limit)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	var items []GetTopPlaylistsRow
+	var items []Playlist
 	for rows.Next() {
-		var i GetTopPlaylistsRow
-		if err := rows.Scan(&i.ID, &i.Upvotes); err != nil {
+		var i Playlist
+		if err := rows.Scan(&i.ID, &i.Upvotes, &i.AddedAt); err != nil {
 			return nil, err
 		}
 		items = append(items, i)
@@ -118,9 +107,7 @@ WHERE id = ?
 RETURNING upvotes
 `
 
-// ! TODO
-// ! Manually added to db/sqlc/query.sql.manual.go due to not working in sqlc
-// ! name: GetNextNewPlaylists :many
+// ! Manually added GetNextNewPlaylists to db/sqlc/query.sql.manual.go due to not working in sqlc
 func (q *Queries) IncrementPlaylistUpvotes(ctx context.Context, id string) (int64, error) {
 	row := q.db.QueryRowContext(ctx, incrementPlaylistUpvotes, id)
 	var upvotes int64

@@ -21,7 +21,7 @@ func TestHandleTopPlaylistsHome(t *testing.T) {
 	server.ServeHTTP(w, r) // integration test like (middlewares included)
 	is.Equal(w.Result().StatusCode, http.StatusOK)
 
-	server.handleHome()(w, r) // unit test like (no middlewares)
+	server.handleHomeTop()(w, r) // unit test like (no middlewares)
 	is.Equal(w.Result().StatusCode, http.StatusOK)
 }
 

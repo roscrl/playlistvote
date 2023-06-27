@@ -18,9 +18,11 @@ const (
 	RouteAsset     = "/assets/(.*)"
 
 	RouteHome                   = "/"
+	RouteHomeNew                = "/new"
 	RoutePlaylistBase           = "/playlist"
 	RoutePlaylistCreate         = "/playlist"
 	RoutePlaylistsPaginationTop = "/playlists/top(.*)"
+	RoutePlaylistsPaginationNew = "/playlists/new(.*)"
 
 	RoutePlaylistView   = "/playlist/(.*)"
 	RoutePlaylistUpvote = "/playlist/(.*)/upvote"
@@ -51,13 +53,16 @@ func (s *Server) routes() http.Handler {
 
 	routes := []route{
 		newRoute(http.MethodGet, RouteAsset, http.StripPrefix(RouteAssetBase+"/", s.handleAssets()).ServeHTTP),
-		newRoute(http.MethodGet, RouteHome, s.handleHome()),
+		newRoute(http.MethodGet, RouteHome, s.handleHomeTop()),
+		newRoute(http.MethodGet, RouteHomeNew, s.handleHomeNew()),
 
 		newRoute(http.MethodPost, RoutePlaylistsUpvotesSubscribe, s.handlePlaylistUpvotesSubscribe()),
 		newRoute(http.MethodGet, RoutePlaylistsUpvotesStream, s.handlePlaylistsUpvotesStream()),
 
 		newRoute(http.MethodPost, RoutePlaylistCreate, s.handlePlaylistCreate()),
+
 		newRoute(http.MethodGet, RoutePlaylistsPaginationTop, s.handlePlaylistsPaginationTop()),
+		newRoute(http.MethodGet, RoutePlaylistsPaginationNew, s.handlePlaylistsPaginationNew()),
 
 		newRoute(http.MethodGet, RoutePlaylistView, s.handlePlaylistView()),
 		newRoute(http.MethodPost, RoutePlaylistUpvote, s.handlePlaylistUpVote()),

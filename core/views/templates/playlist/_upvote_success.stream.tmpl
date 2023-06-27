@@ -5,3 +5,24 @@
         </turbo-frame>
     </template>
 </turbo-stream>
+
+<turbo-stream action="replace" target="playlist-upvote-{{ .playlist_id }}-view-form">
+    <template>
+        <turbo-frame id="playlist-upvote-{{ .playlist_id }}-view-form">
+            <form class="w-[60px] cursor-none mx-auto leading-none" action="/playlist/{{ .playlist_id }}/upvote" method="post">
+                <button class="grid grid-cols-2 p-1 rounded-[10px] flex justify-center items-center justify-center w-full p-1 hover:cursor-pointer hover:bg-zinc-400/[.20] hover:fill-white group outline-offset-[-1px] z-20 overflow-hidden">
+                    <div class="col-start-1 flex justify-center">
+                        <turbo-frame id="playlist-upvote-{{ .playlist_id }}-count">
+                            <span class="text-xs self-center group-active:text-[#ffe484]">{{formatNumberInK .upvotes }}</span>
+                        </turbo-frame>
+                    </div>
+                    <div class="col-start-2 flex justify-center">
+                        <svg class="w-[11px] overflow-visible fill-none group-active:fill-[#ffe484] group-active:stroke-[#ffe484] stroke-black stroke-[3px] opacity-100" viewBox="0 0 75 84" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.16374 49.9219H20.8304V79.0885C20.8304 80.1936 21.2694 81.2534 22.0508 82.0348C22.8322 82.8162 23.892 83.2552 24.9971 83.2552H49.9971C51.1021 83.2552 52.162 82.8162 52.9434 82.0348C53.7248 81.2534 54.1637 80.1936 54.1637 79.0885C54.1637 77.9835 54.1637 49.9219 54.1637 49.9219H70.8304C71.6148 49.9205 72.383 49.698 73.0467 49.2798C73.7104 48.8617 74.2427 48.2648 74.5825 47.5578C74.9223 46.8507 75.0559 46.0622 74.9678 45.2827C74.8797 44.5033 74.5736 43.7644 74.0846 43.151L40.7512 1.48437C39.1637 -0.494792 35.8304 -0.494792 34.2429 1.48437L0.909576 43.151C0.42057 43.7644 0.114454 44.5033 0.0263763 45.2827C-0.0617016 46.0622 0.0718296 46.8507 0.411637 47.5578C0.751444 48.2648 1.28375 48.8617 1.94744 49.2798C2.61113 49.698 3.3793 49.9205 4.16374 49.9219Z"/>
+                        </svg>
+                    </div>
+                </button>
+            </form>
+        </turbo-frame>
+    </template>
+</turbo-stream>

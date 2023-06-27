@@ -1,5 +1,8 @@
 module.exports = {
   content: ["./core/views/**/*.tmpl"],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
   theme: {
     extend: {
       keyframes: {

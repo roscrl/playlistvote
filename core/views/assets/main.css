@@ -9,3 +9,31 @@ html {
 #playlist_link_or_id::placeholder {
     padding-right: 39px
 }
+
+/* sm+md */
+@media (max-width: 767px) {
+    /* we dont want this padding on the view playlist page */
+    body:has(#playerbar.visible) {
+        #playlist_list {
+            padding-bottom: 50px
+        }
+    }
+}
+
+/* md */
+@media (min-width: 768px) {
+    body:has(#playerbar.visible) {
+        #playlist_list {
+            padding-bottom: 50px
+        }
+    }
+}
+
+/* lg */
+@media (min-width: 1024px) {
+    body:has(#playerbar.visible) {
+        #playlist_list {
+            padding-bottom: 100px
+        }
+    }
+}

@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"sort"
 	"strings"
+	"time"
 )
 
 type PlaylistID string
@@ -31,6 +32,7 @@ type Playlist struct {
 
 type PlaylistMetadata struct {
 	Upvotes               int64
+	AddedAt               time.Time
 	CoverColorsCommonFour []string
 	ArtistsCommonFour     []string
 }
@@ -62,7 +64,7 @@ type Artist struct {
 	URI  string
 }
 
-func (p *Playlist) AttachMetadata(ctx context.Context, client *http.Client, upvotes int64) error {
+func (p *Playlist) AttachMetadata(ctx context.Context, client *http.Client, upvotes int64, addedAt time.Time) error {
 	artistsCommonFour := p.mostCommonFourArtists()
 
 	colorsCommonFour, err := p.mostProminentFourCoverColors(ctx, client)
@@ -71,6 +73,7 @@ func (p *Playlist) AttachMetadata(ctx context.Context, client *http.Client, upvo
 	}
 
 	p.Upvotes = upvotes
+	p.AddedAt = addedAt
 	p.ArtistsCommonFour = artistsCommonFour
 	p.CoverColorsCommonFour = colorsCommonFour
 

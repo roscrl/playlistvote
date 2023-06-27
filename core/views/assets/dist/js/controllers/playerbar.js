@@ -21,6 +21,7 @@ export default class extends Controller {
 
             this.setState(track)
             this.element.classList.remove("hidden")
+            this.element.classList.add("visible")
         }
 
         if (this.audioIsPlaying === undefined) this.audioIsPlaying = false

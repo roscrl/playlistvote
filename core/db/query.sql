@@ -11,23 +11,20 @@ WHERE id = ?;
 SELECT EXISTS(SELECT 1 FROM playlists WHERE id = ?);
 
 -- name: GetTopPlaylists :many
-SELECT id, upvotes
+SELECT id, upvotes, added_at
 FROM playlists
 ORDER BY upvotes DESC, id DESC
 LIMIT ?;
 
---! Manually added to db/sqlc/query.sql.manual.go due to not working in sqlc
---! name: GetNextTopPlaylists :many
+--! Manually added GetNextTopPlaylists to db/sqlc/query.sql.manual.go due to not working in sqlc
 
 -- name: GetNewPlaylists :many
-SELECT id, upvotes
+SELECT id, upvotes, added_at
 FROM playlists
-ORDER BY added_at DESC
+ORDER BY added_at DESC, id DESC
 LIMIT ?;
 
---! TODO
---! Manually added to db/sqlc/query.sql.manual.go due to not working in sqlc
---! name: GetNextNewPlaylists :many
+--! Manually added GetNextNewPlaylists to db/sqlc/query.sql.manual.go due to not working in sqlc
 
 -- name: IncrementPlaylistUpvotes :one
 UPDATE playlists

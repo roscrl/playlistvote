@@ -7,7 +7,8 @@
          {{ index .CoverColorsCommonFour 1  }} 66%,
          {{ index .CoverColorsCommonFour 0  }} 100%
                  )"
-         data-pagination-id="{{.ID}}-{{.Upvotes}}"
+         data-pagination-id-top="{{.ID}}-{{.Upvotes}}"
+         data-pagination-id-new="{{.ID}}-{{.AddedAt.Unix}}"
     >
         <a href="playlist/{{ .ID }}" class="absolute z-0 top-0 left-0 w-full h-full z-10" data-turbo-frame="_top"></a>
         <div class="flex gap-[5px]">
