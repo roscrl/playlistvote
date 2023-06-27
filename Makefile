@@ -175,8 +175,6 @@ tools:
 	go install mvdan.cc/gofumpt@v0.5.0
 	go install github.com/daixiang0/gci@v0.10.1
 	go install github.com/cosmtrek/air@v1.43.0
-	go install github.com/playwright-community/playwright-go/cmd/playwright
-	playwright install --with-deps
 	mkdir -p ./bin/
 	make tooling-esbuild
 	make tooling-tailwind
