@@ -7,18 +7,12 @@ import (
 	"golang.org/x/exp/slices"
 )
 
+//nolint:lll
 const (
 	MinPlaylistTracks  = 4
 	MinPlaylistArtists = 4
 
-	PlaylistAPIQuery = `
-		id, name, description, images
-		owner(id, display_name, external_urls(spotify), uri), 
-		followers, uri, external_urls, 
-		tracks.items(
-			track(name, duration_ms, preview_url, uri, artists(name, uri), album(name, images, external_urls(spotify), uri))
-		)
-	`
+	PlaylistAPIQuery = `id, name, description, images, owner(id, display_name, external_urls(spotify), uri), followers, uri, external_urls, tracks.items(track(name, duration_ms, preview_url, uri, artists(name, uri), album(name, images, external_urls(spotify), uri)))`
 )
 
 var (
